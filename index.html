@@ -70,11 +70,15 @@
   .appbar .share{margin-left:auto; background:#fff; border-radius:99px; padding:6px 13px;
     font-size:12.5px; font-weight:700; color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.08)}
 
+  /* 保持 block：广场与我的靠普通文档流堆叠并整体滚动。
+     探索页的 flex 上下文只在 #v-explore 内部建立，见下方 */
   .screen{flex:1; overflow-y:auto; overflow-x:hidden; position:relative; scrollbar-width:thin}
   .screen::-webkit-scrollbar{width:4px}
   .screen::-webkit-scrollbar-thumb{background:#CFD3D8; border-radius:9px}
   .view{display:none; flex-direction:column}
   .view.on{display:flex}
+  /* 只有探索页撑满可视区：.screen 是 block，故用 height 而非 flex */
+  #v-explore.on{height:100%}
 
   /* 金刚区：两行 × 5（顶部文字类目已删，二者取一） */
   .kong{background:var(--bg); padding:12px 0 4px}
@@ -83,7 +87,8 @@
   .kong-ic{width:47px; height:47px; border-radius:14px; display:grid; place-items:center;
     background:#fff; box-shadow:0 1px 4px rgba(0,0,0,.07); position:relative}
   .kong-ic svg{width:25px; height:25px}
-  .kong-item.on .kong-ic{background:var(--lime); box-shadow:0 2px 8px rgba(196,240,42,.5)}
+  .kong-item.on .kong-ic{background:linear-gradient(135deg,#FEFF4C 0%,#CFFF77 52%,#ABFFE1 100%);
+    box-shadow:0 2px 8px rgba(196,240,42,.5)}
   .kong-item span{font-size:11.5px; color:var(--body); font-weight:500; white-space:nowrap}
   .kong-item.on span{color:var(--ink); font-weight:900}
   .kong-badge{position:absolute; top:-4px; right:-5px; background:var(--ink); color:#fff;
@@ -195,17 +200,26 @@
   .gc-route .s{font-size:11px; background:var(--sunk); padding:2.5px 7px; border-radius:5px}
   .gc-route .a{font-size:9px; color:var(--meta)}
   .gc-foot{display:flex; align-items:center; gap:10px; font-size:11.5px; color:var(--meta); margin-top:9px}
-  .gc-foot .open{margin-left:auto; background:var(--lime); color:var(--ink); font-size:12.5px;
+  .gc-foot .open{margin-left:auto;
+    background:linear-gradient(100deg,#FEFF4C 0%,#CFFF77 52%,#ABFFE1 100%);
+    color:var(--ink); font-size:12.5px;
     font-weight:700; padding:6px 15px; border-radius:99px}
 
   /* ============ 探索：地图发现页 ============ */
-  .xwrap{display:flex; flex-direction:column; height:100%; position:relative}
+  .xwrap{display:flex; flex-direction:column; flex:1; min-height:0; position:relative}
   .xmap{position:relative; background:#E9EDF0; flex:none; transition:height .26s ease}
   .xmap svg{display:block; width:100%; height:100%}
   /* 三段式：地图高度随浮层状态变化 */
   .xwrap[data-state="half"] .xmap{height:300px}
   .xwrap[data-state="full"] .xmap{height:150px}
-  .xwrap[data-state="peek"] .xmap{height:540px}
+  /* 收起态：地图保持接近 390×300 的比例，不拉伸；剩余高度由 .xwrap
+     的地图底色填充，视觉上连成整片地图，不再出现白块 */
+  .xwrap[data-state="peek"] .xmap{height:470px}
+  .xwrap[data-state="peek"]{background:#E9EDF0}
+  /* 收起态：浮层只留抓手条，不占剩余高度，否则留下大片空白 */
+  .xwrap[data-state="peek"] .xsheet{flex:none; padding-bottom:4px; overflow:visible;
+    box-shadow:none; background:transparent; margin-top:0}
+  .xwrap[data-state="peek"] .xgrab{background:#B9C0C7}
 
   .xsearch{position:absolute; left:10px; right:10px; top:10px; background:#fff; border-radius:99px;
     padding:9px 14px; display:flex; align-items:center; gap:8px; box-shadow:0 2px 10px rgba(0,0,0,.14)}
@@ -235,10 +249,8 @@
   .xsheet{flex:1; background:#fff; border-radius:16px 16px 0 0; margin-top:-14px; position:relative;
     z-index:2; padding:6px 14px 16px; box-shadow:0 -4px 16px rgba(0,0,0,.08); overflow-y:auto;
     min-height:0}
-  .xgrabber{display:block; width:100%; padding:7px 0 9px; cursor:pointer}
+  .xgrabber{display:block; width:100%; padding:8px 0 10px; cursor:pointer}
   .xgrab{width:34px; height:4px; background:#DDE0E4; border-radius:99px; margin:0 auto}
-  .xstate{display:block; text-align:center; font-size:10.5px; color:var(--meta); font-weight:700;
-    margin-top:5px}
   .xsum{display:flex; align-items:baseline; gap:7px; margin-bottom:3px}
   .xsum h2{font-size:18px; font-weight:900}
   .xsum span{font-size:11.5px; color:var(--meta)}
@@ -303,7 +315,8 @@
   .mtabs button{font-size:14.5px; color:var(--meta); font-weight:500; padding-bottom:10px; position:relative}
   .mtabs button[aria-selected="true"]{color:var(--ink); font-weight:900}
   .mtabs button[aria-selected="true"]::after{content:""; position:absolute; left:50%; bottom:2px;
-    transform:translateX(-50%); width:22px; height:4px; border-radius:99px; background:var(--lime)}
+    transform:translateX(-50%); width:22px; height:4px; border-radius:99px;
+    background:linear-gradient(100deg,#FEFF4C 0%,#CFFF77 52%,#ABFFE1 100%)}
   .mbody{background:#fff; padding:13px 14px 16px; flex:1}
   .mapbox{border:1px solid var(--line); border-radius:var(--r); padding:9px 9px 0; overflow:hidden}
   .mapbox svg{display:block; width:100%; height:auto}
@@ -324,7 +337,8 @@
   .logi + .logi{border-top:1px solid var(--line)}
   .logd{width:38px; flex:none; text-align:center; font-size:10px; color:var(--meta); font-weight:500}
   .logd b{display:block; font-size:16px; color:var(--ink); font-weight:900}
-  .mini{flex:none; background:var(--lime); color:var(--ink); font-size:10.5px; font-weight:700;
+  .mini{flex:none; background:linear-gradient(100deg,#FEFF4C 0%,#CFFF77 52%,#ABFFE1 100%);
+    color:var(--ink); font-size:10.5px; font-weight:700;
     padding:3px 9px; border-radius:99px}
   .empty{text-align:center; padding:30px 18px; color:var(--meta); font-size:12.5px; line-height:1.7}
   .empty .eb{display:inline-block; margin-top:11px; background:var(--ink); color:#fff;
@@ -343,7 +357,8 @@
   .tabbar button .ic{width:26px; height:26px; display:grid; place-items:center; border-radius:50%}
   .tabbar button .ic svg{width:19px; height:19px}
   .tabbar button[aria-selected="true"]{color:var(--ink); font-weight:900}
-  .tabbar button[aria-selected="true"] .ic{background:var(--lime)}
+  .tabbar button[aria-selected="true"] .ic{
+    background:linear-gradient(135deg,#FEFF4C 0%,#CFFF77 52%,#ABFFE1 100%)}
 
   .sheet{position:absolute; inset:0; z-index:30; background:rgba(0,0,0,.42); display:flex;
     align-items:flex-start; justify-content:center}
@@ -368,7 +383,8 @@
   .rail{display:flex; flex-direction:column; gap:15px}
   .note{background:#fff; border-radius:var(--r); padding:16px 17px; box-shadow:0 1px 4px rgba(0,0,0,.05)}
   .note-h{display:flex; align-items:center; gap:9px; margin-bottom:10px}
-  .note-i{width:23px; height:23px; border-radius:6px; background:var(--lime); color:var(--ink);
+  .note-i{width:23px; height:23px; border-radius:6px;
+    background:linear-gradient(135deg,#FEFF4C 0%,#CFFF77 52%,#ABFFE1 100%); color:var(--ink);
     font-size:11.5px; font-weight:900; display:grid; place-items:center; flex:none}
   .note h3{font-size:15.5px; font-weight:900}
   .note p{margin:0 0 9px; font-size:12.5px; line-height:1.68}
@@ -573,7 +589,7 @@
       <div class="note">
         <div class="note-h"><span class="note-i">4</span><h3>判断三：金刚区改两行，顶部文字类目删除</h3></div>
         <p>线上同时存在<b>顶部文字类目</b>和<b>展开后的金刚区面板</b>，两者是同一批类目的两种表达，占了两倍首屏且互相分流点击。二者取一，保留<b>两行 × 5 列的金刚区</b>——与休闲玩乐频道现行规格一致，首屏露出 10 个，比一行的 6 个多近一倍。</p>
-        <p>两点与休闲玩乐做区分：<b>首格不放「全部」而放「本周末」</b>，因为周末探索的第一层筛选是时间而非品类；<b>icon 沿用拼场自身的荧光绿体系</b>，不套用休闲玩乐的橙红拟物。</p>
+        <p>两点与休闲玩乐做区分：<b>首格不放「全部」而放「本周热点」</b>，因为周末探索的第一层筛选是时间与热度而非品类；<b>icon 沿用拼场自身的荧光绿体系</b>，不套用休闲玩乐的橙红拟物。</p>
         <p>类目顺序随天气动态重排：雨天把密室、剧本杀、KTV、桌游提前，晴天把徒步、Citywalk 提前。展开面板按<b>室内／户外运动／城市漫游</b>分组，分组本身就在表达天气逻辑。</p>
       </div>
 
@@ -652,7 +668,7 @@
 
   /* ---------- 金刚区 ---------- */
   var KONG=[
-    {k:'weekend',n:'本周末',i:'weekend',badge:'NEW'},{k:'room',n:'密室',i:'room'},
+    {k:'weekend',n:'本周热点',i:'weekend',badge:'NEW'},{k:'room',n:'密室',i:'room'},
     {k:'script',n:'剧本杀',i:'script'},{k:'bad',n:'羽毛球',i:'bad'},{k:'hike',n:'徒步',i:'hike'},
     {k:'walk',n:'Citywalk',i:'walk'},{k:'board',n:'桌游',i:'board'},{k:'art',n:'看展',i:'art'},
     {k:'ktv',n:'KTV',i:'ktv'},{k:'more',n:'全部',i:'more'}
@@ -1015,12 +1031,9 @@
         (st.xfilter===f[0])+'">'+f[1]+'</button>';}).join('');
   }
 
-  var SHEET_HINT={half:'上滑看全部 · 下滑看地图',full:'点此收起，看地图',peek:'点此展开方案'};
-
   function renderXSheet(){
     var h='<button class="xgrabber" id="xgrabber" aria-label="切换浮层高度">'+
-      '<span class="xgrab"></span>'+
-      '<span class="xstate">'+SHEET_HINT[st.xstate]+'</span></button>';
+      '<span class="xgrab"></span></button>';
     if(st.xstate==='peek'){$('xsheet').innerHTML=h; return;}
     if(st.xsel){
       var s=spotById(st.xsel),sc=score(s);
