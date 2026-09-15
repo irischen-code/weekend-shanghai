@@ -1,0 +1,979 @@
+<title>周末去哪儿·上海</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+  :root{
+    --bg:#FCFBFF; --card:#FFFFFF; --sunk:#F3F0FA;
+    --ink:#12101A; --body:#3A3546; --muted:#8A83A0; --line:#12101A;
+    --pink:#FF5FA2; --pink-soft:#FFE3EF;
+    --lime:#C6FF3D; --lime-soft:#EEFFCB;
+    --cyan:#3DDCFF; --cyan-soft:#D8F7FF;
+    --grape:#8B5CF6; --grape-soft:#EDE4FF;
+    --desk:#EFE9FB;
+    --hard:3px 3px 0 var(--line);
+    --hard-sm:2px 2px 0 var(--line);
+    --bw:2px;
+    --r:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141220; --card:#1D1930; --sunk:#262040;
+      --ink:#FBF9FF; --body:#DAD4EC; --muted:#9E96BC; --line:#000000;
+      --pink:#FF7DB4; --pink-soft:#4A1F35;
+      --lime:#C6FF3D; --lime-soft:#2E3D14;
+      --cyan:#5FE3FF; --cyan-soft:#12384A;
+      --grape:#A78BFA; --grape-soft:#2E2350;
+      --desk:#0A0812;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141220; --card:#1D1930; --sunk:#262040;
+    --ink:#FBF9FF; --body:#DAD4EC; --muted:#9E96BC; --line:#000000;
+    --pink:#FF7DB4; --pink-soft:#4A1F35;
+    --lime:#C6FF3D; --lime-soft:#2E3D14;
+    --cyan:#5FE3FF; --cyan-soft:#12384A;
+    --grape:#A78BFA; --grape-soft:#2E2350;
+    --desk:#0A0812;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--desk); color:var(--body);
+    font-family:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+    font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{margin:0; color:var(--ink); text-wrap:balance;
+    font-family:"Baloo 2","Noto Sans SC",system-ui,sans-serif; font-weight:800; letter-spacing:-.01em}
+  .num{font-variant-numeric:tabular-nums}
+  button{font-family:inherit; cursor:pointer; color:inherit}
+  :focus-visible{outline:3px solid var(--grape); outline-offset:2px; border-radius:6px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+
+  .stage{max-width:1200px; margin:0 auto; padding:26px 16px 52px}
+  .masthead{display:flex; flex-wrap:wrap; gap:14px 26px; align-items:flex-end; justify-content:space-between; margin-bottom:20px}
+  .brandline{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .brand{font-size:30px; font-weight:800; letter-spacing:-.02em}
+  .blip{background:var(--lime); border:var(--bw) solid var(--line); border-radius:99px;
+    padding:3px 11px; font-size:11px; font-weight:900; color:#12101A; box-shadow:var(--hard-sm);
+    transform:rotate(-3deg); letter-spacing:.04em}
+  .masthead p{margin:8px 0 0; font-size:13px; color:var(--muted); max-width:60ch}
+  .tagrow{display:flex; gap:7px; flex-wrap:wrap}
+  .meta-tag{font-size:11px; font-weight:700; color:var(--ink); background:var(--card);
+    border:var(--bw) solid var(--line); padding:4px 10px; border-radius:99px; box-shadow:var(--hard-sm)}
+
+  .split{display:grid; grid-template-columns:392px minmax(0,1fr); gap:32px; align-items:start}
+  @media (max-width:900px){ .split{grid-template-columns:1fr; justify-items:center} }
+
+  /* ---------- phone ---------- */
+  .phone{
+    width:392px; max-width:100%; height:812px; background:var(--bg);
+    border:3px solid var(--line); border-radius:30px; overflow:hidden;
+    display:flex; flex-direction:column; position:sticky; top:16px; isolation:isolate;
+    box-shadow:8px 8px 0 var(--line);
+  }
+  /* sticky already establishes the containing block the modal needs; when the
+     phone stops being sticky it must still be one, hence relative not static */
+  @media (max-width:900px){ .phone{position:relative; top:auto; box-shadow:5px 5px 0 var(--line)} }
+  .statusbar{display:flex; justify-content:space-between; align-items:center; padding:11px 20px 7px;
+    font-size:11.5px; font-weight:700; color:var(--ink); flex:none}
+  .screen{flex:1; overflow-y:auto; overflow-x:hidden; scrollbar-width:thin; position:relative}
+  .screen::-webkit-scrollbar{width:5px}
+  .screen::-webkit-scrollbar-thumb{background:var(--grape); border-radius:9px}
+  .pad-x{padding:0 14px}
+
+  .tabbar{flex:none; display:grid; grid-template-columns:repeat(4,1fr); border-top:var(--bw) solid var(--line);
+    background:var(--card); padding:6px 6px calc(8px + env(safe-area-inset-bottom,0px))}
+  .tabbar button{background:none; border:0; padding:5px 2px; color:var(--muted); font-size:11px;
+    display:flex; flex-direction:column; align-items:center; gap:3px; border-radius:10px; font-weight:700}
+  .tabbar button .ic{width:20px; height:20px; display:block}
+  .tabbar button[aria-selected="true"]{color:var(--ink)}
+  .tabbar button[aria-selected="true"] .ic{
+    background:var(--lime); border:var(--bw) solid var(--line); border-radius:7px; padding:2px}
+
+  .view{display:flex; flex-direction:column; gap:12px; padding:10px 0 14px}
+  .view[hidden]{display:none!important}
+
+  /* ---------- shared ---------- */
+  .eyebrow{font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:900}
+  .card{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r); box-shadow:var(--hard)}
+  .between{display:flex; align-items:center; justify-content:space-between; gap:10px}
+  .row{display:flex; align-items:center; gap:7px}
+  .chip{display:inline-flex; align-items:center; gap:3px; font-size:10.5px; font-weight:700; padding:2px 8px;
+    border-radius:99px; background:var(--sunk); color:var(--body); border:1.5px solid var(--line); white-space:nowrap}
+  .chip.p{background:var(--pink-soft); color:var(--pink)}
+  .chip.l{background:var(--lime-soft); color:#4A6B00}
+  .chip.c{background:var(--cyan-soft); color:#0B7A99}
+  .chip.g{background:var(--grape-soft); color:var(--grape)}
+  :root[data-theme="dark"] .chip.l{color:var(--lime)}
+  :root[data-theme="dark"] .chip.c{color:var(--cyan)}
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]) .chip.l{color:var(--lime)}
+    :root:not([data-theme="light"]) .chip.c{color:var(--cyan)}
+  }
+
+  /* ---------- weather banner ---------- */
+  .wx{margin:0 14px; background:var(--pink); border:var(--bw) solid var(--line); border-radius:var(--r);
+    box-shadow:var(--hard); padding:11px 13px; color:#12101A}
+  .wx.rain{background:var(--cyan)}
+  .wx-top{display:flex; align-items:center; gap:10px}
+  .wx-glyph{width:34px; height:34px; flex:none}
+  .wx-read{flex:1; min-width:0}
+  .wx-read b{display:block; font-size:15px; font-weight:900; line-height:1.2; color:#12101A;
+    font-family:"Baloo 2","Noto Sans SC",sans-serif}
+  .wx-read span{font-size:11px; font-weight:700; color:#12101A; opacity:.72}
+  .wx-switch{display:flex; gap:3px; background:rgba(255,255,255,.55); padding:3px; border-radius:99px;
+    border:1.5px solid var(--line)}
+  .wx-switch button{border:0; background:none; font-size:11px; font-weight:800; padding:3px 9px;
+    border-radius:99px; color:#12101A; opacity:.6}
+  .wx-switch button[aria-pressed="true"]{background:#fff; opacity:1; box-shadow:1px 1px 0 var(--line)}
+  .wx-verdict{margin-top:8px; font-size:11.5px; font-weight:700; line-height:1.45; color:#12101A;
+    background:rgba(255,255,255,.6); border:1.5px solid var(--line); border-radius:9px; padding:6px 9px}
+
+  /* ---------- sticky filter bar ---------- */
+  .filterbar{position:sticky; top:0; z-index:8; background:var(--bg);
+    border-bottom:var(--bw) solid var(--line); padding:9px 0 8px; margin-bottom:2px}
+  .frow{display:flex; gap:6px; overflow-x:auto; padding:0 14px 1px; scrollbar-width:none}
+  .frow::-webkit-scrollbar{display:none}
+  .frow + .frow{margin-top:7px}
+  .fpill{flex:none; border:var(--bw) solid var(--line); background:var(--card); color:var(--body);
+    font-size:12px; font-weight:700; padding:5px 12px; border-radius:99px; box-shadow:var(--hard-sm);
+    transition:transform .1s}
+  .fpill[aria-pressed="true"]{background:var(--lime); color:#12101A}
+  .fpill:active{transform:translate(2px,2px); box-shadow:none}
+  .fpill.budget{display:flex; align-items:center; gap:7px; padding:4px 12px 4px 11px}
+  .fpill.budget input{width:78px; accent-color:var(--pink); margin:0; height:14px}
+  .fpill.budget b{font-size:11.5px; min-width:46px; text-align:right; font-weight:900; color:var(--ink)}
+  .fmeta{display:flex; align-items:center; justify-content:space-between; padding:8px 14px 0; gap:10px}
+
+  /* ---------- activity card (compact) ---------- */
+  .results{display:flex; flex-direction:column; gap:10px; padding:0 14px}
+  .act{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r);
+    box-shadow:var(--hard); overflow:hidden}
+  .act.top{box-shadow:4px 4px 0 var(--pink), 4px 4px 0 1.5px var(--line)}
+  .act-main{display:flex; gap:10px; padding:10px 11px; align-items:flex-start}
+  .thumb{width:54px; height:54px; border-radius:11px; flex:none; display:grid; place-items:center;
+    font-size:24px; border:var(--bw) solid var(--line)}
+  .act-body{flex:1; min-width:0}
+  .act-title{font-size:14.5px; font-weight:800; color:var(--ink); line-height:1.3;
+    font-family:"Baloo 2","Noto Sans SC",sans-serif}
+  .act-sub{font-size:11px; color:var(--muted); font-weight:500; margin-top:2px}
+  .act-chips{display:flex; gap:4px; flex-wrap:wrap; margin-top:6px}
+  .badge{flex:none; text-align:center; background:var(--lime); border:var(--bw) solid var(--line);
+    border-radius:10px; padding:3px 7px; box-shadow:var(--hard-sm)}
+  .badge b{display:block; font-size:17px; font-weight:900; color:#12101A; line-height:1.05;
+    font-family:"Baloo 2",sans-serif}
+  .badge span{font-size:8.5px; font-weight:800; color:#12101A; opacity:.7; letter-spacing:.04em}
+  .badge.warn{background:var(--pink-soft)}
+  .act-why{margin:0 11px; font-size:11.5px; color:var(--body); line-height:1.5}
+  .act-why b{color:var(--ink); font-weight:800}
+  .act-foot{display:flex; gap:6px; align-items:center; padding:9px 11px 10px}
+  .why-toggle{flex:none; background:var(--sunk); border:1.5px solid var(--line); border-radius:99px;
+    font-size:10.5px; font-weight:800; padding:5px 9px; color:var(--muted)}
+  .why-toggle[aria-expanded="true"]{background:var(--grape-soft); color:var(--grape)}
+  .btn{flex:1; border:var(--bw) solid var(--line); background:var(--card); color:var(--ink); font-size:12px;
+    padding:6px 8px; border-radius:99px; font-weight:800; box-shadow:var(--hard-sm); transition:transform .1s}
+  .btn:active{transform:translate(2px,2px); box-shadow:none}
+  .btn.primary{background:var(--pink); color:#12101A}
+  .btn.joined{background:var(--lime); color:#12101A}
+  .bars{padding:8px 11px 0; display:flex; flex-direction:column; gap:5px;
+    border-top:1.5px dashed var(--line); margin-top:9px}
+  .bars[hidden]{display:none!important}
+  .bar-head{font-size:10px; font-weight:900; color:var(--muted); letter-spacing:.1em; padding-top:7px}
+  .bar-row{display:grid; grid-template-columns:40px 1fr 28px; align-items:center; gap:7px;
+    font-size:10.5px; font-weight:700; color:var(--muted)}
+  .track{height:7px; background:var(--sunk); border:1.5px solid var(--line); border-radius:99px; overflow:hidden}
+  .fill{height:100%; background:var(--grape)}
+  .fill.p{background:var(--pink)}
+  .fill.c{background:var(--cyan)}
+  .empty{text-align:center; padding:28px 18px; color:var(--muted); font-size:12.5px; font-weight:700}
+
+  /* ---------- team ---------- */
+  .team{padding:11px}
+  .team-top{display:flex; gap:10px; align-items:flex-start}
+  .avatars{display:flex}
+  .av{width:24px; height:24px; border-radius:50%; border:var(--bw) solid var(--line); margin-left:-7px;
+    display:grid; place-items:center; font-size:10px; font-weight:900; color:#12101A}
+  .av:first-child{margin-left:0}
+  .av.slot{background:var(--sunk); color:var(--muted); border-style:dashed}
+  .progress{height:9px; background:var(--sunk); border:var(--bw) solid var(--line); border-radius:99px;
+    overflow:hidden; margin-top:9px}
+  .progress i{display:block; height:100%; background:var(--lime)}
+
+  /* ---------- passport ---------- */
+  .passport{margin:0 14px; background:var(--grape); border:var(--bw) solid var(--line); border-radius:var(--r);
+    padding:14px; color:#fff; box-shadow:var(--hard)}
+  .passport h3{color:#fff; font-size:18px}
+  .pp-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px}
+  .pp-stat{background:rgba(255,255,255,.18); border:1.5px solid var(--line); border-radius:10px; padding:7px 8px}
+  .pp-stat b{display:block; font-size:19px; font-weight:900; line-height:1.1; font-family:"Baloo 2",sans-serif}
+  .pp-stat span{font-size:9.5px; font-weight:700; opacity:.9}
+  .stamp-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:0 14px}
+  .stamp{aspect-ratio:1; border-radius:12px; display:grid; place-items:center; gap:1px; text-align:center;
+    border:var(--bw) dashed var(--line); background:var(--sunk); color:var(--muted); font-size:9px;
+    font-weight:800; padding:3px}
+  .stamp.got{border-style:solid; background:var(--lime); color:#12101A; box-shadow:var(--hard-sm)}
+  .stamp .em{font-size:19px; line-height:1}
+  .log-item{display:flex; gap:9px; padding:9px 0}
+  .log-item + .log-item{border-top:1.5px dashed var(--line)}
+  .log-date{font-size:10px; font-weight:800; color:var(--muted); width:38px; flex:none; text-align:center; line-height:1.25}
+  .log-date b{display:block; font-size:15px; color:var(--ink); font-family:"Baloo 2",sans-serif}
+
+  /* ---------- guides ---------- */
+  .guide{padding:11px}
+  .guide-by{display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--muted)}
+  .guide h4{font-size:14px; margin:7px 0 5px; line-height:1.35}
+  .guide-route{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin:7px 0; font-size:10.5px}
+  .stop{background:var(--cyan-soft); border:1.5px solid var(--line); padding:2px 7px; border-radius:6px;
+    color:var(--ink); font-weight:700}
+  .arrow{color:var(--muted); font-size:9px; font-weight:900}
+  .guide-foot{display:flex; gap:10px; font-size:11px; font-weight:700; color:var(--muted); margin-top:8px;
+    align-items:center}
+  .guide-foot button{background:none; border:0; color:var(--muted); font-size:11px; font-weight:700; padding:0}
+  .guide-foot button[aria-pressed="true"]{color:var(--pink)}
+
+  .mini{flex:none; background:var(--lime); border:1.5px solid var(--line); border-radius:99px;
+    font-size:10px; font-weight:800; padding:3px 8px; color:#12101A; box-shadow:1.5px 1.5px 0 var(--line)}
+  .mini:active{transform:translate(1.5px,1.5px); box-shadow:none}
+
+  .modal{position:absolute; inset:0; z-index:20; background:rgba(18,16,26,.55);
+    display:flex; align-items:flex-end; padding:12px}
+  .modal[hidden]{display:none!important}
+  .modal-sheet{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r);
+    box-shadow:var(--hard); padding:13px; width:100%; max-height:92%; overflow-y:auto}
+  .draft-hint{margin:0 0 10px; font-size:11px; font-weight:500; color:var(--muted);
+    background:var(--grape-soft); border:1.5px solid var(--line); border-radius:9px; padding:7px 9px}
+  .draft-hint b{color:var(--ink); font-weight:800}
+  .draft-field{display:flex; gap:9px; align-items:baseline; padding:7px 0; font-size:11.5px;
+    border-bottom:1.5px dashed var(--line)}
+  .draft-field b{color:var(--ink); font-weight:800; font-size:11.5px}
+  .draft-field.auto b{font-size:12.5px; line-height:1.4}
+  .draft-label{flex:none; width:32px; font-size:10px; font-weight:900; color:var(--muted); letter-spacing:.06em}
+  .draft-write{display:block; margin-top:11px; font-size:10px; font-weight:900; color:var(--pink);
+    letter-spacing:.06em}
+  .draft-write textarea{display:block; width:100%; margin-top:5px; font-family:inherit; font-size:12px;
+    color:var(--body); background:var(--sunk); border:var(--bw) solid var(--line); border-radius:10px;
+    padding:8px 9px; resize:none; font-weight:500; line-height:1.5}
+
+  .toast{position:fixed; left:50%; transform:translateX(-50%) translateY(14px); bottom:90px;
+    background:var(--ink); color:var(--bg); font-size:12px; font-weight:700; padding:9px 16px;
+    border:var(--bw) solid var(--line); border-radius:99px; opacity:0; pointer-events:none;
+    transition:.22s; z-index:99; max-width:84%; text-align:center; box-shadow:var(--hard)}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+
+  /* ---------- rail ---------- */
+  .rail{display:flex; flex-direction:column; gap:16px; padding-top:2px}
+  .note{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r);
+    padding:16px 17px; box-shadow:var(--hard)}
+  .note-head{display:flex; align-items:center; gap:9px; margin-bottom:9px}
+  .note-idx{width:24px; height:24px; border-radius:8px; background:var(--lime); color:#12101A; font-size:12px;
+    font-weight:900; display:grid; place-items:center; flex:none; border:var(--bw) solid var(--line)}
+  .note h3{font-size:16px}
+  .note p{margin:0 0 9px; font-size:12.5px; line-height:1.65}
+  .note p:last-child{margin-bottom:0}
+  .note .pain{background:var(--pink-soft); border:1.5px solid var(--line); border-radius:10px;
+    padding:9px 11px; color:var(--body); font-size:12px; font-weight:500}
+  .kvs{display:grid; grid-template-columns:repeat(auto-fit,minmax(94px,1fr)); gap:8px; margin-top:11px}
+  .kv{background:var(--sunk); border:1.5px solid var(--line); border-radius:10px; padding:8px 10px}
+  .kv b{display:block; font-size:15px; color:var(--ink); font-weight:900; font-family:"Baloo 2",sans-serif}
+  .kv span{font-size:10px; color:var(--muted); font-weight:700}
+  .formula{background:var(--sunk); border:1.5px solid var(--line); border-radius:10px; padding:10px 12px;
+    font-size:11.5px; line-height:1.7; overflow-x:auto}
+  .formula code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px;
+    color:var(--grape); white-space:nowrap; font-weight:700}
+  .wlist{display:flex; flex-direction:column; gap:6px; margin-top:10px}
+  .wrow{display:grid; grid-template-columns:62px 1fr 32px; align-items:center; gap:9px;
+    font-size:11px; font-weight:700; color:var(--muted)}
+  details.more{margin-top:10px; border-top:1.5px dashed var(--line); padding-top:9px}
+  details.more summary{font-size:12px; color:var(--grape); cursor:pointer; font-weight:800}
+  details.more p{margin-top:8px}
+  .rm{display:grid; grid-template-columns:44px 1fr; gap:10px; padding:10px 0}
+  .rm + .rm{border-top:1.5px dashed var(--line)}
+  .rm-phase{font-size:11px; font-weight:900; color:#12101A; background:var(--cyan);
+    border:1.5px solid var(--line); border-radius:7px; height:22px; display:grid; place-items:center}
+  .rm b{display:block; font-size:12.5px; color:var(--ink); margin-bottom:2px}
+  .rm span{font-size:11.5px; color:var(--muted); line-height:1.5}
+  .footnote{font-size:11px; color:var(--muted); text-align:center; padding-top:4px; line-height:1.6; font-weight:500}
+</style>
+
+<div class="stage">
+  <header class="masthead">
+    <div>
+      <div class="brandline">
+        <h1 class="brand">周末去哪儿</h1>
+        <span class="blip">SHANGHAI</span>
+      </div>
+      <p>给大学生的周末决策工具：先用天气、预算、同行人数把"去哪玩"收敛成几个能立刻出发的选项，再用组队、打卡、攻略把一次出门变成可复用的内容。左侧可直接操作，右侧是产品设计说明。</p>
+    </div>
+    <div class="tagrow">
+      <span class="meta-tag">可点击原型</span>
+      <span class="meta-tag">数据为演示样本</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <div class="phone">
+      <div class="statusbar"><span class="num">9:41</span><span>周六 · 上海</span></div>
+
+      <div class="screen" id="screen">
+        <!-- 推荐 -->
+        <section class="view" id="view-feed" style="padding-top:0">
+          <div class="wx" id="wx" style="margin-top:8px">
+            <div class="wx-top">
+              <svg class="wx-glyph" id="wxGlyph" viewBox="0 0 40 40" aria-hidden="true"></svg>
+              <div class="wx-read">
+                <b id="wxTitle"></b>
+                <span id="wxSub"></span>
+              </div>
+              <div class="wx-switch" role="group" aria-label="切换天气场景">
+                <button id="wxSunny" aria-pressed="true">晴</button>
+                <button id="wxRainy" aria-pressed="false">雨</button>
+              </div>
+            </div>
+            <div class="wx-verdict" id="verdict"></div>
+          </div>
+
+          <div class="filterbar">
+            <div class="frow" id="segMood" role="group" aria-label="想干嘛"></div>
+            <div class="frow">
+              <div class="fpill budget">
+                <label for="budget" style="font-size:11.5px; font-weight:800">人均</label>
+                <input type="range" id="budget" min="0" max="200" step="10" value="80">
+                <b class="num" id="budgetRead">≤80</b>
+              </div>
+              <span id="segParty" style="display:contents" role="group" aria-label="几个人"></span>
+            </div>
+          </div>
+
+          <div class="fmeta">
+            <span class="eyebrow">为你排序 · <span id="resultCount" class="num">0</span> 个结果</span>
+            <span class="chip g" id="sortNote">按匹配度</span>
+          </div>
+
+          <div class="results" id="results"></div>
+        </section>
+
+        <!-- 组队 -->
+        <section class="view" id="view-team" hidden>
+          <div class="between pad-x">
+            <h2 style="font-size:19px">我的队伍</h2>
+            <span class="chip p" id="myTeamCount">已加入 1 个</span>
+          </div>
+          <p class="pad-x" style="font-size:11.5px; color:var(--muted); margin:0; font-weight:500">
+            在推荐页点"组队出发"，队伍会出现在这里。人数凑齐前可随时退出。</p>
+          <div class="results" id="teamList"></div>
+        </section>
+
+        <!-- 打卡 -->
+        <section class="view" id="view-check" hidden>
+          <div class="passport">
+            <div class="between" style="align-items:flex-start">
+              <div>
+                <h3>城市探索护照</h3>
+                <div style="font-size:11px; opacity:.9; margin-top:2px; font-weight:700">含湘 · 2026 秋季赛季</div>
+              </div>
+              <span class="chip" style="background:var(--lime); color:#12101A">城市漫游者</span>
+            </div>
+            <div class="pp-stats">
+              <div class="pp-stat"><b class="num">6</b><span>已打卡</span></div>
+              <div class="pp-stat"><b class="num">412</b><span>累计花费</span></div>
+              <div class="pp-stat"><b class="num">9</b><span>同行过</span></div>
+            </div>
+          </div>
+          <div class="eyebrow pad-x" style="margin-top:2px">徽章 · 集齐一行解锁隐藏路线</div>
+          <div class="stamp-grid" id="stampGrid"></div>
+          <div class="pad-x">
+            <div class="card" style="padding:11px">
+              <div class="eyebrow" style="margin-bottom:2px">最近的足迹</div>
+              <div id="logList"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 攻略 -->
+        <section class="view" id="view-guide" hidden>
+          <div class="between pad-x">
+            <h2 style="font-size:19px">攻略广场</h2>
+            <span class="chip c">同校优先</span>
+          </div>
+          <p class="pad-x" style="font-size:11.5px; color:var(--muted); margin:0; font-weight:500">
+            打卡记录可一键生成攻略草稿——路线、花费、耗时自动带出，作者只补一句感受。</p>
+          <div class="results" id="guideList"></div>
+        </section>
+      </div>
+
+      <div class="modal" id="draftModal" hidden>
+        <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="draftTitle">
+          <div class="between" style="margin-bottom:9px">
+            <h3 id="draftTitle" style="font-size:16px">攻略草稿</h3>
+            <button class="mini" id="draftClose" aria-label="关闭">✕</button>
+          </div>
+          <div id="draftBody"></div>
+          <div class="act-foot" style="padding:11px 0 0">
+            <button class="btn" id="draftCancel">再想想</button>
+            <button class="btn primary" id="draftPublish">发布到攻略广场</button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="tabbar" id="tabbar" role="tablist" aria-label="主导航"></nav>
+    </div>
+
+    <!-- rail -->
+    <div class="rail">
+      <div class="note">
+        <div class="note-head"><span class="note-idx">1</span><h3>要解决的那个瞬间</h3></div>
+        <p class="pain">"周六早上十点醒了，群里问'今天去哪'，刷了四十分钟小红书，最后在宿舍打了一下午游戏。"</p>
+        <p style="margin-top:10px">大学生缺的不是活动信息，是<b>收敛决策</b>的能力。信息散在小红书、公众号、豆瓣同城、票务 App 里，每个都只解决"有什么"，没有一个回答"<b>今天、这个天气、这点预算、我们仨，到底去哪</b>"。</p>
+        <p>所以第一屏不是活动列表，而是<b>已经替你做完筛选的答案</b>：天气条给出判断，顶部筛选栏收敛范围，结果直接排序。</p>
+      </div>
+
+      <div class="note">
+        <div class="note-head"><span class="note-idx">2</span><h3>推荐怎么算出来的</h3></div>
+        <p>匹配度是五个因子的加权和。滑预算、切天气、改人数，分数和排序实时重算——可以在左边试。</p>
+        <div class="formula"><code>匹配度 = Σ(因子得分 × 权重)，天气为硬约束</code></div>
+        <div class="wlist" id="weightList"></div>
+        <p style="margin-top:10px; font-size:12px; color:var(--muted)">因子拆解默认收起，点卡片上的"为什么"展开——屏效优先，但算法可验证。</p>
+        <details class="more">
+          <summary>为什么天气是硬约束，而不是一个权重？</summary>
+          <p>下雨时把露天市集排在第三位，用户会直接不信任产品。低权重降权仍可能让户外项排进前三，所以雨天对露天项施加封顶惩罚（−45 分）并在卡片写明原因：<b>宁可少推，不可推错</b>。</p>
+        </details>
+        <details class="more">
+          <summary>冷启动没有偏好数据怎么办？</summary>
+          <p>首次使用只要求选一次"想干嘛"（3 秒成本），其余靠天气与预算这两个<b>无需历史数据的强信号</b>兜底。打卡累积后，标签偏好从显式选择过渡到隐式权重。</p>
+        </details>
+      </div>
+
+      <div class="note">
+        <div class="note-head"><span class="note-idx">3</span><h3>从"看到"到"真的出门"</h3></div>
+        <p class="pain">一个人不想去、凑不齐人、AA 算不清——这是活动决策后最大的一道流失。</p>
+        <p style="margin-top:10px">组队不是社区功能，是<b>转化链路的一环</b>，直接长在推荐卡片上，不需要跳到另一个 Tab 发帖。队伍卡片默认带<b>人均预估和 AA 拆分</b>，因为"这次花多少、谁垫钱"是学生真实的决策摩擦点。</p>
+        <div class="kvs">
+          <div class="kv"><b>1 步</b><span>从推荐到发起组队</span></div>
+          <div class="kv"><b>默认 AA</b><span>人均随人数实时变</span></div>
+        </div>
+      </div>
+
+      <div class="note">
+        <div class="note-head"><span class="note-idx">4</span><h3>打卡为什么值得做</h3></div>
+        <p>打卡表面是荣誉系统，实际承担三件事：①给<b>回访</b>一个理由，徽章集齐解锁隐藏路线；②为算法沉淀<b>真实偏好</b>，比问卷准；③是攻略的<b>生产原料</b>。</p>
+        <p>第三点是关键：多数 UGC 社区死于"写攻略太累"。这里路线、花费、耗时在打卡时已结构化沉淀，用户只补一句感受，<b>发布成本从一篇长文降到一句话</b>。</p>
+      </div>
+
+      <div class="note">
+        <div class="note-head"><span class="note-idx">5</span><h3>内容循环</h3></div>
+        <p>四个 Tab 不是并列功能，是一个闭环——这是它区别于"活动列表 App"的地方。</p>
+        <div class="formula" style="line-height:1.9">
+          <code>推荐 → 组队（凑人成行）→ 打卡（结构化沉淀）</code><br>
+          <code>　↑　　　　　　　　　　　　　　　　　　　↓</code><br>
+          <code>　└──── 攻略（一句话发布，回流为供给）───┘</code>
+        </div>
+        <p style="margin-top:10px">冷启动靠抓取＋人工维护供给；攻略沉淀到一定密度后，<b>用户攻略本身成为推荐池的补充供给</b>，边际内容成本下降。</p>
+      </div>
+
+      <div class="note">
+        <div class="note-head"><span class="note-idx">6</span><h3>怎么判断它做成了</h3></div>
+        <p>北极星：<b>周活跃用户的周末成行率</b>（打开且当周产生一次打卡的用户占比）。它同时约束推荐质量和转化链路——只优化点击会推出标题党，只优化打卡会忽略推荐准度。</p>
+        <div class="kvs">
+          <div class="kv"><b>成行率</b><span>北极星</span></div>
+          <div class="kv"><b>决策时长</b><span>打开→组队 &lt;3min</span></div>
+          <div class="kv"><b>成团率</b><span>发起→满员</span></div>
+          <div class="kv"><b>攻略转化</b><span>打卡→发布</span></div>
+        </div>
+        <details class="more">
+          <summary>会怎么验证推荐是否真的有用？</summary>
+          <p>对照组"按热度排序"，实验组"加权匹配度"，观察<b>前三位点击占比</b>与<b>成行率</b>。若前三点击上升但成行率不动，说明推得动人却推不动腿，问题在组队环节而非推荐。</p>
+        </details>
+      </div>
+
+      <div class="note">
+        <div class="note-head"><span class="note-idx">7</span><h3>做的顺序</h3></div>
+        <div class="rm">
+          <div class="rm-phase">V1</div>
+          <div><b>把决策做对</b><span>天气×预算×人数推荐 + 打卡。单城单校试点，供给人工维护，先验证"是否真的减少了决策时间"。</span></div>
+        </div>
+        <div class="rm">
+          <div class="rm-phase">V2</div>
+          <div><b>把人凑齐</b><span>组队与 AA 拆分、成团提醒、同校优先匹配。此阶段盯成团率，它决定推荐价值能否兑现。</span></div>
+        </div>
+        <div class="rm">
+          <div class="rm-phase">V3</div>
+          <div><b>让内容自转</b><span>一句话攻略、徽章赛季、隐藏路线。攻略回流为供给后再考虑多城复制。</span></div>
+        </div>
+      </div>
+
+      <p class="footnote">原型中的活动、价格、路线为演示用样本数据，非真实商户信息。<br>交互与推荐逻辑均为真实可运行的前端实现。</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var ACTS = [
+    {id:'m50', name:'M50 创意园 · 春季群展', em:'🎨', bg:'#EDE4FF',
+     area:'普陀 · 莫干山路', metro:'13号线 江宁路', cost:0, hours:2.5,
+     indoor:true, mood:'art', tags:['免费','室内','可拍照'], party:[1,2,3],
+     hook:'二十多个独立艺术空间连成一条路，不花钱也能逛一下午'},
+    {id:'westbund', name:'西岸美术馆 · 蓬皮杜特展', em:'🖼️', bg:'#D8F7FF',
+     area:'徐汇 · 龙腾大道', metro:'11号线 云锦路', cost:60, hours:3,
+     indoor:true, mood:'art', tags:['学生票','室内','沿江'], party:[1,2],
+     hook:'学生证半价，看完沿江走一段，日落正对浦东'},
+    {id:'anfu', name:'安福路 · 街拍与旧书店', em:'📷', bg:'#FFE3EF',
+     area:'徐汇 · 安福路', metro:'10/11号线 上海图书馆', cost:30, hours:2,
+     indoor:false, mood:'walk', tags:['citywalk','出片','咖啡'], party:[1,2,3],
+     hook:'一条路把书店、咖啡、街拍都解决了，走走停停刚好两小时'},
+    {id:'market', name:'凡几市集 · 周末限定', em:'🧺', bg:'#EEFFCB',
+     area:'静安 · 张园', metro:'2/12/13号线 南京西路', cost:80, hours:2.5,
+     indoor:false, mood:'market', tags:['市集','手作','美食'], party:[2,3,4],
+     hook:'摊主多是独立设计师，不买东西逛着也热闹'},
+    {id:'sheshan', name:'佘山国家森林公园 · 半日徒步', em:'🥾', bg:'#EEFFCB',
+     area:'松江 · 佘山', metro:'9号线 佘山', cost:45, hours:5,
+     indoor:false, mood:'hike', tags:['徒步','自然','需早起'], party:[2,3,4],
+     hook:'市区能当天往返的唯一像样的山，东西佘山连走约5小时'},
+    {id:'livehouse', name:'育音堂 · 独立乐队拼盘', em:'🎸', bg:'#FFE3EF',
+     area:'静安 · 昌平路', metro:'7号线 昌平路', cost:120, hours:3,
+     indoor:true, mood:'show', tags:['演出','夜场','需购票'], party:[2,3,4],
+     hook:'三支乐队拼盘，预售比现场便宜，散场地铁还没停'},
+    {id:'sinan', name:'思南公馆 · 露天书集', em:'📚', bg:'#EEFFCB',
+     area:'黄浦 · 复兴中路', metro:'13号线 淮海中路', cost:20, hours:2,
+     indoor:false, mood:'market', tags:['书集','老洋房','免费入场'], party:[1,2,3],
+     hook:'老洋房前的梧桐树下摆摊，二手书能淘到绝版'},
+    {id:'powerstation', name:'当代艺术博物馆 · 常设展', em:'🏭', bg:'#EDE4FF',
+     area:'黄浦 · 花园港路', metro:'4/8号线 西藏南路', cost:0, hours:2.5,
+     indoor:true, mood:'art', tags:['免费','室内','大烟囱'], party:[1,2,3],
+     hook:'发电厂改的美术馆，常设展免费，顶楼能看江'},
+    {id:'binjiang', name:'杨浦滨江 · 工业遗迹骑行', em:'🚲', bg:'#D8F7FF',
+     area:'杨浦 · 杨树浦路', metro:'12号线 爱国路', cost:15, hours:3,
+     indoor:false, mood:'walk', tags:['骑行','江景','免费'], party:[2,3,4],
+     hook:'共享单车骑完5.5公里岸线，沿途全是老厂房改造'},
+    {id:'guyi', name:'古猗园 · 赏景与小笼', em:'🏯', bg:'#EEFFCB',
+     area:'嘉定 · 南翔', metro:'11号线 南翔', cost:35, hours:4,
+     indoor:false, mood:'walk', tags:['园林','小笼','需出城'], party:[2,3,4],
+     hook:'门票12元，出来就是南翔小笼的发源地'},
+    {id:'script', name:'剧本杀 · 硬核推理本', em:'🔍', bg:'#EDE4FF',
+     area:'黄浦 · 人民广场', metro:'1/2/8号线 人民广场', cost:98, hours:4,
+     indoor:true, mood:'show', tags:['室内','需4人','雨天友好'], party:[4],
+     hook:'四小时封闭推理，雨天最稳的选择，人满才开本'},
+    {id:'tianzifang', name:'田子坊 · 手作体验工坊', em:'🧵', bg:'#FFE3EF',
+     area:'黄浦 · 泰康路', metro:'9号线 打浦桥', cost:150, hours:2.5,
+     indoor:true, mood:'market', tags:['手作','室内','带走成品'], party:[2,3],
+     hook:'银饰、皮具、陶艺都有，做完直接戴走'},
+    {id:'cinema', name:'大光明影院 · 经典重映', em:'🎬', bg:'#D8F7FF',
+     area:'黄浦 · 南京西路', metro:'1/2/8号线 人民广场', cost:55, hours:2.5,
+     indoor:true, mood:'show', tags:['室内','学生优惠','雨天友好'], party:[1,2],
+     hook:'1933年的老影院本身就值一张票，片单每周换'},
+    {id:'chongming', name:'崇明岛 · 骑行与农场午餐', em:'🌾', bg:'#EEFFCB',
+     area:'崇明 · 陈家镇', metro:'需转长途巴士', cost:180, hours:8,
+     indoor:false, mood:'hike', tags:['一日游','需早起','人多划算'], party:[3,4],
+     hook:'四人包车分摊下来不贵，岛上骑行几乎没车'}
+  ];
+
+  var MOODS = [
+    {k:'art',label:'🎨 看展'}, {k:'walk',label:'🚶 瞎逛'}, {k:'market',label:'🧺 赶集'},
+    {k:'show',label:'🎫 看演出'}, {k:'hike',label:'🥾 去野外'}
+  ];
+
+  var WEIGHTS = [
+    {k:'mood',label:'偏好',w:32,c:''}, {k:'budget',label:'预算',w:26,c:'p'},
+    {k:'party',label:'人数',w:18,c:''}, {k:'weather',label:'天气',w:14,c:'c'},
+    {k:'fresh',label:'新鲜度',w:10,c:''}
+  ];
+
+  var STAMPS = [
+    {em:'🎨',n:'看展人',got:true}, {em:'🧺',n:'赶集人',got:true},
+    {em:'📷',n:'街拍人',got:true}, {em:'🥾',n:'徒步人',got:false},
+    {em:'🎸',n:'现场人',got:true}, {em:'🌙',n:'夜行人',got:true},
+    {em:'🚲',n:'骑行人',got:true}, {em:'🌾',n:'出城人',got:false}
+  ];
+
+  // each log carries the structured fields a guide draft needs — this is the
+  // point of note 4: the draft is assembled, not written
+  var LOGS = [
+    {d:'13',m:'09月',t:'M50 创意园',meta:'2人 · 0元 · 2小时',note:'三楼版画工作室可以免费看印制过程',
+     route:['13号线江宁路','M50 创意园','莫干山路涂鸦墙'],cost:'人均 0 元（含地铁 6 元）',hours:'约 2 小时',party:'2 人'},
+    {d:'06',m:'09月',t:'凡几市集 · 张园',meta:'3人 · 96元 · 2.5小时',note:'下午三点后摊主开始打折',
+     route:['南京西路站','张园西区','凡几市集'],cost:'人均 96 元',hours:'约 2.5 小时',party:'3 人'},
+    {d:'30',m:'08月',t:'杨浦滨江骑行',meta:'4人 · 12元 · 3小时',note:'从爱国路起骑顺风，返程逆风，建议反着来',
+     route:['12号线爱国路','杨树浦水厂','绿之丘','杨浦大桥'],cost:'人均 12 元（单车）',hours:'约 3 小时',party:'4 人'}
+  ];
+
+  var GUIDES = [
+    {av:'林',c:'#C6FF3D',by:'林至遥 · 同济',when:'2天前',
+     t:'0元过一个完整周六：三个免费美术馆连线',
+     route:['当代艺术博物馆','M50创意园','西岸滨江'],
+     cost:'人均 0 元',hours:'约 6 小时',likes:342,saves:1280,liked:false},
+    {av:'周',c:'#FF5FA2',by:'周雨桐 · 华师大',when:'5天前',
+     t:'下雨天备选清单：四个不用打伞的去处',
+     route:['大光明影院','人民广场剧本杀','来福士'],
+     cost:'人均 120–160 元',hours:'约 5 小时',likes:891,saves:2410,liked:true},
+    {av:'陈',c:'#3DDCFF',by:'陈牧之 · 上大',when:'1周前',
+     t:'佘山一日徒步：早八出发，天黑前回市区',
+     route:['9号线佘山站','西佘山园','东佘山园','南翔小笼'],
+     cost:'人均 78 元',hours:'约 9 小时',likes:556,saves:1733,liked:false}
+  ];
+
+  var state = {weather:'sunny', mood:'art', budget:80, party:2, teams:{}, tab:'feed', open:{}};
+  state.teams['market'] = {joined:true, have:3, need:4};
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  var WX = {
+    sunny:{title:'多云转晴 · 22°C', sub:'东北风 2 级 · 体感舒适',
+      verdict:'今天适合待在户外。市集、骑行、徒步都加了分，露天项目排在前面。', cls:''},
+    rainy:{title:'小雨转中雨 · 17°C', sub:'降水概率 80% · 建议带伞',
+      verdict:'下午雨会变大。露天项目已自动降权并标注原因，优先推室内。', cls:'rain'}
+  };
+
+  function drawWx(){
+    $('wxGlyph').innerHTML = state.weather === 'sunny'
+      ? '<circle cx="15" cy="15" r="7" fill="#FFD84D" stroke="#12101A" stroke-width="2"/>' +
+        '<g stroke="#12101A" stroke-width="2" stroke-linecap="round">' +
+        '<line x1="15" y1="2" x2="15" y2="5"/><line x1="4" y1="15" x2="7" y2="15"/>' +
+        '<line x1="6" y1="6" x2="8" y2="8"/></g>' +
+        '<path d="M14 32a6 6 0 0 1 .7-12 8 8 0 0 1 15 2.6A5 5 0 0 1 29 32z" fill="#fff" stroke="#12101A" stroke-width="2" stroke-linejoin="round"/>'
+      : '<path d="M11 24a6.5 6.5 0 0 1 .8-13 8.5 8.5 0 0 1 16 2.7A5.4 5.4 0 0 1 27 24z" fill="#fff" stroke="#12101A" stroke-width="2" stroke-linejoin="round"/>' +
+        '<g stroke="#12101A" stroke-width="2.2" stroke-linecap="round">' +
+        '<line x1="14" y1="28" x2="12.5" y2="34"/><line x1="20" y1="28" x2="18.5" y2="34"/>' +
+        '<line x1="26" y1="28" x2="24.5" y2="34"/></g>';
+  }
+
+  function renderWx(){
+    var w = WX[state.weather];
+    $('wxTitle').textContent = w.title;
+    $('wxSub').textContent = w.sub;
+    $('verdict').textContent = w.verdict;
+    $('wx').className = 'wx ' + w.cls;
+    $('wxSunny').setAttribute('aria-pressed', String(state.weather === 'sunny'));
+    $('wxRainy').setAttribute('aria-pressed', String(state.weather === 'rainy'));
+    drawWx();
+  }
+
+  function score(a){
+    var f = {};
+    f.mood = a.mood === state.mood ? 1 : 0.28;
+    if(state.budget === 0){
+      f.budget = a.cost === 0 ? 1 : 0.1;
+    } else if(a.cost <= state.budget){
+      f.budget = 1 - (a.cost / state.budget) * 0.25;
+    } else {
+      f.budget = Math.max(0, 1 - ((a.cost - state.budget) / state.budget) * 1.6);
+    }
+    f.party = a.party.indexOf(state.party) >= 0 ? 1 : 0.3;
+    f.weather = state.weather === 'rainy' ? (a.indoor ? 1 : 0.05) : (a.indoor ? 0.62 : 1);
+    f.fresh = 0.55 + ((a.id.charCodeAt(0) + a.id.length * 7) % 45) / 100;
+
+    var total = 0;
+    for(var i = 0; i < WEIGHTS.length; i++) total += f[WEIGHTS[i].k] * WEIGHTS[i].w;
+
+    var penalised = false;
+    if(state.weather === 'rainy' && !a.indoor){ total -= 45; penalised = true; }
+    return {total: Math.max(4, Math.round(total)), f:f, penalised:penalised};
+  }
+
+  function reason(a, s){
+    if(s.penalised) return '<b>雨天不推荐</b>：露天项目已降权，想去建议收藏到晴天。';
+    var bits = [];
+    if(a.cost === 0) bits.push('<b>完全免费</b>');
+    else if(a.cost <= state.budget * 0.5) bits.push('<b>人均' + a.cost + '元</b>，预算还剩不少');
+    else if(a.cost <= state.budget) bits.push('<b>人均' + a.cost + '元</b>，刚好在预算内');
+    else bits.push('人均' + a.cost + '元，<b>超预算' + (a.cost - state.budget) + '元</b>');
+    if(a.mood === state.mood) bits.push('正好是你想做的事');
+    if(state.weather === 'sunny' && !a.indoor) bits.push('今天天气配得上');
+    if(state.weather === 'rainy' && a.indoor) bits.push('全程室内不淋雨');
+    return bits.join('，') + '。' + a.hook + '。';
+  }
+
+  function renderResults(){
+    var scored = ACTS.map(function(a){ return {a:a, s:score(a)}; })
+      .sort(function(x, y){ return y.s.total - x.s.total; });
+    var top = scored.slice(0, 6);
+    $('resultCount').textContent = top.length;
+
+    $('results').innerHTML = top.map(function(item, i){
+      var a = item.a, s = item.s;
+      var team = state.teams[a.id];
+      var joined = team && team.joined;
+      var isOpen = !!state.open[a.id];
+
+      // show the two most discriminating factors plus weather, so bars vary card to card
+      var shown = WEIGHTS.filter(function(w){ return w.k !== 'weather'; })
+        .sort(function(p, q){ return s.f[p.k] - s.f[q.k]; }).slice(0, 2)
+        .concat(WEIGHTS.filter(function(w){ return w.k === 'weather'; }))
+        .sort(function(p, q){ return q.w - p.w; });
+
+      var bars = shown.map(function(w){
+        var pct = Math.round(s.f[w.k] * 100);
+        return '<div class="bar-row"><span>' + w.label + '</span>' +
+          '<span class="track"><i class="fill ' + w.c + '" style="width:' + pct + '%"></i></span>' +
+          '<span class="num">' + pct + '</span></div>';
+      }).join('');
+
+      var chipCls = {'免费':'l','学生票':'l','免费入场':'l','室内':'c','雨天友好':'c'};
+      var tags = a.tags.slice(0, 3).map(function(t){
+        return '<span class="chip ' + (chipCls[t] || '') + '">' + t + '</span>';
+      }).join('');
+
+      return '<article class="act' + (i === 0 && !s.penalised ? ' top' : '') + '">' +
+        '<div class="act-main">' +
+          '<div class="thumb" style="background:' + a.bg + '">' + a.em + '</div>' +
+          '<div class="act-body">' +
+            '<div class="act-title">' + a.name + '</div>' +
+            '<div class="act-sub">' + a.area + ' · ' + a.hours + '小时 · ' +
+              (a.cost === 0 ? '免费' : '¥' + a.cost) + '</div>' +
+            '<div class="act-chips">' + tags + '</div>' +
+          '</div>' +
+          '<div class="badge' + (s.penalised ? ' warn' : '') + '">' +
+            '<b class="num">' + s.total + '</b><span>匹配</span></div>' +
+        '</div>' +
+        '<div class="bars" id="bars-' + a.id + '"' + (isOpen ? '' : ' hidden') + '>' +
+          '<div class="act-why" style="margin:0 0 7px">' + reason(a, s) + '</div>' +
+          bars +
+        '</div>' +
+        '<div class="act-foot">' +
+          '<button class="why-toggle" data-why="' + a.id + '" aria-expanded="' + isOpen + '" ' +
+            'aria-controls="bars-' + a.id + '">' + (isOpen ? '收起' : '为什么') + '</button>' +
+          '<button class="btn" data-detail="' + a.id + '">' + a.metro.split(' ')[0] + '</button>' +
+          '<button class="btn ' + (joined ? 'joined' : 'primary') + '" data-join="' + a.id + '">' +
+            (joined ? '已加入 ' + team.have + '/' + team.need : '组队出发') + '</button>' +
+        '</div>' +
+      '</article>';
+    }).join('') || '<div class="empty">没有符合条件的活动，试试放宽预算。</div>';
+  }
+
+  function renderFilters(){
+    $('segMood').innerHTML = MOODS.map(function(m){
+      return '<button class="fpill" data-mood="' + m.k + '" aria-pressed="' +
+        (state.mood === m.k) + '">' + m.label + '</button>';
+    }).join('');
+    $('segParty').innerHTML = [1, 2, 3, 4].map(function(p){
+      return '<button class="fpill" data-party="' + p + '" aria-pressed="' + (state.party === p) + '">' +
+        (p === 1 ? '自己' : p === 4 ? '4人+' : p + '人') + '</button>';
+    }).join('');
+    $('budgetRead').textContent = state.budget === 0 ? '免费' : '≤' + state.budget;
+  }
+
+  function renderTeams(){
+    var ids = Object.keys(state.teams).filter(function(id){ return state.teams[id].joined; });
+    $('myTeamCount').textContent = '已加入 ' + ids.length + ' 个';
+    if(!ids.length){
+      $('teamList').innerHTML = '<div class="empty">还没有加入任何队伍。<br>回推荐页点"组队出发"试试。</div>';
+      return;
+    }
+    var names = ['苏','何','郑','吴'];
+    var colors = ['#C6FF3D','#FF5FA2','#3DDCFF','#8B5CF6'];
+
+    $('teamList').innerHTML = ids.map(function(id){
+      var a = null;
+      for(var i = 0; i < ACTS.length; i++) if(ACTS[i].id === id){ a = ACTS[i]; break; }
+      if(!a) return '';
+      var t = state.teams[id];
+      var pct = Math.round(t.have / t.need * 100);
+      var avatars = '';
+      for(var j = 0; j < t.need; j++){
+        avatars += j < t.have
+          ? '<span class="av" style="background:' + colors[j % 4] + '">' + names[j % 4] + '</span>'
+          : '<span class="av slot">+</span>';
+      }
+      return '<article class="card team">' +
+        '<div class="team-top">' +
+          '<div class="thumb" style="background:' + a.bg + '; width:42px; height:42px; font-size:19px">' + a.em + '</div>' +
+          '<div style="flex:1; min-width:0">' +
+            '<div class="act-title" style="font-size:13.5px">' + a.name + '</div>' +
+            '<div class="act-sub">' + a.metro + '</div>' +
+          '</div>' +
+          '<div style="text-align:right; flex:none">' +
+            '<div class="num" style="font-size:17px; font-weight:900; color:var(--ink); font-family:\'Baloo 2\',sans-serif">' +
+              (a.cost === 0 ? '免费' : '¥' + a.cost) + '</div>' +
+            '<div style="font-size:9.5px; color:var(--muted); font-weight:700">' + t.need + '人AA</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="progress"><i style="width:' + pct + '%"></i></div>' +
+        '<div class="between" style="margin-top:8px">' +
+          '<div class="avatars">' + avatars + '</div>' +
+          '<span class="chip ' + (t.have >= t.need ? 'l' : 'p') + '">' +
+            (t.have >= t.need ? '已满员 · 可出发' : '还差 ' + (t.need - t.have) + ' 人') + '</span>' +
+        '</div>' +
+        '<div class="act-foot" style="padding:9px 0 0">' +
+          '<button class="btn" data-leave="' + id + '">退出</button>' +
+          '<button class="btn primary" data-ping="' + id + '">召集群里的人</button>' +
+        '</div>' +
+      '</article>';
+    }).join('');
+  }
+
+  function renderCheck(){
+    $('stampGrid').innerHTML = STAMPS.map(function(s){
+      return '<div class="stamp' + (s.got ? ' got' : '') + '">' +
+        '<span class="em">' + (s.got ? s.em : '🔒') + '</span><span>' + s.n + '</span></div>';
+    }).join('');
+    $('logList').innerHTML = LOGS.map(function(l, i){
+      return '<div class="log-item">' +
+        '<div class="log-date"><b class="num">' + l.d + '</b>' + l.m + '</div>' +
+        '<div style="flex:1; min-width:0">' +
+          '<div class="between" style="align-items:flex-start">' +
+            '<div style="font-size:12.5px; font-weight:800; color:var(--ink)">' + l.t + '</div>' +
+            '<button class="mini" data-draft="' + i + '">✍️ 生成攻略</button>' +
+          '</div>' +
+          '<div class="num" style="font-size:10.5px; color:var(--muted); margin:1px 0 4px; font-weight:700">' + l.meta + '</div>' +
+          '<div style="font-size:11px; color:var(--body); background:var(--sunk); border:1.5px solid var(--line); padding:5px 8px; border-radius:8px">' +
+            '"' + l.note + '"</div>' +
+        '</div></div>';
+    }).join('');
+  }
+
+  function openDraft(i){
+    var l = LOGS[i];
+    var route = l.route.map(function(s, j){
+      return (j ? '<span class="arrow">▸</span>' : '') + '<span class="stop">' + s + '</span>';
+    }).join('');
+    $('draftBody').innerHTML =
+      '<p class="draft-hint">以下字段已从你的打卡记录自动带出，<b>只有最后一行需要你写</b>。</p>' +
+      '<div class="draft-field"><span class="draft-label">路线</span>' +
+        '<div class="guide-route" style="margin:4px 0 0">' + route + '</div></div>' +
+      '<div class="draft-field"><span class="draft-label">花费</span><b>' + l.cost + '</b></div>' +
+      '<div class="draft-field"><span class="draft-label">耗时</span><b>' + l.hours + '</b></div>' +
+      '<div class="draft-field"><span class="draft-label">同行</span><b>' + l.party + '</b></div>' +
+      '<div class="draft-field auto"><span class="draft-label">标题</span>' +
+        '<b>' + l.t + '：' + l.hours + '，' + l.cost + '</b></div>' +
+      '<label class="draft-write" for="draftNote">一句话感受 · 唯一需要手写的部分' +
+        '<textarea id="draftNote" rows="2">' + l.note + '</textarea></label>';
+    $('draftModal').hidden = false;
+  }
+
+  function renderGuides(){
+    $('guideList').innerHTML = GUIDES.map(function(g, i){
+      var route = g.route.map(function(s, j){
+        return (j ? '<span class="arrow">▸</span>' : '') + '<span class="stop">' + s + '</span>';
+      }).join('');
+      return '<article class="card guide">' +
+        '<div class="guide-by">' +
+          '<span class="av" style="background:' + g.c + '; margin:0">' + g.av + '</span>' +
+          '<span>' + g.by + '</span><span>·</span><span>' + g.when + '</span></div>' +
+        '<h4>' + g.t + '</h4>' +
+        '<div class="guide-route">' + route + '</div>' +
+        '<div class="row" style="flex-wrap:wrap">' +
+          '<span class="chip l">' + g.cost + '</span><span class="chip">' + g.hours + '</span></div>' +
+        '<div class="guide-foot">' +
+          '<button data-like="' + i + '" aria-pressed="' + g.liked + '">' +
+            (g.liked ? '♥' : '♡') + ' <span class="num">' + g.likes + '</span></button>' +
+          '<button data-save="' + i + '">☆ <span class="num">' + g.saves + '</span></button>' +
+          '<button data-copy="' + i + '" style="margin-left:auto; color:var(--grape); font-weight:800">按这条走 →</button>' +
+        '</div></article>';
+    }).join('');
+  }
+
+  function renderWeights(){
+    $('weightList').innerHTML = WEIGHTS.map(function(w){
+      return '<div class="wrow"><span>' + w.label + '</span>' +
+        '<span class="track"><i class="fill ' + w.c + '" style="width:' + (w.w / 32 * 100) + '%"></i></span>' +
+        '<span class="num">' + w.w + '%</span></div>';
+    }).join('');
+  }
+
+  var TABS = [
+    {k:'feed',n:'推荐',d:'M3 10.5 12 3l9 7.5V21H3z'},
+    {k:'team',n:'组队',d:'M16 20v-2a4 4 0 0 0-8 0v2M12 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7'},
+    {k:'check',n:'打卡',d:'M12 21s7-5.2 7-10.5A7 7 0 0 0 5 10.5C5 15.8 12 21 12 21m0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5'},
+    {k:'guide',n:'攻略',d:'M4 5.5A2 2 0 0 1 6 4h13v14H6a2 2 0 0 0-2 2z'}
+  ];
+
+  function renderTabs(){
+    $('tabbar').innerHTML = TABS.map(function(t){
+      return '<button role="tab" data-tab="' + t.k + '" aria-selected="' + (state.tab === t.k) + '">' +
+        '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + t.d + '"/></svg>' +
+        '<span>' + t.n + '</span></button>';
+    }).join('');
+  }
+
+  function go(tab){
+    state.tab = tab;
+    ['feed','team','check','guide'].forEach(function(k){ $('view-' + k).hidden = (k !== tab); });
+    renderTabs();
+    $('screen').scrollTop = 0;
+  }
+
+  var toastTimer = null;
+  function toast(msg){
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2000);
+  }
+
+  $('wxSunny').addEventListener('click', function(){ state.weather = 'sunny'; renderWx(); renderResults(); });
+  $('wxRainy').addEventListener('click', function(){ state.weather = 'rainy'; renderWx(); renderResults(); });
+  $('budget').addEventListener('input', function(e){
+    state.budget = +e.target.value;
+    $('budgetRead').textContent = state.budget === 0 ? '免费' : '≤' + state.budget;
+    renderResults();
+  });
+
+  document.addEventListener('click', function(e){
+    var el = e.target.closest ? e.target.closest('button') : null;
+    if(!el) return;
+
+    if(el.dataset.mood){ state.mood = el.dataset.mood; renderFilters(); renderResults(); return; }
+    if(el.dataset.party){ state.party = +el.dataset.party; renderFilters(); renderResults(); return; }
+    if(el.dataset.tab){ go(el.dataset.tab); return; }
+
+    if(el.dataset.why){
+      var wid = el.dataset.why;
+      state.open[wid] = !state.open[wid];
+      var bars = $('bars-' + wid);
+      if(bars){
+        bars.hidden = !state.open[wid];
+        el.setAttribute('aria-expanded', String(state.open[wid]));
+        el.textContent = state.open[wid] ? '收起' : '为什么';
+      }
+      return;
+    }
+
+    if(el.dataset.join){
+      var id = el.dataset.join;
+      if(state.teams[id] && state.teams[id].joined){ go('team'); }
+      else {
+        var need = Math.max(2, state.party);
+        state.teams[id] = {joined:true, have:1, need:need};
+        renderResults(); renderTeams();
+        toast('队伍已创建，还差 ' + (need - 1) + ' 人');
+      }
+      return;
+    }
+    if(el.dataset.leave){ delete state.teams[el.dataset.leave]; renderTeams(); renderResults(); toast('已退出队伍'); return; }
+    if(el.dataset.ping){
+      var t = state.teams[el.dataset.ping];
+      if(t && t.have < t.need){
+        t.have++;
+        renderTeams(); renderResults();
+        toast(t.have >= t.need ? '满员了，出发吧' : '室友加入了，还差 ' + (t.need - t.have) + ' 人');
+      } else toast('队伍已满员');
+      return;
+    }
+    if(el.dataset.detail){ toast('详情页在完整版展开：交通、票务、周边餐饮'); return; }
+
+    if(el.dataset.draft){ openDraft(+el.dataset.draft); return; }
+    if(el.id === 'draftClose' || el.id === 'draftCancel'){ $('draftModal').hidden = true; return; }
+    if(el.id === 'draftPublish'){
+      $('draftModal').hidden = true;
+      go('guide');
+      toast('已发布到攻略广场');
+      return;
+    }
+
+    if(el.dataset.like){
+      var g = GUIDES[+el.dataset.like];
+      g.liked = !g.liked; g.likes += g.liked ? 1 : -1; renderGuides(); return;
+    }
+    if(el.dataset.save){ GUIDES[+el.dataset.save].saves++; renderGuides(); toast('已收藏到我的攻略'); return; }
+    if(el.dataset.copy){ toast('已按这条攻略创建行程草稿'); return; }
+  });
+
+  renderWx(); renderFilters(); renderResults(); renderTeams();
+  renderCheck(); renderGuides(); renderWeights(); renderTabs();
+})();
+</script>
