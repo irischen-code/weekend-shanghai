@@ -28,6 +28,14 @@
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
   .stage{max-width:1220px; margin:0 auto; padding:24px 16px 48px}
+  /* 矮窗口：压缩页头，把垂直空间让给手机壳 */
+  @media (max-height:860px){
+    .stage{padding-top:14px}
+    .masthead{margin-bottom:10px; gap:8px 22px}
+    .brand{font-size:21px}
+    .brand-sub{font-size:11.5px; margin-top:4px}
+    .disclaimer{font-size:10.5px; padding:6px 10px}
+  }
   .masthead{display:flex; flex-wrap:wrap; gap:14px 26px; align-items:flex-end;
     justify-content:space-between; margin-bottom:18px}
   .brand{font-size:25px; font-weight:900; letter-spacing:-.02em}
@@ -53,7 +61,10 @@
   .democtl-sw svg{width:20px; height:20px; flex:none}
   .democtl-note{font-size:10.5px; color:var(--meta); line-height:1.6; margin-top:10px}
 
-  .phone{width:390px; max-width:100%; height:820px; background:var(--bg);
+  /* 高度跟随视口。扣减量要覆盖壳顶在页面中的偏移（页头约 124px）
+     加底部留白，否则 sticky 定位后整机会溢出一屏，tab 栏被截掉 */
+  .phone{width:390px; max-width:100%; height:min(820px, calc(100vh - 148px)); min-height:460px;
+    background:var(--bg);
     border-radius:26px; overflow:hidden; display:flex; flex-direction:column;
     position:sticky; top:16px; box-shadow:0 10px 40px rgba(0,0,0,.18); border:1px solid #D8DADE}
   @media (max-width:900px){ .phone{position:relative; top:auto} }
@@ -102,16 +113,18 @@
   .wxbar .t span{font-size:11px; color:var(--meta)}
 
   /* 筛选栏：点击展开浮层 */
-  .filters{position:sticky; top:0; z-index:9; background:var(--bg); display:flex; gap:7px;
-    padding:10px 12px 9px; overflow-x:auto; scrollbar-width:none}
+  /* 线上样式：纯文字 + ▾，无胶囊无阴影，底部一条细分隔线 */
+  .filters{position:sticky; top:0; z-index:9; background:var(--bg); display:flex; gap:18px;
+    padding:11px 14px 10px; overflow-x:auto; scrollbar-width:none;
+    border-bottom:1px solid var(--line)}
   .filters::-webkit-scrollbar{display:none}
-  .fp{flex:none; background:#fff; border-radius:99px; padding:6px 12px; font-size:12.5px;
-    color:var(--body); font-weight:500; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,.05);
-    display:flex; align-items:center; gap:3px}
-  .fp[aria-pressed="true"]{background:var(--ink); color:#fff; font-weight:700}
+  .fp{flex:none; background:none; padding:0; font-size:13.5px; color:var(--meta);
+    font-weight:500; white-space:nowrap; display:flex; align-items:center; gap:2px}
+  .fp[aria-pressed="true"]{color:var(--ink); font-weight:700}
   .fp .ar{font-size:8px; color:var(--meta); transition:transform .18s}
-  .fp[aria-pressed="true"] .ar{color:#fff}
-  .fp.open .ar{transform:rotate(180deg)}
+  .fp[aria-pressed="true"] .ar{color:var(--ink)}
+  .fp.open{color:var(--ink); font-weight:700}
+  .fp.open .ar{transform:rotate(180deg); color:var(--ink)}
 
   .fdrop{position:absolute; left:0; right:0; z-index:20; background:#fff;
     border-radius:0 0 14px 14px; box-shadow:0 8px 24px rgba(0,0,0,.14); overflow:hidden}
@@ -221,36 +234,42 @@
     box-shadow:none; background:transparent; margin-top:0}
   .xwrap[data-state="peek"] .xgrab{background:#B9C0C7}
 
-  .xsearch{position:absolute; left:10px; right:10px; top:10px; background:#fff; border-radius:99px;
-    padding:9px 14px; display:flex; align-items:center; gap:8px; box-shadow:0 2px 10px rgba(0,0,0,.14)}
+  /* 搜索框固定在地图顶部，不随三段式改变位置 */
+  .xsearch{position:absolute; left:10px; right:10px; top:10px; z-index:4; background:#fff;
+    border-radius:99px; padding:9px 14px; display:flex; align-items:center; gap:8px;
+    box-shadow:0 2px 10px rgba(0,0,0,.14)}
   .xcity{font-size:13.5px; font-weight:900; color:var(--ink); flex:none}
   .xsearch-ic{display:grid; place-items:center; color:var(--meta); flex:none}
   .xsearch-ic svg{width:15px; height:15px; display:block}
   .xsearch-ph{font-size:13px; color:var(--meta); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 
-  .xlocate{position:absolute; right:11px; bottom:11px; width:38px; height:38px; border-radius:50%;
+  .xlocate{position:absolute; right:11px; bottom:34px; width:38px; height:38px; border-radius:50%;
     background:#fff; display:grid; place-items:center; color:var(--ink);
-    box-shadow:0 2px 10px rgba(0,0,0,.18)}
+    box-shadow:0 2px 10px rgba(0,0,0,.18); z-index:3}
   .xlocate svg{width:19px; height:19px}
   .xlocate:active{background:var(--sunk)}
 
-  .xmap-bar{position:absolute; left:10px; right:10px; top:58px; display:flex; gap:6px;
+  .xmap-bar{position:absolute; left:10px; right:10px; top:56px; z-index:4; display:flex; gap:6px;
     overflow-x:auto; scrollbar-width:none}
   .xmap-bar::-webkit-scrollbar{display:none}
   .xchip{flex:none; background:rgba(255,255,255,.95); border-radius:99px; padding:5px 11px;
     font-size:11.5px; font-weight:700; color:var(--body); box-shadow:0 1px 4px rgba(0,0,0,.12)}
   .xchip[aria-pressed="true"]{background:var(--ink); color:#fff}
-  .xlegend{position:absolute; left:10px; bottom:9px; background:rgba(255,255,255,.95);
+  /* 贴地图可视区底部，留出浮层圆角与抓手条的余量，避免贴边拥挤 */
+  .xlegend{position:absolute; left:10px; bottom:34px; background:rgba(255,255,255,.95);
     border-radius:8px; padding:6px 9px; font-size:10px; color:var(--meta); line-height:1.7;
-    box-shadow:0 1px 4px rgba(0,0,0,.12)}
+    box-shadow:0 1px 4px rgba(0,0,0,.12); z-index:3}
   .xlegend i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:4px}
   .pin{cursor:pointer}
   .pin-dot{transition:r .16s}
-  .xsheet{flex:1; background:#fff; border-radius:16px 16px 0 0; margin-top:-14px; position:relative;
-    z-index:2; padding:6px 14px 16px; box-shadow:0 -4px 16px rgba(0,0,0,.08); overflow-y:auto;
+  .xsheet{flex:1; background:#fff; border-radius:16px 16px 0 0; margin-top:-16px; position:relative;
+    z-index:5; padding:0 14px 16px; box-shadow:0 -4px 16px rgba(0,0,0,.08); overflow-y:auto;
     min-height:0}
-  .xgrabber{display:block; width:100%; padding:8px 0 10px; cursor:pointer}
-  .xgrab{width:34px; height:4px; background:#DDE0E4; border-radius:99px; margin:0 auto}
+  /* 抓手条常驻浮层顶部：留足上下白，颜色加深，避免被圆角与白底吞掉 */
+  .xgrabber{display:block; width:100%; padding:10px 0 12px; cursor:pointer;
+    position:sticky; top:0; background:#fff; z-index:2; border-radius:16px 16px 0 0}
+  .xgrab{display:block; width:40px; height:5px; background:#C4C9D0; border-radius:99px; margin:0 auto}
+  .xgrabber:active .xgrab{background:#9AA1AA}
   .xsum{display:flex; align-items:baseline; gap:7px; margin-bottom:3px}
   .xsum h2{font-size:18px; font-weight:900}
   .xsum span{font-size:11.5px; color:var(--meta)}
@@ -409,6 +428,51 @@
   details.more summary{font-size:12px; color:#5C7A00; cursor:pointer; font-weight:700}
   details.more p{margin-top:8px}
   .foot{font-size:11px; color:#6B7280; text-align:center; line-height:1.7; padding-top:2px}
+
+  /* ================= 移动端：App 铺满视口，说明栏收进浮层 ================= */
+  .m-only{display:none}
+  @media (max-width:640px){
+    html,body{height:100%; overflow:hidden}
+    body{background:var(--bg)}
+    .stage{max-width:none; margin:0; padding:0; height:100%}
+    .masthead{display:none}
+    .democtl{display:none}
+    .split{display:block; height:100%}
+
+    /* 手机壳去掉：App 就是页面本身 */
+    .phone{width:100%; max-width:none; height:100%; border-radius:0; border:0;
+      box-shadow:none; position:relative; top:auto}
+    .statusbar{padding-top:calc(10px + env(safe-area-inset-top,0px))}
+
+    /* 说明栏变全屏浮层 */
+    .rail{position:fixed; inset:0; z-index:60; background:var(--bg);
+      overflow-y:auto; padding:14px 14px calc(22px + env(safe-area-inset-bottom,0px));
+      gap:12px; transform:translateY(100%); transition:transform .28s ease;
+      padding-top:calc(14px + env(safe-area-inset-top,0px))}
+    body.doc-open .rail{transform:translateY(0)}
+    body.doc-open{overflow:hidden}
+
+    .m-only{display:block}
+    /* 打开说明的入口：贴右下，避开底部 tab */
+    .docbtn{position:fixed; right:13px; z-index:55;
+      bottom:calc(64px + env(safe-area-inset-bottom,0px));
+      background:var(--ink); color:#fff; font-size:12.5px; font-weight:700;
+      padding:9px 15px; border-radius:99px; box-shadow:0 4px 14px rgba(0,0,0,.28)}
+    .docclose{position:sticky; top:0; z-index:2; display:flex; align-items:center;
+      justify-content:space-between; gap:10px; background:var(--bg);
+      padding:2px 0 10px; margin-bottom:2px}
+    .docclose b{font-size:16px; font-weight:900; color:var(--ink)}
+    .docclose button{background:var(--ink); color:#fff; font-size:12.5px; font-weight:700;
+      padding:7px 14px; border-radius:99px}
+    /* 演示开关在移动端放进说明浮层顶部 */
+    .m-wx{display:flex; gap:8px; margin-bottom:4px}
+    .m-wx button{flex:1; display:flex; align-items:center; justify-content:center; gap:7px;
+      padding:10px; border-radius:10px; background:#fff; border:1px solid var(--line);
+      font-size:13px; font-weight:700; color:var(--body)}
+    .m-wx button[aria-pressed="true"]{background:var(--ink); color:#fff; border-color:var(--ink)}
+    .m-wx svg{width:19px; height:19px; flex:none}
+    .m-note{font-size:11px; color:var(--meta); line-height:1.6; margin:0 0 4px}
+  }
 </style>
 </head>
 <body>
@@ -487,7 +551,7 @@
               <svg id="xmapSvg" viewBox="0 0 390 300" preserveAspectRatio="xMidYMid slice"
                    role="img" aria-label="周边可去的地点与已有的场"></svg>
 
-              <div class="xsearch">
+              <div class="xsearch" id="xsearch">
                 <span class="xcity">上海 ▾</span>
                 <span class="xsearch-ic">
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -553,7 +617,34 @@
     </div>
 
     <!-- ============ 说明栏 ============ -->
-    <div class="rail">
+    <div class="rail" id="rail">
+      <div class="docclose m-only">
+        <b>产品说明</b>
+        <button id="docClose" type="button">收起 ✕</button>
+      </div>
+      <div class="m-only">
+        <div class="m-wx" role="group" aria-label="切换天气场景">
+          <button id="mWxSun" type="button" aria-pressed="true">
+            <svg viewBox="0 0 34 34" aria-hidden="true">
+              <circle cx="14" cy="14" r="6.5" fill="#FFC53D"/>
+              <g stroke="#FFC53D" stroke-width="1.8" stroke-linecap="round">
+                <line x1="14" y1="3" x2="14" y2="5.5"/><line x1="4" y1="14" x2="6.5" y2="14"/>
+                <line x1="6.5" y1="6.5" x2="8.2" y2="8.2"/></g>
+              <path d="M13 28a5.4 5.4 0 0 1 .6-10.8 7.2 7.2 0 0 1 13.5 2.3A4.5 4.5 0 0 1 26.5 28z" fill="#CFD8E3"/>
+            </svg>晴天
+          </button>
+          <button id="mWxRain" type="button" aria-pressed="false">
+            <svg viewBox="0 0 34 34" aria-hidden="true">
+              <path d="M10 22a5.8 5.8 0 0 1 .7-11.6 7.6 7.6 0 0 1 14.3 2.4A4.8 4.8 0 0 1 24 22z" fill="#A9BCD0"/>
+              <g stroke="#5B8CB8" stroke-width="2.2" stroke-linecap="round">
+                <line x1="12.5" y1="25" x2="11" y2="30"/><line x1="18" y1="25" x2="16.5" y2="30"/>
+                <line x1="23.5" y1="25" x2="22" y2="30"/></g>
+            </svg>雨天
+          </button>
+        </div>
+        <p class="m-note">天气取自平台实时数据，用户无需切换。这里是演示开关，方便对比两种天气下的类目排序与推荐结果。</p>
+      </div>
+
       <div class="note">
         <div class="note-h"><span class="note-i">1</span><h3>为什么改拼场，而不是做新 App</h3></div>
         <div class="quote">"周六早上十点醒了，群里问'今天去哪'，刷了四十分钟小红书，最后在宿舍打了一下午游戏。"</div>
@@ -634,6 +725,8 @@
     </div>
   </div>
 </div>
+
+<button class="docbtn m-only" id="docBtn" type="button">产品说明</button>
 
 <script>
 (function(){
@@ -779,7 +872,8 @@
   /* ---------- 状态 ---------- */
   var st={tab:'plaza',kong:'weekend',mtab:'foot',weather:'sunny',
     near:'5km',nearCat:'smart',sort:'smart',when:'weekend',budget:'all',
-    fdrop:null,sel:null,xsel:null,xfilter:'all',xstate:'half',planWhy:{},joined:{},dsel:null};
+    fdrop:null,sel:null,xsel:null,xfilter:'all',xstate:'half',planWhy:{},joined:{},dsel:null,
+    student:false};
 
   var NEAR_CATS=[{k:'smart',n:'智能范围'},{k:'hot',n:'热门商区'},{k:'pudong',n:'浦东新区'},
     {k:'xuhui',n:'徐汇区'},{k:'changning',n:'长宁区'},{k:'huangpu',n:'黄浦区'},{k:'jingan',n:'静安区'}];
@@ -815,10 +909,12 @@
         '<line x1="23.5" y1="25" x2="22" y2="30"/></g>';
   }
   function renderWx(){
-    var w=WX[st.weather];
+    var w=WX[st.weather],sunny=st.weather==='sunny';
     $('wxt').textContent=w.t; $('wxs').textContent=w.s;
-    $('wxSun').setAttribute('aria-pressed',String(st.weather==='sunny'));
-    $('wxRain').setAttribute('aria-pressed',String(st.weather==='rainy'));
+    ['wxSun','mWxSun'].forEach(function(id){
+      var e=$(id); if(e)e.setAttribute('aria-pressed',String(sunny));});
+    ['wxRain','mWxRain'].forEach(function(id){
+      var e=$(id); if(e)e.setAttribute('aria-pressed',String(!sunny));});
     drawWx();
   }
 
@@ -865,6 +961,7 @@
         q[1]+'</button>';
     }).join('');
     h+='<button class="fp" data-quick="3km" aria-pressed="'+(st.near==='3km')+'">3km内</button>';
+    h+='<button class="fp" data-quick="student" aria-pressed="'+st.student+'">学生友好</button>';
     $('filters').innerHTML=h;
   }
 
@@ -946,8 +1043,17 @@
       '<button class="open" data-guideopen="1">按这条开场</button></div></article>';
   }
 
+  // 学生友好：免费 / 学生票 / 人均 50 以内
+  function isStudentFriendly(tags,cost){
+    if(typeof cost==='number'&&cost<=50)return true;
+    for(var i=0;i<tags.length;i++)
+      if(['免费','学生票','免费入场','学生优惠'].indexOf(tags[i])>=0)return true;
+    return false;
+  }
+
   function renderPlaza(){
     var list=PLAZA.filter(function(p){
+      if(st.student&&!isStudentFriendly(p.tags,null))return false;
       if(st.kong==='weekend'||st.kong==='more')return true;
       return p.cat===st.kong;
     });
@@ -982,6 +1088,7 @@
 
   function visibleSpots(){
     return SPOTS.filter(function(s){
+      if(st.student&&!isStudentFriendly(s.tags,s.cost))return false;
       if(st.xfilter==='has')return s.open>0;
       if(st.xfilter==='none')return s.open===0;
       if(st.xfilter==='indoor')return s.indoor;
@@ -1255,6 +1362,10 @@
       if(q==='3km'){
         st.nearCat='smart'; st.near=(st.near==='3km')?'5km':'3km';
         closeDrop(); renderPlaza(); toast('距离：'+nearLabel());
+      } else if(q==='student'){
+        st.student=!st.student;
+        closeDrop(); renderPlaza(); renderExplore();
+        toast(st.student?'只看学生友好：免费、学生票、人均50以下':'已取消学生友好筛选');
       } else {
         st.when=(st.when===q)?'all':q;
         closeDrop(); renderPlaza(); toast('日期：'+whenLabel());
@@ -1332,11 +1443,20 @@
     if(el.dataset.draft){toast('路线/花费/耗时已自动带出，只需补一句感受'); return;}
   });
 
-  $('wxSun').addEventListener('click',function(){
-    st.weather='sunny'; renderWx(); renderKong(); renderPlaza(); renderExplore();});
-  $('wxRain').addEventListener('click',function(){
-    st.weather='rainy'; renderWx(); renderKong(); renderPlaza(); renderExplore();
-    toast('已按雨天重排：室内类目前置，露天场沉底');});
+  function setWeather(w){
+    st.weather=w; renderWx(); renderKong(); renderPlaza(); renderExplore();
+    if(w==='rainy')toast('已按雨天重排：室内类目前置，露天场沉底');
+  }
+  $('wxSun').addEventListener('click',function(){setWeather('sunny');});
+  $('wxRain').addEventListener('click',function(){setWeather('rainy');});
+  $('mWxSun').addEventListener('click',function(){setWeather('sunny');});
+  $('mWxRain').addEventListener('click',function(){setWeather('rainy');});
+
+  // 移动端：说明栏以全屏浮层呈现
+  $('docBtn').addEventListener('click',function(){
+    document.body.classList.add('doc-open'); $('rail').scrollTop=0;});
+  $('docClose').addEventListener('click',function(){
+    document.body.classList.remove('doc-open');});
 
   /* ---------- boot ---------- */
   $('profAv').innerHTML=icon('user','style="color:#2E4A1E"');
