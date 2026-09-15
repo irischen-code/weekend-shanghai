@@ -207,6 +207,25 @@
   .pp-stat{background:rgba(255,255,255,.18); border:1.5px solid var(--line); border-radius:10px; padding:7px 8px}
   .pp-stat b{display:block; font-size:19px; font-weight:900; line-height:1.1; font-family:"Baloo 2",sans-serif}
   .pp-stat span{font-size:9.5px; font-weight:700; opacity:.9}
+  /* ---------- city map ---------- */
+  .mapbox{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r);
+    box-shadow:var(--hard); padding:9px 9px 0; overflow:hidden}
+  .mapbox svg{display:block; width:100%; height:auto; max-width:100%}
+  .district{fill:var(--sunk); stroke:var(--line); stroke-width:1.6; stroke-linejoin:round;
+    cursor:pointer; transition:fill .18s}
+  .district.lit{fill:var(--lime)}
+  .district.sel{fill:var(--pink)}
+  .district:hover{fill:var(--grape-soft)}
+  .district.lit:hover{fill:var(--lime)}
+  .water{fill:var(--cyan-soft); stroke:var(--line); stroke-width:1.4}
+  .dlabel{font-size:8.5px; font-weight:700; fill:var(--body); pointer-events:none;
+    font-family:"Noto Sans SC",sans-serif}
+  .dlabel.on{fill:#12101A; font-weight:900}
+  .map-read{border-top:1.5px dashed var(--line); margin-top:7px; padding:8px 2px;
+    font-size:11.5px; font-weight:700; color:var(--body); min-height:34px}
+  .map-read b{color:var(--ink); font-weight:900}
+  .map-read .hint{color:var(--muted); font-weight:500}
+
   .stamp-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:0 14px}
   .stamp{aspect-ratio:1; border-radius:12px; display:grid; place-items:center; gap:1px; text-align:center;
     border:var(--bw) dashed var(--line); background:var(--sunk); color:var(--muted); font-size:9px;
@@ -379,6 +398,18 @@
               <div class="pp-stat"><b class="num">9</b><span>同行过</span></div>
             </div>
           </div>
+          <div class="pad-x">
+            <div class="between" style="margin-bottom:6px">
+              <span class="eyebrow">城市点亮 · <span class="num" id="mapPct">0</span>% 已探索</span>
+              <span class="chip l"><span class="num" id="mapLit">0</span>/12 个区</span>
+            </div>
+            <div class="mapbox">
+              <svg id="cityMap" viewBox="0 0 300 250" role="img"
+                   aria-label="上海行政区打卡地图，点击区域查看详情"></svg>
+              <div class="map-read" id="mapRead"></div>
+            </div>
+          </div>
+
           <div class="eyebrow pad-x" style="margin-top:2px">徽章 · 集齐一行解锁隐藏路线</div>
           <div class="stamp-grid" id="stampGrid"></div>
           <div class="pad-x">
@@ -804,7 +835,76 @@
     }).join('');
   }
 
+  // Schematic Shanghai: districts as adjacent polygons, shaped for recognition
+  // at phone width (Huangpu bend, Pudong bulging east, Chongming offshore)
+  // rather than cartographic accuracy. visits = activities checked in there.
+  var DISTRICTS = [
+    {k:'baoshan',  n:'宝山', v:0, x:118, y:52,
+     d:'M74 30 L150 24 L162 62 L136 78 L96 72 L74 56 Z'},
+    {k:'jiading',  n:'嘉定', v:1, x:52,  y:62,
+     d:'M18 44 L74 30 L96 72 L62 90 L22 78 Z'},
+    {k:'putuo',    n:'普陀', v:2, x:104, y:98,
+     d:'M96 72 L136 78 L132 108 L92 114 L82 96 Z'},
+    {k:'jingan',   n:'静安', v:2, x:143, y:104,
+     d:'M136 78 L162 84 L160 112 L132 108 Z'},
+    {k:'hongkou',  n:'虹口', v:1, x:173, y:80,
+     d:'M162 62 L190 68 L188 100 L160 88 Z'},
+    {k:'yangpu',   n:'杨浦', v:1, x:200, y:70,
+     d:'M186 70 L214 58 L222 88 L184 98 Z'},
+    {k:'changning',n:'长宁', v:0, x:92,  y:128,
+     d:'M82 96 L92 114 L108 138 L74 142 L64 116 Z'},
+    {k:'huangpu',  n:'黄浦', v:0, x:150, y:130,
+     d:'M132 108 L160 112 L172 134 L146 146 L128 130 Z'},
+    {k:'xuhui',    n:'徐汇', v:1, x:118, y:158,
+     d:'M108 138 L128 130 L146 146 L134 178 L104 170 Z'},
+    {k:'minhang',  n:'闵行', v:0, x:74,  y:188,
+     d:'M74 142 L108 138 L104 170 L118 200 L64 208 L52 170 Z'},
+    {k:'songjiang',n:'松江', v:0, x:34,  y:150,
+     d:'M22 118 L64 116 L74 142 L52 170 L18 158 Z'},
+    {k:'pudong',   n:'浦东', v:1, x:216, y:150,
+     d:'M172 134 L184 98 L222 88 L262 120 L246 186 L182 196 L134 178 L146 146 Z'}
+  ];
+
+  var CHONGMING = 'M188 14 L268 6 L282 24 L214 40 L186 30 Z';
+  var selected = null;
+
+  function renderMap(){
+    var svg = $('cityMap');
+    var shapes = DISTRICTS.map(function(d){
+      var cls = 'district' + (d.v > 0 ? ' lit' : '') + (selected === d.k ? ' sel' : '');
+      return '<path class="' + cls + '" d="' + d.d + '" data-dist="' + d.k + '">' +
+        '<title>' + d.n + '</title></path>';
+    }).join('');
+
+    var labels = DISTRICTS.map(function(d){
+      return '<text class="dlabel' + (d.v > 0 ? ' on' : '') + '" x="' + d.x + '" y="' + d.y +
+        '" text-anchor="middle">' + d.n + '</text>';
+    }).join('');
+
+    svg.innerHTML =
+      '<path class="water" d="' + CHONGMING + '"/>' +
+      '<text class="dlabel" x="234" y="26" text-anchor="middle">崇明</text>' +
+      shapes + labels;
+
+    var lit = DISTRICTS.filter(function(d){ return d.v > 0; }).length;
+    $('mapLit').textContent = lit;
+    $('mapPct').textContent = Math.round(lit / DISTRICTS.length * 100);
+
+    if(selected){
+      var s = null;
+      for(var i = 0; i < DISTRICTS.length; i++) if(DISTRICTS[i].k === selected){ s = DISTRICTS[i]; break; }
+      $('mapRead').innerHTML = s.v > 0
+        ? '<b>' + s.n + '</b> · 已打卡 <b>' + s.v + '</b> 个活动' +
+          '<span class="hint"> —— 这个区已点亮</span>'
+        : '<b>' + s.n + '</b> · 还没去过<span class="hint"> —— 推荐页筛选该区可以点亮它</span>';
+    } else {
+      $('mapRead').innerHTML = '<span class="hint">点任意区域看打卡详情。' +
+        '灰色是还没去过的地方 —— 这比空徽章更能说明"还差哪儿"。</span>';
+    }
+  }
+
   function renderCheck(){
+    renderMap();
     $('stampGrid').innerHTML = STAMPS.map(function(s){
       return '<div class="stamp' + (s.got ? ' got' : '') + '">' +
         '<span class="em">' + (s.got ? s.em : '🔒') + '</span><span>' + s.n + '</span></div>';
@@ -914,6 +1014,16 @@
   });
 
   document.addEventListener('click', function(e){
+    // districts are <path>, not <button>, so they must be handled before the
+    // button guard below short-circuits
+    var dist = e.target.closest ? e.target.closest('[data-dist]') : null;
+    if(dist){
+      var k = dist.getAttribute('data-dist');
+      selected = (selected === k) ? null : k;
+      renderMap();
+      return;
+    }
+
     var el = e.target.closest ? e.target.closest('button') : null;
     if(!el) return;
 
