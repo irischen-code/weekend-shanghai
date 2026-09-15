@@ -36,15 +36,31 @@
     border-radius:8px; padding:7px 11px; max-width:44ch; line-height:1.55}
   .disclaimer b{color:var(--ink)}
 
-  .split{display:grid; grid-template-columns:390px minmax(0,1fr); gap:30px; align-items:start}
+  .split{display:grid; grid-template-columns:126px 390px minmax(0,1fr); gap:18px 24px; align-items:start}
+  @media (max-width:1040px){ .split{grid-template-columns:126px 390px; } }
   @media (max-width:900px){ .split{grid-template-columns:1fr; justify-items:center} }
+
+  /* demo 外部控制区：天气是演示开关，不是 App 内的功能 */
+  .democtl{position:sticky; top:16px; background:#fff; border-radius:var(--r); padding:13px 12px;
+    box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  @media (max-width:900px){ .democtl{position:relative; top:auto; width:390px; max-width:100%} }
+  .democtl-t{font-size:10.5px; font-weight:900; color:var(--meta); letter-spacing:.08em; margin-bottom:9px}
+  .democtl-sw{display:flex; flex-direction:column; gap:7px}
+  @media (max-width:900px){ .democtl-sw{flex-direction:row} }
+  .democtl-sw button{flex:1; display:flex; align-items:center; gap:8px; padding:9px 10px;
+    border-radius:9px; background:var(--sunk); font-size:12.5px; font-weight:700; color:var(--body)}
+  .democtl-sw button[aria-pressed="true"]{background:var(--ink); color:#fff}
+  .democtl-sw svg{width:20px; height:20px; flex:none}
+  .democtl-note{font-size:10.5px; color:var(--meta); line-height:1.6; margin-top:10px}
 
   .phone{width:390px; max-width:100%; height:820px; background:var(--bg);
     border-radius:26px; overflow:hidden; display:flex; flex-direction:column;
     position:sticky; top:16px; box-shadow:0 10px 40px rgba(0,0,0,.18); border:1px solid #D8DADE}
   @media (max-width:900px){ .phone{position:relative; top:auto} }
   .statusbar{flex:none; display:flex; justify-content:space-between; align-items:center;
-    padding:10px 18px 2px; font-size:12px; font-weight:700; color:var(--ink)}
+    padding:10px 18px 2px; font-size:13px; font-weight:700; color:var(--ink)}
+  .sysicons{display:flex; align-items:center; gap:5px}
+  .sysicons svg{height:11px; width:auto; fill:var(--ink); display:block}
   .appbar{flex:none; display:flex; align-items:center; gap:8px; padding:6px 14px 10px;
     background:linear-gradient(180deg,#EAF7F2 0%,#F5F6F7 100%)}
   .appbar .back{font-size:19px; color:var(--ink); font-weight:700; line-height:1}
@@ -71,9 +87,6 @@
   .kong-item.on span{color:var(--ink); font-weight:900}
   .kong-badge{position:absolute; top:-4px; right:-5px; background:var(--ink); color:#fff;
     font-size:8.5px; font-weight:900; padding:1.5px 5px; border-radius:99px}
-  .kong-dots{display:flex; justify-content:center; gap:3px; padding:9px 0 2px}
-  .kong-dots i{width:13px; height:3px; border-radius:99px; background:#D9DCE1}
-  .kong-dots i.on{background:var(--ink); width:17px}
 
   .wxbar{margin:2px 12px 0; background:#fff; border-radius:var(--r); padding:9px 11px;
     display:flex; align-items:center; gap:9px; box-shadow:0 1px 4px rgba(0,0,0,.05)}
@@ -81,9 +94,6 @@
   .wxbar .t{flex:1; min-width:0}
   .wxbar .t b{display:block; font-size:12.5px; color:var(--ink); font-weight:900}
   .wxbar .t span{font-size:11px; color:var(--meta)}
-  .wxsw{display:flex; gap:3px; background:var(--sunk); padding:2.5px; border-radius:99px; flex:none}
-  .wxsw button{font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; color:var(--meta)}
-  .wxsw button[aria-pressed="true"]{background:var(--ink); color:#fff}
 
   /* 筛选栏：点击展开浮层 */
   .filters{position:sticky; top:0; z-index:9; background:var(--bg); display:flex; gap:7px;
@@ -124,9 +134,6 @@
   .fbtn-reset{background:#fff; box-shadow:inset 0 0 0 1.5px var(--line); color:var(--body)}
   .fbtn-ok{background:var(--ink); color:#fff}
 
-  .fixnote{margin:0 12px 8px; background:#FFF4F2; border:1px solid #FFD9D2; border-radius:9px;
-    padding:7px 10px; font-size:11px; color:#B3391F; line-height:1.5}
-  .fixnote b{color:#8F2A14}
 
   .feed{display:flex; flex-direction:column; gap:9px; padding:0 12px 14px}
   .pc{background:#fff; border-radius:var(--r); padding:11px 12px 12px}
@@ -364,8 +371,39 @@
   </header>
 
   <div class="split">
+    <aside class="democtl">
+      <div class="democtl-t">演示开关</div>
+      <div class="democtl-sw" role="group" aria-label="切换天气场景">
+        <button id="wxSun" aria-pressed="true">
+          <svg viewBox="0 0 34 34" aria-hidden="true">
+            <circle cx="14" cy="14" r="6.5" fill="#FFC53D"/>
+            <g stroke="#FFC53D" stroke-width="1.8" stroke-linecap="round">
+              <line x1="14" y1="3" x2="14" y2="5.5"/><line x1="4" y1="14" x2="6.5" y2="14"/>
+              <line x1="6.5" y1="6.5" x2="8.2" y2="8.2"/></g>
+            <path d="M13 28a5.4 5.4 0 0 1 .6-10.8 7.2 7.2 0 0 1 13.5 2.3A4.5 4.5 0 0 1 26.5 28z" fill="#CFD8E3"/>
+          </svg>晴天
+        </button>
+        <button id="wxRain" aria-pressed="false">
+          <svg viewBox="0 0 34 34" aria-hidden="true">
+            <path d="M10 22a5.8 5.8 0 0 1 .7-11.6 7.6 7.6 0 0 1 14.3 2.4A4.8 4.8 0 0 1 24 22z" fill="#A9BCD0"/>
+            <g stroke="#5B8CB8" stroke-width="2.2" stroke-linecap="round">
+              <line x1="12.5" y1="25" x2="11" y2="30"/><line x1="18" y1="25" x2="16.5" y2="30"/>
+              <line x1="23.5" y1="25" x2="22" y2="30"/></g>
+          </svg>雨天
+        </button>
+      </div>
+      <p class="democtl-note">天气取自平台实时数据，用户无需切换。这里放在 demo 外部，方便对比两种天气下的类目排序与推荐结果。</p>
+    </aside>
+
     <div class="phone">
-      <div class="statusbar"><span class="num">20:18</span><span>周六 · 上海</span></div>
+      <div class="statusbar">
+        <span class="num">20:18</span>
+        <span class="sysicons">
+          <svg viewBox="0 0 17 11" aria-label="信号"><rect x="0" y="7.5" width="3" height="3.5" rx="1"/><rect x="4.5" y="5.5" width="3" height="5.5" rx="1"/><rect x="9" y="3" width="3" height="8" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+          <svg viewBox="0 0 16 12" aria-label="WiFi"><path d="M8 10.2l1.9-2.3a2.9 2.9 0 0 0-3.8 0z"/><path d="M3.4 5.1a7.3 7.3 0 0 1 9.2 0l-1.3 1.6a5.2 5.2 0 0 0-6.6 0z"/><path d="M.8 2.1a11.2 11.2 0 0 1 14.4 0l-1.3 1.6a9.1 9.1 0 0 0-11.8 0z"/></svg>
+          <svg viewBox="0 0 25 12" aria-label="电量"><rect x="0.6" y="0.6" width="20" height="10.8" rx="3" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".38"/><rect x="2.2" y="2.2" width="16.8" height="7.6" rx="1.8"/><path d="M22.4 4.2v3.6a2 2 0 0 0 0-3.6z" opacity=".38"/></svg>
+        </span>
+      </div>
       <div class="appbar">
         <span class="back">‹</span><h1>拼场</h1>
         <span class="slogan">新玩法，拼好玩！</span>
@@ -378,22 +416,14 @@
         <section class="view on" id="v-plaza">
           <div class="kong">
             <div class="kong-grid" id="kong"></div>
-            <div class="kong-dots"><i class="on"></i><i></i></div>
           </div>
 
           <div class="wxbar">
             <svg class="g" id="wxg" viewBox="0 0 34 34" aria-hidden="true"></svg>
             <div class="t"><b id="wxt"></b><span id="wxs"></span></div>
-            <div class="wxsw" role="group" aria-label="天气场景">
-              <button id="wxSun" aria-pressed="true">晴</button>
-              <button id="wxRain" aria-pressed="false">雨</button>
-            </div>
           </div>
 
           <div class="filters" id="filters"></div>
-          <div class="fixnote">
-            <b>已修复：</b>线上默认挂「3km内」却全量返回 &gt;30km 结果。此处距离默认「5km内」，超出范围的场不进推荐流。
-          </div>
           <div class="feed" id="feed"></div>
         </section>
 
@@ -747,17 +777,24 @@
   function whenLabel(){for(var i=0;i<DATES.length;i++)if(DATES[i][0]===st.when)return DATES[i][1];return '日期';}
   function budgetLabel(){for(var i=0;i<BUDGETS.length;i++)if(BUDGETS[i][0]===st.budget)return BUDGETS[i][1];return '人均';}
 
+  // 还原线上结构：三个带浮层的维度 + 四个快捷项，「周末」插在日期与今天之间
   function renderFilters(){
-    var f=[
+    var drops=[
       {k:'near',n:nearLabel(),on:st.near!=='all'},
       {k:'sort',n:sortLabel(),on:st.sort!=='smart'},
-      {k:'when',n:whenLabel(),on:st.when!=='all'},
-      {k:'budget',n:budgetLabel(),on:st.budget!=='all'}
+      {k:'when',n:'日期',on:['weekend','today','tomo','3km'].indexOf(st.when)<0&&st.when!=='all'}
     ];
-    $('filters').innerHTML=f.map(function(x){
+    var quick=[['weekend','周末'],['today','今天'],['tomo','明天']];
+    var h=drops.map(function(x){
       return '<button class="fp'+(st.fdrop===x.k?' open':'')+'" data-fopen="'+x.k+
         '" aria-pressed="'+(!!x.on)+'">'+x.n+'<span class="ar">▼</span></button>';
     }).join('');
+    h+=quick.map(function(q){
+      return '<button class="fp" data-quick="'+q[0]+'" aria-pressed="'+(st.when===q[0])+'">'+
+        q[1]+'</button>';
+    }).join('');
+    h+='<button class="fp" data-quick="3km" aria-pressed="'+(st.near==='3km')+'">3km内</button>';
+    $('filters').innerHTML=h;
   }
 
   function openDrop(k){
@@ -1132,6 +1169,17 @@
     if(el.dataset.mtab){st.mtab=el.dataset.mtab; renderMine(); return;}
 
     if(el.dataset.fopen){openDrop(el.dataset.fopen); return;}
+    if(el.dataset.quick){
+      var q=el.dataset.quick;
+      if(q==='3km'){
+        st.nearCat='smart'; st.near=(st.near==='3km')?'5km':'3km';
+        closeDrop(); renderPlaza(); toast('距离：'+nearLabel());
+      } else {
+        st.when=(st.when===q)?'all':q;
+        closeDrop(); renderPlaza(); toast('日期：'+whenLabel());
+      }
+      return;
+    }
     if(el.dataset.nearcat){
       st.nearCat=el.dataset.nearcat;
       var vs=NEAR_VALS[st.nearCat]||[];
