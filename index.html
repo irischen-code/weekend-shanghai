@@ -28,14 +28,6 @@
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
   .stage{max-width:1220px; margin:0 auto; padding:24px 16px 48px}
-  /* 矮窗口：压缩页头，把垂直空间让给手机壳 */
-  @media (max-height:860px){
-    .stage{padding-top:14px}
-    .masthead{margin-bottom:10px; gap:8px 22px}
-    .brand{font-size:21px}
-    .brand-sub{font-size:11.5px; margin-top:4px}
-    .disclaimer{font-size:10.5px; padding:6px 10px}
-  }
   .masthead{display:flex; flex-wrap:wrap; gap:14px 26px; align-items:flex-end;
     justify-content:space-between; margin-bottom:18px}
   .brand{font-size:25px; font-weight:900; letter-spacing:-.02em}
@@ -61,10 +53,9 @@
   .democtl-sw svg{width:20px; height:20px; flex:none}
   .democtl-note{font-size:10.5px; color:var(--meta); line-height:1.6; margin-top:10px}
 
-  /* 高度跟随视口。扣减量要覆盖壳顶在页面中的偏移（页头约 124px）
-     加底部留白，否则 sticky 定位后整机会溢出一屏，tab 栏被截掉 */
-  .phone{width:390px; max-width:100%; height:min(820px, calc(100vh - 148px)); min-height:460px;
-    background:var(--bg);
+  /* 固定 820px：保证 App 内容完整舒展。窗口不够高时让页面整体滚动，
+     不压缩机身比例 */
+  .phone{width:390px; max-width:100%; height:820px; background:var(--bg);
     border-radius:26px; overflow:hidden; display:flex; flex-direction:column;
     position:sticky; top:16px; box-shadow:0 10px 40px rgba(0,0,0,.18); border:1px solid #D8DADE}
   @media (max-width:900px){ .phone{position:relative; top:auto} }
