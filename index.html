@@ -214,7 +214,8 @@
   .xmap{position:relative; background:#E9EDF0; flex:none; transition:height .26s ease}
   .xmap svg{display:block; width:100%; height:100%}
   /* 三段式：地图高度随浮层状态变化 */
-  .xwrap[data-state="half"] .xmap{height:300px}
+  /* 默认态：地图与浮层各占一半 */
+  .xwrap[data-state="half"] .xmap{height:50%}
   .xwrap[data-state="full"] .xmap{height:150px}
   /* 收起态：地图保持接近 390×300 的比例，不拉伸；剩余高度由 .xwrap
      的地图底色填充，视觉上连成整片地图，不再出现白块 */
@@ -257,8 +258,11 @@
     z-index:5; padding:0 14px 16px; box-shadow:0 -4px 16px rgba(0,0,0,.08); overflow-y:auto;
     min-height:0}
   /* 抓手条常驻浮层顶部：留足上下白，颜色加深，避免被圆角与白底吞掉 */
-  .xgrabber{display:block; width:100%; padding:10px 0 12px; cursor:pointer;
-    position:sticky; top:0; background:#fff; z-index:2; border-radius:16px 16px 0 0}
+  .xgrabber{display:block; width:100%; padding:10px 0 12px; cursor:grab;
+    position:sticky; top:0; background:#fff; z-index:2; border-radius:16px 16px 0 0;
+    touch-action:none; user-select:none; -webkit-user-select:none}
+  .xgrabber:active{cursor:grabbing}
+  .xwrap.dragging .xmap{transition:none}
   .xgrab{display:block; width:40px; height:5px; background:#C4C9D0; border-radius:99px; margin:0 auto}
   .xgrabber:active .xgrab{background:#9AA1AA}
   .xsum{display:flex; align-items:baseline; gap:7px; margin-bottom:3px}
@@ -350,9 +354,11 @@
   .mini{flex:none; background:linear-gradient(100deg,#FEFF4C 0%,#CFFF77 52%,#ABFFE1 100%);
     color:var(--ink); font-size:10.5px; font-weight:700;
     padding:3px 9px; border-radius:99px}
-  .empty{text-align:center; padding:30px 18px; color:var(--meta); font-size:12.5px; line-height:1.7}
-  .empty .eb{display:inline-block; margin-top:11px; background:var(--ink); color:#fff;
-    font-size:12.5px; font-weight:700; padding:8px 18px; border-radius:99px}
+  .empty{text-align:center; padding:30px 18px; color:var(--meta); font-size:12.5px; line-height:1.7;
+    display:flex; flex-direction:column; align-items:center; gap:4px}
+  /* 块级独占一行，避免和说明文字挤在同一行重叠 */
+  .empty .eb{display:block; margin-top:13px; background:var(--ink); color:#fff;
+    font-size:12.5px; font-weight:700; padding:9px 20px; border-radius:99px}
   .mcard{border:1px solid var(--line); border-radius:var(--r); padding:11px; margin-bottom:9px}
   .mcard-t{font-size:13.5px; font-weight:900; color:var(--ink)}
   .mcard-m{font-size:11px; color:var(--meta); margin-top:3px}
@@ -513,7 +519,7 @@
         </span>
       </div>
       <div class="appbar">
-        <span class="back">‹</span><h1>拼场</h1>
+        <span class="back">‹</span><h1>美团拼场</h1>
         <span class="slogan">新玩法，拼好玩！</span>
         <span class="share">↗ 分享</span>
       </div>
@@ -862,7 +868,7 @@
 
   /* ---------- 状态 ---------- */
   var st={tab:'plaza',kong:'weekend',mtab:'foot',weather:'sunny',
-    near:'5km',nearCat:'smart',sort:'smart',when:'weekend',budget:'all',
+    near:'all',nearCat:'smart',sort:'smart',when:'weekend',budget:'all',
     fdrop:null,sel:null,xsel:null,xfilter:'all',xstate:'half',planWhy:{},joined:{},dsel:null,
     student:false};
 
@@ -883,8 +889,9 @@
   var BUDGETS=[['all','不限',''],['free','只看免费','0元'],['low','50元以下','学生友好'],
     ['mid','50-100元',''],['high','100元以上','']];
 
-  var WX={sunny:{t:'周六 多云转晴 22°C',s:'体感舒适，露天活动已前置'},
-    rainy:{t:'周六 小雨转中雨 17°C',s:'降水概率80%，露天活动已排后'}};
+  // 说推荐什么，不说系统做了什么排序
+  var WX={sunny:{t:'周六 多云转晴 22°C',s:'适合去户外，试试 Citywalk、市集、骑行'},
+    rainy:{t:'周六 小雨转中雨 17°C',s:'建议待室内，密室、剧本杀、看展更稳'}};
 
   function drawWx(){
     var el=$('wxg'); if(!el)return;
@@ -1204,6 +1211,46 @@
     var w=$('xwrap');
     if(w)w.setAttribute('data-state',st.xstate);
     renderXMap();renderXSheet();
+    bindSheetDrag();
+  }
+
+  /* 浮层可上下拖动：直接改地图高度，浮层占剩余空间 */
+  var dragMoved=false;
+  function bindSheetDrag(){
+    var g=$('xgrabber'); if(!g||g.dataset.bound)return;
+    g.dataset.bound='1';
+    var wrap=$('xwrap'),map=$('xmap');
+    var startY=0,startH=0,dragging=false;
+
+    g.addEventListener('pointerdown',function(e){
+      dragging=true; dragMoved=false;
+      startY=e.clientY; startH=map.getBoundingClientRect().height;
+      wrap.classList.add('dragging');
+      g.setPointerCapture(e.pointerId);
+    });
+    g.addEventListener('pointermove',function(e){
+      if(!dragging)return;
+      var dy=e.clientY-startY;
+      if(Math.abs(dy)>3)dragMoved=true;
+      var total=wrap.getBoundingClientRect().height;
+      var h=Math.max(90,Math.min(total-80,startH+dy));
+      map.style.height=h+'px';
+    });
+    function end(e){
+      if(!dragging)return;
+      dragging=false; wrap.classList.remove('dragging');
+      if(e&&e.pointerId!==undefined&&g.hasPointerCapture&&g.hasPointerCapture(e.pointerId))
+        g.releasePointerCapture(e.pointerId);
+      if(!dragMoved){map.style.height=''; return;}
+      // 吸附到最近的一档，并交还给 CSS 控制
+      var total=wrap.getBoundingClientRect().height;
+      var ratio=map.getBoundingClientRect().height/total;
+      st.xstate=ratio<0.28?'full':ratio>0.72?'peek':'half';
+      map.style.height='';
+      renderExplore();
+    }
+    g.addEventListener('pointerup',end);
+    g.addEventListener('pointercancel',end);
   }
 
   /* ---------- 我的 ---------- */
@@ -1273,9 +1320,9 @@
         ? ids.map(function(id){
             for(var i=0;i<PLAZA.length;i++)if(PLAZA[i].id===id)return plazaCard(PLAZA[i]);
             return '';}).join('')
-        : '<div class="empty">还没有上车任何场<br><span style="font-size:11.5px">'+
-          '去广场点「上车」，加入的场会出现在这里</span>'+
-          '<span class="eb" data-goplaza2="1">去广场看看</span></div>';
+        : '<div class="empty"><span>还没有上车任何场</span>'+
+          '<span style="font-size:11.5px">去广场点「上车」，加入的场会出现在这里</span>'+
+          '<button class="eb" data-goplaza2="1">去广场看看</button></div>';
     } else {
       body=MYFAV.map(function(m){
         return '<div class="mcard"><div class="mcard-t">'+m.t+'</div>'+
@@ -1402,6 +1449,7 @@
     }
 
     if(el.id==='xgrabber'){
+      if(dragMoved){dragMoved=false; return;}   // 拖拽结束的收尾点击，不再切换
       // 半屏 → 满屏 → 只看地图 → 半屏
       st.xstate=st.xstate==='half'?'full':st.xstate==='full'?'peek':'half';
       renderExplore(); return;
