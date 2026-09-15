@@ -1,1089 +1,1000 @@
-<title>周末去哪儿·上海</title>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>拼场·周末探索</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
 <style>
   :root{
-    --bg:#FCFBFF; --card:#FFFFFF; --sunk:#F3F0FA;
-    --ink:#12101A; --body:#3A3546; --muted:#8A83A0; --line:#12101A;
-    --pink:#FF5FA2; --pink-soft:#FFE3EF;
-    --lime:#C6FF3D; --lime-soft:#EEFFCB;
-    --cyan:#3DDCFF; --cyan-soft:#D8F7FF;
-    --grape:#8B5CF6; --grape-soft:#EDE4FF;
-    --desk:#EFE9FB;
-    --hard:3px 3px 0 var(--line);
-    --hard-sm:2px 2px 0 var(--line);
-    --bw:2px;
-    --r:16px;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#141220; --card:#1D1930; --sunk:#262040;
-      --ink:#FBF9FF; --body:#DAD4EC; --muted:#9E96BC; --line:#000000;
-      --pink:#FF7DB4; --pink-soft:#4A1F35;
-      --lime:#C6FF3D; --lime-soft:#2E3D14;
-      --cyan:#5FE3FF; --cyan-soft:#12384A;
-      --grape:#A78BFA; --grape-soft:#2E2350;
-      --desk:#0A0812;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#141220; --card:#1D1930; --sunk:#262040;
-    --ink:#FBF9FF; --body:#DAD4EC; --muted:#9E96BC; --line:#000000;
-    --pink:#FF7DB4; --pink-soft:#4A1F35;
-    --lime:#C6FF3D; --lime-soft:#2E3D14;
-    --cyan:#5FE3FF; --cyan-soft:#12384A;
-    --grape:#A78BFA; --grape-soft:#2E2350;
-    --desk:#0A0812;
+    --bg:#F5F6F7; --card:#FFFFFF; --sunk:#F2F3F5;
+    --ink:#111111; --body:#333333; --meta:#9CA3AF; --line:#EEEEEE;
+    --lime:#D4FF3D; --lime-deep:#C2F02A; --lime-tint:#F4FFD6;
+    --blue:#4A7BD8; --red:#FF4B33; --orange:#FF6B00;
+    --desk:#E8EAED;
+    --r:12px;
   }
   *{box-sizing:border-box}
+  html,body{height:100%}
   body{
     margin:0; background:var(--desk); color:var(--body);
     font-family:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
-    font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased;
+    font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,h4{margin:0; color:var(--ink); text-wrap:balance;
-    font-family:"Baloo 2","Noto Sans SC",system-ui,sans-serif; font-weight:800; letter-spacing:-.01em}
+  h1,h2,h3,h4{margin:0; color:var(--ink); font-weight:700}
   .num{font-variant-numeric:tabular-nums}
-  button{font-family:inherit; cursor:pointer; color:inherit}
-  :focus-visible{outline:3px solid var(--grape); outline-offset:2px; border-radius:6px}
-  @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+  button{font-family:inherit; cursor:pointer; color:inherit; border:0; background:none; padding:0}
+  :focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
-  .stage{max-width:1200px; margin:0 auto; padding:26px 16px 52px}
-  .masthead{display:flex; flex-wrap:wrap; gap:14px 26px; align-items:flex-end; justify-content:space-between; margin-bottom:20px}
-  .brandline{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-  .brand{font-size:30px; font-weight:800; letter-spacing:-.02em}
-  .blip{background:var(--lime); border:var(--bw) solid var(--line); border-radius:99px;
-    padding:3px 11px; font-size:11px; font-weight:900; color:#12101A; box-shadow:var(--hard-sm);
-    transform:rotate(-3deg); letter-spacing:.04em}
-  .masthead p{margin:8px 0 0; font-size:13px; color:var(--muted); max-width:60ch}
-  .tagrow{display:flex; gap:7px; flex-wrap:wrap}
-  .meta-tag{font-size:11px; font-weight:700; color:var(--ink); background:var(--card);
-    border:var(--bw) solid var(--line); padding:4px 10px; border-radius:99px; box-shadow:var(--hard-sm)}
+  .stage{max-width:1220px; margin:0 auto; padding:24px 16px 48px}
+  .masthead{display:flex; flex-wrap:wrap; gap:14px 26px; align-items:flex-end;
+    justify-content:space-between; margin-bottom:18px}
+  .brand{font-size:26px; font-weight:900; letter-spacing:-.02em}
+  .brand-sub{font-size:12px; color:#6B7280; margin-top:6px; max-width:58ch}
+  .disclaimer{font-size:11px; color:#6B7280; background:#FFF; border:1px solid #DDD;
+    border-radius:8px; padding:7px 11px; max-width:44ch; line-height:1.55}
+  .disclaimer b{color:var(--ink)}
 
-  .split{display:grid; grid-template-columns:392px minmax(0,1fr); gap:32px; align-items:start}
+  .split{display:grid; grid-template-columns:390px minmax(0,1fr); gap:30px; align-items:start}
   @media (max-width:900px){ .split{grid-template-columns:1fr; justify-items:center} }
 
-  /* ---------- phone ---------- */
-  .phone{
-    width:392px; max-width:100%; height:812px; background:var(--bg);
-    border:3px solid var(--line); border-radius:30px; overflow:hidden;
-    display:flex; flex-direction:column; position:sticky; top:16px; isolation:isolate;
-    box-shadow:8px 8px 0 var(--line);
-  }
-  /* sticky already establishes the containing block the modal needs; when the
-     phone stops being sticky it must still be one, hence relative not static */
-  @media (max-width:900px){ .phone{position:relative; top:auto; box-shadow:5px 5px 0 var(--line)} }
-  .statusbar{display:flex; justify-content:space-between; align-items:center; padding:11px 20px 7px;
-    font-size:11.5px; font-weight:700; color:var(--ink); flex:none}
-  .screen{flex:1; overflow-y:auto; overflow-x:hidden; scrollbar-width:thin; position:relative}
-  .screen::-webkit-scrollbar{width:5px}
-  .screen::-webkit-scrollbar-thumb{background:var(--grape); border-radius:9px}
-  .pad-x{padding:0 14px}
+  /* ---------------- phone ---------------- */
+  .phone{width:390px; max-width:100%; height:820px; background:var(--bg);
+    border-radius:26px; overflow:hidden; display:flex; flex-direction:column;
+    position:sticky; top:16px; box-shadow:0 10px 40px rgba(0,0,0,.18); border:1px solid #D8DADE}
+  @media (max-width:900px){ .phone{position:relative; top:auto} }
+  .statusbar{flex:none; display:flex; justify-content:space-between; align-items:center;
+    padding:10px 18px 2px; font-size:12px; font-weight:700; color:var(--ink)}
 
-  .tabbar{flex:none; display:grid; grid-template-columns:repeat(4,1fr); border-top:var(--bw) solid var(--line);
-    background:var(--card); padding:6px 6px calc(8px + env(safe-area-inset-bottom,0px))}
-  .tabbar button{background:none; border:0; padding:5px 2px; color:var(--muted); font-size:11px;
-    display:flex; flex-direction:column; align-items:center; gap:3px; border-radius:10px; font-weight:700}
-  .tabbar button .ic{width:20px; height:20px; display:block}
-  .tabbar button[aria-selected="true"]{color:var(--ink)}
-  .tabbar button[aria-selected="true"] .ic{
-    background:var(--lime); border:var(--bw) solid var(--line); border-radius:7px; padding:2px}
+  /* 顶部标题栏：拼场的浅青渐变 */
+  .appbar{flex:none; display:flex; align-items:center; gap:8px; padding:6px 14px 10px;
+    background:linear-gradient(180deg,#EAF7F2 0%,#F5F6F7 100%)}
+  .appbar .back{font-size:19px; color:var(--ink); font-weight:700; line-height:1}
+  .appbar h1{font-size:21px; font-weight:900; letter-spacing:-.02em}
+  .appbar .slogan{font-size:12px; font-weight:700; color:var(--ink); align-self:flex-end;
+    padding-bottom:2px}
+  .appbar .share{margin-left:auto; background:#fff; border-radius:99px; padding:6px 13px;
+    font-size:12.5px; font-weight:700; color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.08)}
 
-  .view{display:flex; flex-direction:column; gap:12px; padding:10px 0 14px}
-  .view[hidden]{display:none!important}
+  .screen{flex:1; overflow-y:auto; overflow-x:hidden; position:relative; scrollbar-width:thin}
+  .screen::-webkit-scrollbar{width:4px}
+  .screen::-webkit-scrollbar-thumb{background:#CFD3D8; border-radius:9px}
+  .view{display:none; flex-direction:column}
+  .view.on{display:flex}
 
-  /* ---------- shared ---------- */
-  .eyebrow{font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:900}
-  .card{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r); box-shadow:var(--hard)}
-  .between{display:flex; align-items:center; justify-content:space-between; gap:10px}
-  .row{display:flex; align-items:center; gap:7px}
-  .chip{display:inline-flex; align-items:center; gap:3px; font-size:10.5px; font-weight:700; padding:2px 8px;
-    border-radius:99px; background:var(--sunk); color:var(--body); border:1.5px solid var(--line); white-space:nowrap}
-  .chip.p{background:var(--pink-soft); color:var(--pink)}
-  .chip.l{background:var(--lime-soft); color:#4A6B00}
-  .chip.c{background:var(--cyan-soft); color:#0B7A99}
-  .chip.g{background:var(--grape-soft); color:var(--grape)}
-  :root[data-theme="dark"] .chip.l{color:var(--lime)}
-  :root[data-theme="dark"] .chip.c{color:var(--cyan)}
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]) .chip.l{color:var(--lime)}
-    :root:not([data-theme="light"]) .chip.c{color:var(--cyan)}
-  }
+  /* 一级类目 tab：荧光绿下划线 */
+  .cats{position:sticky; top:0; z-index:9; background:var(--bg); display:flex; align-items:center;
+    gap:20px; padding:9px 14px 0; overflow-x:auto; scrollbar-width:none}
+  .cats::-webkit-scrollbar{display:none}
+  .cats button{flex:none; font-size:15px; color:#6B7280; font-weight:500; padding-bottom:9px;
+    position:relative; white-space:nowrap}
+  .cats button[aria-selected="true"]{color:var(--ink); font-weight:900; font-size:16px}
+  .cats button[aria-selected="true"]::after{content:""; position:absolute; left:50%; bottom:3px;
+    transform:translateX(-50%); width:20px; height:4px; border-radius:99px; background:var(--lime)}
+  .cats .expand{margin-left:auto; flex:none; font-size:16px; color:var(--ink); padding-bottom:9px}
 
-  /* ---------- weather banner ---------- */
-  .wx{margin:0 14px; background:var(--pink); border:var(--bw) solid var(--line); border-radius:var(--r);
-    box-shadow:var(--hard); padding:11px 13px; color:#12101A}
-  .wx.rain{background:var(--cyan)}
-  .wx-top{display:flex; align-items:center; gap:10px}
-  .wx-glyph{width:34px; height:34px; flex:none}
-  .wx-read{flex:1; min-width:0}
-  .wx-read b{display:block; font-size:15px; font-weight:900; line-height:1.2; color:#12101A;
-    font-family:"Baloo 2","Noto Sans SC",sans-serif}
-  .wx-read span{font-size:11px; font-weight:700; color:#12101A; opacity:.72}
-  .wx-switch{display:flex; gap:3px; background:rgba(255,255,255,.55); padding:3px; border-radius:99px;
-    border:1.5px solid var(--line)}
-  .wx-switch button{border:0; background:none; font-size:11px; font-weight:800; padding:3px 9px;
-    border-radius:99px; color:#12101A; opacity:.6}
-  .wx-switch button[aria-pressed="true"]{background:#fff; opacity:1; box-shadow:1px 1px 0 var(--line)}
-  .wx-verdict{margin-top:8px; font-size:11.5px; font-weight:700; line-height:1.45; color:#12101A;
-    background:rgba(255,255,255,.6); border:1.5px solid var(--line); border-radius:9px; padding:6px 9px}
+  /* 金刚区：两行 × 5 列，拼场配色 */
+  .kong{background:var(--bg); padding:11px 0 4px}
+  .kong-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:13px 4px; padding:0 10px}
+  .kong-item{display:flex; flex-direction:column; align-items:center; gap:5px}
+  .kong-ic{width:47px; height:47px; border-radius:14px; display:grid; place-items:center;
+    font-size:23px; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,.07); position:relative}
+  .kong-item.on .kong-ic{background:var(--lime); box-shadow:0 2px 8px rgba(196,240,42,.5)}
+  .kong-item span{font-size:11.5px; color:var(--body); font-weight:500; white-space:nowrap}
+  .kong-item.on span{color:var(--ink); font-weight:900}
+  .kong-badge{position:absolute; top:-4px; right:-5px; background:var(--ink); color:#fff;
+    font-size:8.5px; font-weight:900; padding:1.5px 5px; border-radius:99px; letter-spacing:.02em}
+  .kong-dots{display:flex; justify-content:center; gap:3px; padding:9px 0 2px}
+  .kong-dots i{width:13px; height:3px; border-radius:99px; background:#D9DCE1}
+  .kong-dots i.on{background:var(--ink); width:17px}
 
-  /* ---------- sticky filter bar ---------- */
-  .filterbar{position:sticky; top:0; z-index:8; background:var(--bg);
-    border-bottom:var(--bw) solid var(--line); padding:9px 0 8px; margin-bottom:2px}
-  .frow{display:flex; gap:6px; overflow-x:auto; padding:0 14px 1px; scrollbar-width:none}
-  .frow::-webkit-scrollbar{display:none}
-  .frow + .frow{margin-top:7px}
-  .fpill{flex:none; border:var(--bw) solid var(--line); background:var(--card); color:var(--body);
-    font-size:12px; font-weight:700; padding:5px 12px; border-radius:99px; box-shadow:var(--hard-sm);
-    transition:transform .1s}
-  .fpill[aria-pressed="true"]{background:var(--lime); color:#12101A}
-  .fpill:active{transform:translate(2px,2px); box-shadow:none}
-  .fpill.budget{display:flex; align-items:center; gap:7px; padding:4px 12px 4px 11px}
-  .fpill.budget input{width:78px; accent-color:var(--pink); margin:0; height:14px}
-  .fpill.budget b{font-size:11.5px; min-width:46px; text-align:right; font-weight:900; color:var(--ink)}
-  .fmeta{display:flex; align-items:center; justify-content:space-between; padding:8px 14px 0; gap:10px}
+  /* 天气条 */
+  .wxbar{margin:2px 12px 0; background:#fff; border-radius:var(--r); padding:9px 11px;
+    display:flex; align-items:center; gap:9px; box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .wxbar .g{width:30px; height:30px; flex:none}
+  .wxbar .t{flex:1; min-width:0}
+  .wxbar .t b{display:block; font-size:12.5px; color:var(--ink); font-weight:900}
+  .wxbar .t span{font-size:11px; color:var(--meta)}
+  .wxsw{display:flex; gap:3px; background:var(--sunk); padding:2.5px; border-radius:99px; flex:none}
+  .wxsw button{font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; color:var(--meta)}
+  .wxsw button[aria-pressed="true"]{background:var(--ink); color:#fff}
 
-  /* ---------- activity card (compact) ---------- */
-  .results{display:flex; flex-direction:column; gap:10px; padding:0 14px}
-  .act{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r);
-    box-shadow:var(--hard); overflow:hidden}
-  .act.top{box-shadow:4px 4px 0 var(--pink), 4px 4px 0 1.5px var(--line)}
-  .act-main{display:flex; gap:10px; padding:10px 11px; align-items:flex-start}
-  .thumb{width:54px; height:54px; border-radius:11px; flex:none; display:grid; place-items:center;
-    font-size:24px; border:var(--bw) solid var(--line)}
-  .act-body{flex:1; min-width:0}
-  .act-title{font-size:14.5px; font-weight:800; color:var(--ink); line-height:1.3;
-    font-family:"Baloo 2","Noto Sans SC",sans-serif}
-  .act-sub{font-size:11px; color:var(--muted); font-weight:500; margin-top:2px}
-  .act-chips{display:flex; gap:4px; flex-wrap:wrap; margin-top:6px}
-  .badge{flex:none; text-align:center; background:var(--lime); border:var(--bw) solid var(--line);
-    border-radius:10px; padding:3px 7px; box-shadow:var(--hard-sm)}
-  .badge b{display:block; font-size:17px; font-weight:900; color:#12101A; line-height:1.05;
-    font-family:"Baloo 2",sans-serif}
-  .badge span{font-size:8.5px; font-weight:800; color:#12101A; opacity:.7; letter-spacing:.04em}
-  .badge.warn{background:var(--pink-soft)}
-  .act-why{margin:0 11px; font-size:11.5px; color:var(--body); line-height:1.5}
-  .act-why b{color:var(--ink); font-weight:800}
-  .act-foot{display:flex; gap:6px; align-items:center; padding:9px 11px 10px}
-  .why-toggle{flex:none; background:var(--sunk); border:1.5px solid var(--line); border-radius:99px;
-    font-size:10.5px; font-weight:800; padding:5px 9px; color:var(--muted)}
-  .why-toggle[aria-expanded="true"]{background:var(--grape-soft); color:var(--grape)}
-  .btn{flex:1; border:var(--bw) solid var(--line); background:var(--card); color:var(--ink); font-size:12px;
-    padding:6px 8px; border-radius:99px; font-weight:800; box-shadow:var(--hard-sm); transition:transform .1s}
-  .btn:active{transform:translate(2px,2px); box-shadow:none}
-  .btn.primary{background:var(--pink); color:#12101A}
-  .btn.joined{background:var(--lime); color:#12101A}
-  .bars{padding:8px 11px 0; display:flex; flex-direction:column; gap:5px;
-    border-top:1.5px dashed var(--line); margin-top:9px}
+  /* 筛选栏 */
+  .filters{position:sticky; top:41px; z-index:8; background:var(--bg); display:flex; gap:7px;
+    padding:10px 12px 9px; overflow-x:auto; scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .fp{flex:none; background:#fff; border-radius:99px; padding:6px 12px; font-size:12.5px;
+    color:var(--body); font-weight:500; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .fp[aria-pressed="true"]{background:var(--ink); color:#fff; font-weight:700}
+  .fp .ar{font-size:9px; color:var(--meta); margin-left:2px}
+  .fp[aria-pressed="true"] .ar{color:#fff}
+  .fixnote{margin:0 12px 8px; background:#FFF4F2; border:1px solid #FFD9D2; border-radius:9px;
+    padding:7px 10px; font-size:11px; color:#B3391F; line-height:1.5}
+  .fixnote b{color:#8F2A14}
+
+  /* 拼场卡片 */
+  .feed{display:flex; flex-direction:column; gap:9px; padding:0 12px 14px}
+  .pc{background:#fff; border-radius:var(--r); padding:11px 12px 12px}
+  .pc-host{display:flex; align-items:center; gap:6px; margin-bottom:9px}
+  .pc-host .hav{width:19px; height:19px; border-radius:50%; flex:none; display:grid;
+    place-items:center; font-size:9px; color:#fff; font-weight:700}
+  .pc-host .hn{font-size:12.5px; color:var(--body); font-weight:500; overflow:hidden;
+    text-overflow:ellipsis; white-space:nowrap}
+  .pc-host .tag{flex:none; font-size:10px; color:var(--meta); background:var(--sunk);
+    padding:1.5px 6px; border-radius:4px; font-weight:500}
+  .pc-body{display:flex; gap:11px}
+  .pc-img{width:95px; height:95px; border-radius:9px; flex:none; display:grid; place-items:center;
+    font-size:36px; position:relative; overflow:hidden}
+  .pc-img .ad{position:absolute; left:0; bottom:0; background:rgba(0,0,0,.45); color:#fff;
+    font-size:8.5px; padding:1px 5px; border-radius:0 4px 0 0}
+  .pc-main{flex:1; min-width:0; display:flex; flex-direction:column}
+  .pc-title{font-size:16px; font-weight:900; color:var(--ink); line-height:1.32;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+  .pc-tags{display:flex; gap:5px; flex-wrap:wrap; margin-top:6px}
+  .ct{font-size:10.5px; padding:2px 7px; border-radius:4px; font-weight:500;
+    background:var(--sunk); color:var(--body)}
+  .ct.lime{background:var(--lime-tint); color:#5C7A00; font-weight:700}
+  .pc-meta{margin-top:7px; display:flex; flex-direction:column; gap:3px}
+  .mrow{display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--meta)}
+  .mrow svg{width:12px; height:12px; flex:none}
+  .pc-foot{display:flex; align-items:center; gap:9px; margin-top:10px}
+  .joins{display:flex; align-items:center; gap:6px; flex:1; min-width:0}
+  .stack{display:flex; flex:none}
+  .stack .av{width:21px; height:21px; border-radius:50%; border:1.5px solid #fff; margin-left:-7px;
+    display:grid; place-items:center; font-size:9px}
+  .stack .av:first-child{margin-left:0}
+  .joins .jt{font-size:12px; color:var(--body); font-weight:500}
+  .joins .jt b{color:var(--ink); font-weight:900}
+  .board{flex:none; background:var(--ink); color:#fff; font-size:14px; font-weight:700;
+    padding:8px 26px; border-radius:99px}
+  .board.done{background:var(--sunk); color:var(--meta)}
+  .board:active{opacity:.75}
+
+  /* 攻略卡（混排进广场） */
+  .gc{background:#fff; border-radius:var(--r); padding:11px 12px}
+  .gc-badge{display:inline-flex; font-size:10px; font-weight:900; color:#5C7A00;
+    background:var(--lime-tint); padding:2px 7px; border-radius:4px; margin-bottom:7px}
+  .gc h4{font-size:15px; line-height:1.35; font-weight:900}
+  .gc-route{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin:8px 0}
+  .gc-route .s{font-size:11px; background:var(--sunk); padding:2.5px 7px; border-radius:5px; color:var(--body)}
+  .gc-route .a{font-size:9px; color:var(--meta)}
+  .gc-foot{display:flex; align-items:center; gap:10px; font-size:11.5px; color:var(--meta); margin-top:9px}
+  .gc-foot .open{margin-left:auto; background:var(--lime); color:var(--ink); font-size:12.5px;
+    font-weight:700; padding:6px 15px; border-radius:99px}
+
+  /* ---------------- 探索页 ---------------- */
+  .xhead{padding:13px 14px 4px}
+  .xhead h2{font-size:21px; font-weight:900; letter-spacing:-.02em}
+  .xhead p{margin:4px 0 0; font-size:12px; color:var(--meta); line-height:1.5}
+  .xc{background:#fff; border-radius:var(--r); overflow:hidden}
+  .xc.first{box-shadow:0 0 0 2px var(--lime)}
+  .xc-top{display:flex; gap:11px; padding:11px 12px 0}
+  .xc-img{width:64px; height:64px; border-radius:9px; flex:none; display:grid; place-items:center; font-size:27px}
+  .xc-main{flex:1; min-width:0}
+  .xc-title{font-size:15.5px; font-weight:900; color:var(--ink); line-height:1.3}
+  .xc-sub{font-size:11.5px; color:var(--meta); margin-top:3px}
+  .xc-score{flex:none; text-align:center; background:var(--lime); border-radius:9px; padding:4px 8px}
+  .xc-score b{display:block; font-size:17px; font-weight:900; color:var(--ink); line-height:1}
+  .xc-score span{font-size:8.5px; font-weight:700; color:#5C7A00}
+  .xc-score.warn{background:#FFE9E4}
+  .xc-score.warn b{color:#B3391F}
+  .xc-score.warn span{color:#B3391F}
+  .xc-why{margin:9px 12px 0; background:var(--sunk); border-radius:8px; padding:8px 10px;
+    font-size:11.5px; line-height:1.55; color:var(--body)}
+  .xc-why b{color:var(--ink); font-weight:900}
+  .bars{padding:9px 12px 0; display:flex; flex-direction:column; gap:5px}
   .bars[hidden]{display:none!important}
-  .bar-head{font-size:10px; font-weight:900; color:var(--muted); letter-spacing:.1em; padding-top:7px}
-  .bar-row{display:grid; grid-template-columns:40px 1fr 28px; align-items:center; gap:7px;
-    font-size:10.5px; font-weight:700; color:var(--muted)}
-  .track{height:7px; background:var(--sunk); border:1.5px solid var(--line); border-radius:99px; overflow:hidden}
-  .fill{height:100%; background:var(--grape)}
-  .fill.p{background:var(--pink)}
-  .fill.c{background:var(--cyan)}
-  .empty{text-align:center; padding:28px 18px; color:var(--muted); font-size:12.5px; font-weight:700}
+  .brow{display:grid; grid-template-columns:38px 1fr 26px; align-items:center; gap:7px;
+    font-size:10.5px; color:var(--meta)}
+  .trk{height:5px; background:var(--sunk); border-radius:99px; overflow:hidden}
+  .trk i{display:block; height:100%; background:var(--lime-deep); border-radius:99px}
+  .trk i.b{background:var(--blue)}
+  .xc-foot{display:flex; gap:7px; padding:11px 12px 12px; align-items:center}
+  .whyb{flex:none; font-size:11px; font-weight:700; color:var(--meta); background:var(--sunk);
+    padding:6px 10px; border-radius:99px}
+  .whyb[aria-expanded="true"]{background:var(--lime-tint); color:#5C7A00}
+  .xbtn{flex:1; font-size:13px; font-weight:700; padding:8px; border-radius:99px; text-align:center}
+  .xbtn.ghost{background:var(--sunk); color:var(--ink)}
+  .xbtn.solid{background:var(--ink); color:#fff}
 
-  /* ---------- team ---------- */
-  .team{padding:11px}
-  .team-top{display:flex; gap:10px; align-items:flex-start}
-  .avatars{display:flex}
-  .av{width:24px; height:24px; border-radius:50%; border:var(--bw) solid var(--line); margin-left:-7px;
-    display:grid; place-items:center; font-size:10px; font-weight:900; color:#12101A}
-  .av:first-child{margin-left:0}
-  .av.slot{background:var(--sunk); color:var(--muted); border-style:dashed}
-  .progress{height:9px; background:var(--sunk); border:var(--bw) solid var(--line); border-radius:99px;
-    overflow:hidden; margin-top:9px}
-  .progress i{display:block; height:100%; background:var(--lime)}
-
-  /* ---------- passport ---------- */
-  .passport{margin:0 14px; background:var(--grape); border:var(--bw) solid var(--line); border-radius:var(--r);
-    padding:14px; color:#fff; box-shadow:var(--hard)}
-  .passport h3{color:#fff; font-size:18px}
-  .pp-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px}
-  .pp-stat{background:rgba(255,255,255,.18); border:1.5px solid var(--line); border-radius:10px; padding:7px 8px}
-  .pp-stat b{display:block; font-size:19px; font-weight:900; line-height:1.1; font-family:"Baloo 2",sans-serif}
-  .pp-stat span{font-size:9.5px; font-weight:700; opacity:.9}
-  /* ---------- city map ---------- */
-  .mapbox{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r);
-    box-shadow:var(--hard); padding:9px 9px 0; overflow:hidden}
-  .mapbox svg{display:block; width:100%; height:auto; max-width:100%}
-  .district{fill:var(--sunk); stroke:var(--line); stroke-width:1.6; stroke-linejoin:round;
-    cursor:pointer; transition:fill .18s}
+  /* ---------------- 我的 ---------------- */
+  .prof{background:linear-gradient(165deg,#D9F5E8 0%,#EAF7F2 45%,#F5F6F7 100%); padding:16px 14px 13px}
+  .prof-top{display:flex; align-items:center; gap:11px}
+  .prof-av{width:54px; height:54px; border-radius:50%; flex:none; display:grid; place-items:center;
+    font-size:25px; background:linear-gradient(140deg,#D4FF3D,#7FE3C3); border:2.5px solid #fff}
+  .prof-name{font-size:18px; font-weight:900; color:var(--ink)}
+  .prof-bio{font-size:11.5px; color:var(--meta); margin-top:2px}
+  .prof-chips{display:flex; gap:5px; margin-top:6px}
+  .prof-chips span{font-size:10.5px; background:rgba(255,255,255,.8); padding:2px 8px;
+    border-radius:5px; color:var(--body); font-weight:500}
+  .prof-edit{margin-left:auto; flex:none; background:#fff; border-radius:99px; padding:5px 13px;
+    font-size:12px; font-weight:700; color:var(--ink)}
+  .prog{display:flex; gap:8px; margin-top:13px}
+  .prog-i{flex:1; background:rgba(255,255,255,.75); border-radius:10px; padding:8px 9px; text-align:center}
+  .prog-i b{display:block; font-size:19px; font-weight:900; color:var(--ink); line-height:1.1}
+  .prog-i span{font-size:10px; color:var(--meta); font-weight:500}
+  .mtabs{display:flex; gap:22px; padding:12px 14px 0; background:#fff; border-bottom:1px solid var(--line)}
+  .mtabs button{font-size:15px; color:var(--meta); font-weight:500; padding-bottom:10px; position:relative}
+  .mtabs button[aria-selected="true"]{color:var(--ink); font-weight:900}
+  .mtabs button[aria-selected="true"]::after{content:""; position:absolute; left:50%; bottom:2px;
+    transform:translateX(-50%); width:22px; height:4px; border-radius:99px; background:var(--lime)}
+  .mbody{background:#fff; padding:13px 14px 16px; flex:1}
+  .mapbox{border:1px solid var(--line); border-radius:var(--r); padding:9px 9px 0; overflow:hidden}
+  .mapbox svg{display:block; width:100%; height:auto}
+  .district{fill:var(--sunk); stroke:#fff; stroke-width:1.6; stroke-linejoin:round; cursor:pointer;
+    transition:fill .18s}
   .district.lit{fill:var(--lime)}
-  .district.sel{fill:var(--pink)}
-  .district:hover{fill:var(--grape-soft)}
-  .district.lit:hover{fill:var(--lime)}
-  .water{fill:var(--cyan-soft); stroke:var(--line); stroke-width:1.4}
-  .dlabel{font-size:8.5px; font-weight:700; fill:var(--body); pointer-events:none;
+  .district.sel{fill:var(--ink)}
+  .dlabel{font-size:8.5px; font-weight:700; fill:#6B7280; pointer-events:none;
     font-family:"Noto Sans SC",sans-serif}
-  .dlabel.on{fill:#12101A; font-weight:900}
-  .map-read{border-top:1.5px dashed var(--line); margin-top:7px; padding:8px 2px;
-    font-size:11.5px; font-weight:700; color:var(--body); min-height:34px}
-  .map-read b{color:var(--ink); font-weight:900}
-  .map-read .hint{color:var(--muted); font-weight:500}
+  .dlabel.on{fill:var(--ink); font-weight:900}
+  .dlabel.selt{fill:#fff}
+  .water{fill:#DCEEF8; stroke:#fff; stroke-width:1.4}
+  .mapread{border-top:1px solid var(--line); margin-top:8px; padding:9px 2px; font-size:11.5px;
+    color:var(--body); min-height:36px; font-weight:500}
+  .mapread b{color:var(--ink); font-weight:900}
+  .mapread .h{color:var(--meta); font-weight:400}
+  .logi{display:flex; gap:10px; padding:11px 0}
+  .logi + .logi{border-top:1px solid var(--line)}
+  .logd{width:38px; flex:none; text-align:center; font-size:10px; color:var(--meta); font-weight:500}
+  .logd b{display:block; font-size:16px; color:var(--ink); font-weight:900}
+  .mini{flex:none; background:var(--lime); color:var(--ink); font-size:10.5px; font-weight:700;
+    padding:3px 9px; border-radius:99px}
+  .empty{text-align:center; padding:34px 18px; color:var(--meta); font-size:12.5px}
 
-  .stamp-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:0 14px}
-  .stamp{aspect-ratio:1; border-radius:12px; display:grid; place-items:center; gap:1px; text-align:center;
-    border:var(--bw) dashed var(--line); background:var(--sunk); color:var(--muted); font-size:9px;
-    font-weight:800; padding:3px}
-  .stamp.got{border-style:solid; background:var(--lime); color:#12101A; box-shadow:var(--hard-sm)}
-  .stamp .em{font-size:19px; line-height:1}
-  .log-item{display:flex; gap:9px; padding:9px 0}
-  .log-item + .log-item{border-top:1.5px dashed var(--line)}
-  .log-date{font-size:10px; font-weight:800; color:var(--muted); width:38px; flex:none; text-align:center; line-height:1.25}
-  .log-date b{display:block; font-size:15px; color:var(--ink); font-family:"Baloo 2",sans-serif}
+  /* 底部三 tab */
+  .tabbar{flex:none; display:grid; grid-template-columns:repeat(3,1fr); background:#fff;
+    border-top:1px solid var(--line); padding:7px 4px calc(8px + env(safe-area-inset-bottom,0px))}
+  .tabbar button{display:flex; flex-direction:column; align-items:center; gap:3px;
+    font-size:10.5px; color:var(--meta); font-weight:500}
+  .tabbar button .ic{width:25px; height:25px; display:grid; place-items:center; font-size:17px}
+  .tabbar button[aria-selected="true"]{color:var(--ink); font-weight:900}
+  .tabbar button[aria-selected="true"] .ic{background:var(--lime); border-radius:50%}
 
-  /* ---------- guides ---------- */
-  .guide{padding:11px}
-  .guide-by{display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--muted)}
-  .guide h4{font-size:14px; margin:7px 0 5px; line-height:1.35}
-  .guide-route{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin:7px 0; font-size:10.5px}
-  .stop{background:var(--cyan-soft); border:1.5px solid var(--line); padding:2px 7px; border-radius:6px;
-    color:var(--ink); font-weight:700}
-  .arrow{color:var(--muted); font-size:9px; font-weight:900}
-  .guide-foot{display:flex; gap:10px; font-size:11px; font-weight:700; color:var(--muted); margin-top:8px;
-    align-items:center}
-  .guide-foot button{background:none; border:0; color:var(--muted); font-size:11px; font-weight:700; padding:0}
-  .guide-foot button[aria-pressed="true"]{color:var(--pink)}
+  .sheet{position:absolute; inset:0; z-index:30; background:rgba(0,0,0,.42); display:flex;
+    align-items:flex-start; justify-content:center; padding:44px 0 0}
+  .sheet[hidden]{display:none!important}
+  .sheet-in{background:#fff; border-radius:0 0 16px 16px; width:100%; padding:14px 14px 16px;
+    max-height:88%; overflow-y:auto}
+  .kgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin-top:4px}
+  .kgrid button{background:var(--sunk); border-radius:9px; padding:11px 4px; font-size:13px;
+    color:var(--body); font-weight:500}
+  .kgrid button[aria-pressed="true"]{background:var(--lime-tint); color:var(--ink); font-weight:900;
+    box-shadow:inset 0 0 0 1.5px var(--lime-deep)}
+  .ktitle{font-size:11px; color:var(--meta); font-weight:700; margin:13px 0 2px}
+  .ktitle:first-child{margin-top:2px}
+  .sheet-close{display:block; width:100%; text-align:center; font-size:13px; color:var(--body);
+    font-weight:500; padding:13px 0 2px}
 
-  .mini{flex:none; background:var(--lime); border:1.5px solid var(--line); border-radius:99px;
-    font-size:10px; font-weight:800; padding:3px 8px; color:#12101A; box-shadow:1.5px 1.5px 0 var(--line)}
-  .mini:active{transform:translate(1.5px,1.5px); box-shadow:none}
-
-  .modal{position:absolute; inset:0; z-index:20; background:rgba(18,16,26,.55);
-    display:flex; align-items:flex-end; padding:12px}
-  .modal[hidden]{display:none!important}
-  .modal-sheet{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r);
-    box-shadow:var(--hard); padding:13px; width:100%; max-height:92%; overflow-y:auto}
-  .draft-hint{margin:0 0 10px; font-size:11px; font-weight:500; color:var(--muted);
-    background:var(--grape-soft); border:1.5px solid var(--line); border-radius:9px; padding:7px 9px}
-  .draft-hint b{color:var(--ink); font-weight:800}
-  .draft-field{display:flex; gap:9px; align-items:baseline; padding:7px 0; font-size:11.5px;
-    border-bottom:1.5px dashed var(--line)}
-  .draft-field b{color:var(--ink); font-weight:800; font-size:11.5px}
-  .draft-field.auto b{font-size:12.5px; line-height:1.4}
-  .draft-label{flex:none; width:32px; font-size:10px; font-weight:900; color:var(--muted); letter-spacing:.06em}
-  .draft-write{display:block; margin-top:11px; font-size:10px; font-weight:900; color:var(--pink);
-    letter-spacing:.06em}
-  .draft-write textarea{display:block; width:100%; margin-top:5px; font-family:inherit; font-size:12px;
-    color:var(--body); background:var(--sunk); border:var(--bw) solid var(--line); border-radius:10px;
-    padding:8px 9px; resize:none; font-weight:500; line-height:1.5}
-
-  .toast{position:fixed; left:50%; transform:translateX(-50%) translateY(14px); bottom:90px;
-    background:var(--ink); color:var(--bg); font-size:12px; font-weight:700; padding:9px 16px;
-    border:var(--bw) solid var(--line); border-radius:99px; opacity:0; pointer-events:none;
-    transition:.22s; z-index:99; max-width:84%; text-align:center; box-shadow:var(--hard)}
+  .toast{position:absolute; left:50%; transform:translateX(-50%) translateY(12px); bottom:84px;
+    background:rgba(17,17,17,.92); color:#fff; font-size:12.5px; padding:9px 17px; border-radius:99px;
+    opacity:0; pointer-events:none; transition:.22s; z-index:40; max-width:84%; text-align:center}
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
 
-  /* ---------- rail ---------- */
-  .rail{display:flex; flex-direction:column; gap:16px; padding-top:2px}
-  .note{background:var(--card); border:var(--bw) solid var(--line); border-radius:var(--r);
-    padding:16px 17px; box-shadow:var(--hard)}
-  .note-head{display:flex; align-items:center; gap:9px; margin-bottom:9px}
-  .note-idx{width:24px; height:24px; border-radius:8px; background:var(--lime); color:#12101A; font-size:12px;
-    font-weight:900; display:grid; place-items:center; flex:none; border:var(--bw) solid var(--line)}
-  .note h3{font-size:16px}
-  .note p{margin:0 0 9px; font-size:12.5px; line-height:1.65}
+  /* ---------------- 说明栏 ---------------- */
+  .rail{display:flex; flex-direction:column; gap:15px}
+  .note{background:#fff; border-radius:var(--r); padding:16px 17px; box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .note-h{display:flex; align-items:center; gap:9px; margin-bottom:10px}
+  .note-i{width:23px; height:23px; border-radius:6px; background:var(--lime); color:var(--ink);
+    font-size:11.5px; font-weight:900; display:grid; place-items:center; flex:none}
+  .note h3{font-size:15.5px; font-weight:900}
+  .note p{margin:0 0 9px; font-size:12.5px; line-height:1.68}
   .note p:last-child{margin-bottom:0}
-  .note .pain{background:var(--pink-soft); border:1.5px solid var(--line); border-radius:10px;
-    padding:9px 11px; color:var(--body); font-size:12px; font-weight:500}
-  .kvs{display:grid; grid-template-columns:repeat(auto-fit,minmax(94px,1fr)); gap:8px; margin-top:11px}
-  .kv{background:var(--sunk); border:1.5px solid var(--line); border-radius:10px; padding:8px 10px}
-  .kv b{display:block; font-size:15px; color:var(--ink); font-weight:900; font-family:"Baloo 2",sans-serif}
-  .kv span{font-size:10px; color:var(--muted); font-weight:700}
-  .formula{background:var(--sunk); border:1.5px solid var(--line); border-radius:10px; padding:10px 12px;
-    font-size:11.5px; line-height:1.7; overflow-x:auto}
-  .formula code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px;
-    color:var(--grape); white-space:nowrap; font-weight:700}
-  .wlist{display:flex; flex-direction:column; gap:6px; margin-top:10px}
-  .wrow{display:grid; grid-template-columns:62px 1fr 32px; align-items:center; gap:9px;
-    font-size:11px; font-weight:700; color:var(--muted)}
-  details.more{margin-top:10px; border-top:1.5px dashed var(--line); padding-top:9px}
-  details.more summary{font-size:12px; color:var(--grape); cursor:pointer; font-weight:800}
+  .quote{background:var(--sunk); border-left:3px solid var(--lime-deep); border-radius:0 8px 8px 0;
+    padding:9px 11px; font-size:12px; color:var(--body); margin-bottom:10px}
+  .tbl{width:100%; border-collapse:collapse; margin-top:10px; font-size:11.5px}
+  .tbl th{text-align:left; font-size:10.5px; color:var(--meta); font-weight:700;
+    padding:0 7px 5px 0; border-bottom:1px solid var(--line)}
+  .tbl td{padding:7px 7px 7px 0; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5}
+  .tbl td b{color:var(--ink); font-weight:900}
+  .tbl tr:last-child td{border-bottom:0}
+  .pr{display:inline-block; font-size:9.5px; font-weight:900; padding:1.5px 6px; border-radius:4px}
+  .pr.p0{background:#FFE4DE; color:#B3391F}
+  .pr.p1{background:var(--lime-tint); color:#5C7A00}
+  .pr.p2{background:var(--sunk); color:var(--meta)}
+  .kvs{display:grid; grid-template-columns:repeat(auto-fit,minmax(92px,1fr)); gap:8px; margin-top:11px}
+  .kv{background:var(--sunk); border-radius:9px; padding:9px 10px}
+  .kv b{display:block; font-size:14px; color:var(--ink); font-weight:900}
+  .kv span{font-size:10.5px; color:var(--meta)}
+  details.more{margin-top:10px; border-top:1px solid var(--line); padding-top:9px}
+  details.more summary{font-size:12px; color:#5C7A00; cursor:pointer; font-weight:700}
   details.more p{margin-top:8px}
-  .rm{display:grid; grid-template-columns:44px 1fr; gap:10px; padding:10px 0}
-  .rm + .rm{border-top:1.5px dashed var(--line)}
-  .rm-phase{font-size:11px; font-weight:900; color:#12101A; background:var(--cyan);
-    border:1.5px solid var(--line); border-radius:7px; height:22px; display:grid; place-items:center}
-  .rm b{display:block; font-size:12.5px; color:var(--ink); margin-bottom:2px}
-  .rm span{font-size:11.5px; color:var(--muted); line-height:1.5}
-  .footnote{font-size:11px; color:var(--muted); text-align:center; padding-top:4px; line-height:1.6; font-weight:500}
+  .foot{font-size:11px; color:#6B7280; text-align:center; line-height:1.7; padding-top:2px}
 </style>
-
+</head>
+<body>
 <div class="stage">
   <header class="masthead">
     <div>
-      <div class="brandline">
-        <h1 class="brand">周末去哪儿</h1>
-        <span class="blip">SHANGHAI</span>
-      </div>
-      <p>给大学生的周末决策工具：先用天气、预算、同行人数把"去哪玩"收敛成几个能立刻出发的选项，再用组队、打卡、攻略把一次出门变成可复用的内容。左侧可直接操作，右侧是产品设计说明。</p>
+      <h1 class="brand">周末探索 · 拼场改版方案</h1>
+      <p class="brand-sub">面向大学生周末决策场景，对美团「拼场」模块提出的产品改版方案。左侧为可交互原型，右侧是判断与优先级说明。</p>
     </div>
-    <div class="tagrow">
-      <span class="meta-tag">可点击原型</span>
-      <span class="meta-tag">数据为演示样本</span>
+    <div class="disclaimer">
+      <b>说明：</b>本页为求职作品中的产品方案演示，非美团官方页面，与美团公司无关。界面为基于公开 App 截图的设计稿，活动、商户、价格均为演示样本数据。
     </div>
   </header>
 
   <div class="split">
+    <!-- ==================== PHONE ==================== -->
     <div class="phone">
-      <div class="statusbar"><span class="num">9:41</span><span>周六 · 上海</span></div>
-
-      <div class="screen" id="screen">
-        <!-- 推荐 -->
-        <section class="view" id="view-feed" style="padding-top:0">
-          <div class="wx" id="wx" style="margin-top:8px">
-            <div class="wx-top">
-              <svg class="wx-glyph" id="wxGlyph" viewBox="0 0 40 40" aria-hidden="true"></svg>
-              <div class="wx-read">
-                <b id="wxTitle"></b>
-                <span id="wxSub"></span>
-              </div>
-              <div class="wx-switch" role="group" aria-label="切换天气场景">
-                <button id="wxSunny" aria-pressed="true">晴</button>
-                <button id="wxRainy" aria-pressed="false">雨</button>
-              </div>
-            </div>
-            <div class="wx-verdict" id="verdict"></div>
-          </div>
-
-          <div class="filterbar">
-            <div class="frow" id="segMood" role="group" aria-label="想干嘛"></div>
-            <div class="frow">
-              <div class="fpill budget">
-                <label for="budget" style="font-size:11.5px; font-weight:800">人均</label>
-                <input type="range" id="budget" min="0" max="200" step="10" value="80">
-                <b class="num" id="budgetRead">≤80</b>
-              </div>
-              <span id="segParty" style="display:contents" role="group" aria-label="几个人"></span>
-            </div>
-          </div>
-
-          <div class="fmeta">
-            <span class="eyebrow">为你排序 · <span id="resultCount" class="num">0</span> 个结果</span>
-            <span class="chip g" id="sortNote">按匹配度</span>
-          </div>
-
-          <div class="results" id="results"></div>
-        </section>
-
-        <!-- 组队 -->
-        <section class="view" id="view-team" hidden>
-          <div class="between pad-x">
-            <h2 style="font-size:19px">我的队伍</h2>
-            <span class="chip p" id="myTeamCount">已加入 1 个</span>
-          </div>
-          <p class="pad-x" style="font-size:11.5px; color:var(--muted); margin:0; font-weight:500">
-            在推荐页点"组队出发"，队伍会出现在这里。人数凑齐前可随时退出。</p>
-          <div class="results" id="teamList"></div>
-        </section>
-
-        <!-- 打卡 -->
-        <section class="view" id="view-check" hidden>
-          <div class="passport">
-            <div class="between" style="align-items:flex-start">
-              <div>
-                <h3>城市探索护照</h3>
-                <div style="font-size:11px; opacity:.9; margin-top:2px; font-weight:700">含湘 · 2026 秋季赛季</div>
-              </div>
-              <span class="chip" style="background:var(--lime); color:#12101A">城市漫游者</span>
-            </div>
-            <div class="pp-stats">
-              <div class="pp-stat"><b class="num">6</b><span>已打卡</span></div>
-              <div class="pp-stat"><b class="num">412</b><span>累计花费</span></div>
-              <div class="pp-stat"><b class="num">9</b><span>同行过</span></div>
-            </div>
-          </div>
-          <div class="pad-x">
-            <div class="between" style="margin-bottom:6px">
-              <span class="eyebrow">城市点亮 · <span class="num" id="mapPct">0</span>% 已探索</span>
-              <span class="chip l"><span class="num" id="mapLit">0</span>/12 个区</span>
-            </div>
-            <div class="mapbox">
-              <svg id="cityMap" viewBox="0 0 300 250" role="img"
-                   aria-label="上海行政区打卡地图，点击区域查看详情"></svg>
-              <div class="map-read" id="mapRead"></div>
-            </div>
-          </div>
-
-          <div class="eyebrow pad-x" style="margin-top:2px">徽章 · 集齐一行解锁隐藏路线</div>
-          <div class="stamp-grid" id="stampGrid"></div>
-          <div class="pad-x">
-            <div class="card" style="padding:11px">
-              <div class="eyebrow" style="margin-bottom:2px">最近的足迹</div>
-              <div id="logList"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 攻略 -->
-        <section class="view" id="view-guide" hidden>
-          <div class="between pad-x">
-            <h2 style="font-size:19px">攻略广场</h2>
-            <span class="chip c">同校优先</span>
-          </div>
-          <p class="pad-x" style="font-size:11.5px; color:var(--muted); margin:0; font-weight:500">
-            打卡记录可一键生成攻略草稿——路线、花费、耗时自动带出，作者只补一句感受。</p>
-          <div class="results" id="guideList"></div>
-        </section>
+      <div class="statusbar"><span class="num">20:18</span><span>周六 · 上海</span></div>
+      <div class="appbar">
+        <span class="back">‹</span>
+        <h1>拼场</h1>
+        <span class="slogan">新玩法，拼好玩！</span>
+        <span class="share">↗ 分享</span>
       </div>
 
-      <div class="modal" id="draftModal" hidden>
-        <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="draftTitle">
-          <div class="between" style="margin-bottom:9px">
-            <h3 id="draftTitle" style="font-size:16px">攻略草稿</h3>
-            <button class="mini" id="draftClose" aria-label="关闭">✕</button>
+      <div class="screen" id="screen">
+
+        <!-- ---------- 广场 ---------- -->
+        <section class="view on" id="v-plaza">
+          <div class="cats" id="cats"></div>
+
+          <div class="kong">
+            <div class="kong-grid" id="kong"></div>
+            <div class="kong-dots"><i class="on"></i><i></i></div>
           </div>
-          <div id="draftBody"></div>
-          <div class="act-foot" style="padding:11px 0 0">
-            <button class="btn" id="draftCancel">再想想</button>
-            <button class="btn primary" id="draftPublish">发布到攻略广场</button>
+
+          <div class="wxbar" id="wxbar">
+            <svg class="g" id="wxg" viewBox="0 0 34 34" aria-hidden="true"></svg>
+            <div class="t"><b id="wxt"></b><span id="wxs"></span></div>
+            <div class="wxsw" role="group" aria-label="天气场景">
+              <button id="wxSun" aria-pressed="true">晴</button>
+              <button id="wxRain" aria-pressed="false">雨</button>
+            </div>
+          </div>
+
+          <div class="filters" id="filters"></div>
+          <div class="fixnote">
+            <b>已修复：</b>线上默认挂「3km内」却全量返回 &gt;30km 结果。此处距离默认「本区内」，超出范围的场不进推荐流。
+          </div>
+
+          <div class="feed" id="feed"></div>
+        </section>
+
+        <!-- ---------- 探索 ---------- -->
+        <section class="view" id="v-explore">
+          <div class="xhead">
+            <h2>这周末去哪</h2>
+            <p>按天气、预算、人数排出你能去的地方。看中了直接上车，没人开场就自己发起。</p>
+          </div>
+
+          <div class="wxbar" id="wxbar2" style="margin-top:9px">
+            <svg class="g" id="wxg2" viewBox="0 0 34 34" aria-hidden="true"></svg>
+            <div class="t"><b id="wxt2"></b><span id="wxs2"></span></div>
+            <div class="wxsw" role="group" aria-label="天气场景">
+              <button id="wxSun2" aria-pressed="true">晴</button>
+              <button id="wxRain2" aria-pressed="false">雨</button>
+            </div>
+          </div>
+
+          <div class="filters" id="xfilters" style="position:static"></div>
+          <div class="feed" id="xfeed"></div>
+        </section>
+
+        <!-- ---------- 我的 ---------- -->
+        <section class="view" id="v-mine">
+          <div class="prof">
+            <div class="prof-top">
+              <div class="prof-av">🙂</div>
+              <div style="flex:1; min-width:0">
+                <div class="prof-name">luuta</div>
+                <div class="prof-bio">这个人很懒，还没有留下简介</div>
+                <div class="prof-chips"><span>女</span><span>24</span><span>天秤座</span></div>
+              </div>
+              <span class="prof-edit">编辑 ›</span>
+            </div>
+            <div class="prog">
+              <div class="prog-i"><b class="num" id="pgArea">0</b><span>已点亮区</span></div>
+              <div class="prog-i"><b class="num">6</b><span>本季打卡</span></div>
+              <div class="prog-i"><b class="num">9</b><span>同行过</span></div>
+            </div>
+          </div>
+
+          <div class="mtabs" id="mtabs"></div>
+          <div class="mbody" id="mbody"></div>
+        </section>
+
+        <div class="sheet" id="catSheet" hidden>
+          <div class="sheet-in">
+            <div class="ktitle">按场景找 —— 下雨天先看室内</div>
+            <div id="sheetGroups"></div>
+            <button class="sheet-close" id="sheetClose">点击收起 ∧</button>
           </div>
         </div>
+
+        <div class="toast" id="toast"></div>
       </div>
 
       <nav class="tabbar" id="tabbar" role="tablist" aria-label="主导航"></nav>
     </div>
 
-    <!-- rail -->
+    <!-- ==================== 说明栏 ==================== -->
     <div class="rail">
       <div class="note">
-        <div class="note-head"><span class="note-idx">1</span><h3>要解决的那个瞬间</h3></div>
-        <p class="pain">"周六早上十点醒了，群里问'今天去哪'，刷了四十分钟小红书，最后在宿舍打了一下午游戏。"</p>
-        <p style="margin-top:10px">大学生缺的不是活动信息，是<b>收敛决策</b>的能力。信息散在小红书、公众号、豆瓣同城、票务 App 里，每个都只解决"有什么"，没有一个回答"<b>今天、这个天气、这点预算、我们仨，到底去哪</b>"。</p>
-        <p>所以第一屏不是活动列表，而是<b>已经替你做完筛选的答案</b>：天气条给出判断，顶部筛选栏收敛范围，结果直接排序。</p>
+        <div class="note-h"><span class="note-i">1</span><h3>为什么改拼场，而不是做新 App</h3></div>
+        <div class="quote">"周六早上十点醒了，群里问'今天去哪'，刷了四十分钟小红书，最后在宿舍打了一下午游戏。"</div>
+        <p>大学生缺的不是活动信息，是<b>收敛决策</b>的能力，以及<b>凑齐人</b>的能力。拼场已经解决了后者的交易链路，缺的是前者——它回答"有什么场"，没回答"今天这个天气、这点预算、我们仨该去哪"。</p>
+        <p>所以这是一次<b>存量频道改版</b>：复用拼场现有的商户供给、组局关系和交易链路，补上决策层。新 App 拿不到供给，也拿不到已经在拼场里开场的人。</p>
       </div>
 
       <div class="note">
-        <div class="note-head"><span class="note-idx">2</span><h3>推荐怎么算出来的</h3></div>
-        <p>匹配度是五个因子的加权和。滑预算、切天气、改人数，分数和排序实时重算——可以在左边试。</p>
-        <div class="formula"><code>匹配度 = Σ(因子得分 × 权重)，天气为硬约束</code></div>
-        <div class="wlist" id="weightList"></div>
-        <p style="margin-top:10px; font-size:12px; color:var(--muted)">因子拆解默认收起，点卡片上的"为什么"展开——屏效优先，但算法可验证。</p>
+        <div class="note-h"><span class="note-i">2</span><h3>判断一：底部由两个 tab 扩到三个</h3></div>
+        <p>线上只有「广场 / 我的」，且「我的」是空壳（"还没有发布过拼场"占满整屏）。对照休闲玩乐频道的五个 tab，拼场不是克制，是还没长出来。</p>
+        <p>新增的 tab 该承接什么，取决于拼场当前的核心矛盾。看线上数据：<b>4/8 人、10/25 人、6/30 人，几乎全是没满的场</b>，还有多张"1人可开场"。矛盾不在"没内容可看"，在<b>发起侧供给不足、成团效率低</b>。而「我发起的」为空说明普通用户几乎不发起——线上发起方多是商家和职业局主（举办过 2119 场的"大厂朋友局"是 KOL，不是学生）。</p>
+        <p>但学生真正想去的"周六下午找俩人逛安福路"，<b>没有商家会发</b>。所以新 tab 叫「探索」，承接<b>需求侧</b>：先看这周末值得去哪，看中了有场就上车、没场就一键发起。</p>
+        <table class="tbl">
+          <tr><th style="width:52px">tab</th><th>承接</th></tr>
+          <tr><td><b>广场</b></td><td>已存在的场，我去上车 —— 供给侧驱动</td></tr>
+          <tr><td><b>探索</b></td><td>我想去的地方，可能还没有场 —— 需求侧驱动</td></tr>
+          <tr><td><b>我的</b></td><td>我的场进行到哪、我去过哪 —— 履约与沉淀</td></tr>
+        </table>
         <details class="more">
-          <summary>为什么天气是硬约束，而不是一个权重？</summary>
-          <p>下雨时把露天市集排在第三位，用户会直接不信任产品。低权重降权仍可能让户外项排进前三，所以雨天对露天项施加封顶惩罚（−45 分）并在卡片写明原因：<b>宁可少推，不可推错</b>。</p>
+          <summary>为什么不叫「开场」？</summary>
+          <p>「开场」是站在平台角度描述系统要用户做的动作，进去之前就暗示"你得组个局"，心理成本高；「探索」描述的是用户自己的意图，且发起只是卡片上的一个出口，不是唯一动作。tab 名应该说用户想干嘛。</p>
         </details>
         <details class="more">
-          <summary>冷启动没有偏好数据怎么办？</summary>
-          <p>首次使用只要求选一次"想干嘛"（3 秒成本），其余靠天气与预算这两个<b>无需历史数据的强信号</b>兜底。打卡累积后，标签偏好从显式选择过渡到隐式权重。</p>
+          <summary>攻略为什么不单独开 tab？</summary>
+          <p>攻略的价值在于<b>转化成新的场</b>，隔离在独立 tab 里就断了链路。做成广场 feed 里的一种内容类型与拼场卡混排，点进去可"按这条开场"，攻略就成了发起侧的供给来源。</p>
         </details>
       </div>
 
       <div class="note">
-        <div class="note-head"><span class="note-idx">3</span><h3>从"看到"到"真的出门"</h3></div>
-        <p class="pain">一个人不想去、凑不齐人、AA 算不清——这是活动决策后最大的一道流失。</p>
-        <p style="margin-top:10px">组队不是社区功能，是<b>转化链路的一环</b>，直接长在推荐卡片上，不需要跳到另一个 Tab 发帖。队伍卡片默认带<b>人均预估和 AA 拆分</b>，因为"这次花多少、谁垫钱"是学生真实的决策摩擦点。</p>
+        <div class="note-h"><span class="note-i">3</span><h3>判断二：筛选栏</h3></div>
+        <p><b>距离默认值失效是 P0。</b>线上四张卡片全是 &gt;30km（金山区、松江镇），筛选栏却挂着「3km内」。上海用户看到一水儿的 &gt;30km，这个 feed 对周末决策基本无效——推荐结果不可达，后面所有功能都白搭。</p>
+        <p><b>补周末时间语义。</b>线上是「今天 / 明天 / 日期」，但周末决策的真实单位是"这个周末"，且用户常在周三就开始计划。加「本周末」并在周一至周四设为默认。</p>
+        <p><b>补人均。</b>拼场目前无价格筛选，而这对学生是硬约束。</p>
+        <p><b>天气不做成筛选项，做成常驻条。</b>拼场品类里徒步、网球、足球、Citywalk 强天气依赖，雨天推这些等于推了个会取消的场。天气是<b>平台有、用户自己查很麻烦</b>的信息差，属于平台该替用户做的判断。</p>
+      </div>
+
+      <div class="note">
+        <div class="note-h"><span class="note-i">4</span><h3>判断三：金刚区改两行</h3></div>
+        <p>线上拼场是一行横滑 + 展开面板共 22 个类目。改为<b>两行 × 5 列</b>，与休闲玩乐频道现行规格一致——首屏露出 10 个，比一行的 6 个多近一倍，多数需求不必再点开面板。</p>
+        <p>两点与休闲玩乐做区分：<b>首格不放「全部」而放「本周末」</b>，因为周末探索的第一层筛选是时间而非品类；<b>icon 沿用拼场自身的荧光绿体系</b>，不套用休闲玩乐的橙红拟物，避免两套视觉打架。</p>
+        <p>展开面板的 22 个类目从无差别平铺改为<b>按室内／户外运动／城市漫游分组</b>。分组本身就在表达天气逻辑——下雨天用户一眼知道该看哪一组。类目顺序还应随天气与时段动态重排：雨天把密室、剧本杀、KTV、桌游提前，晴天把徒步、Citywalk、网球提前。</p>
+      </div>
+
+      <div class="note">
+        <div class="note-h"><span class="note-i">5</span><h3>推荐怎么算</h3></div>
+        <p>探索页的排序是五因子加权和，天气额外作为硬约束。切换晴／雨、改人均与人数，分数与排序实时重算——可以在左侧试。</p>
         <div class="kvs">
-          <div class="kv"><b>1 步</b><span>从推荐到发起组队</span></div>
-          <div class="kv"><b>默认 AA</b><span>人均随人数实时变</span></div>
-        </div>
-      </div>
-
-      <div class="note">
-        <div class="note-head"><span class="note-idx">4</span><h3>打卡为什么值得做</h3></div>
-        <p>打卡表面是荣誉系统，实际承担三件事：①给<b>回访</b>一个理由，徽章集齐解锁隐藏路线；②为算法沉淀<b>真实偏好</b>，比问卷准；③是攻略的<b>生产原料</b>。</p>
-        <p>第三点是关键：多数 UGC 社区死于"写攻略太累"。这里路线、花费、耗时在打卡时已结构化沉淀，用户只补一句感受，<b>发布成本从一篇长文降到一句话</b>。</p>
-      </div>
-
-      <div class="note">
-        <div class="note-head"><span class="note-idx">5</span><h3>内容循环</h3></div>
-        <p>四个 Tab 不是并列功能，是一个闭环——这是它区别于"活动列表 App"的地方。</p>
-        <div class="formula" style="line-height:1.9">
-          <code>推荐 → 组队（凑人成行）→ 打卡（结构化沉淀）</code><br>
-          <code>　↑　　　　　　　　　　　　　　　　　　　↓</code><br>
-          <code>　└──── 攻略（一句话发布，回流为供给）───┘</code>
-        </div>
-        <p style="margin-top:10px">冷启动靠抓取＋人工维护供给；攻略沉淀到一定密度后，<b>用户攻略本身成为推荐池的补充供给</b>，边际内容成本下降。</p>
-      </div>
-
-      <div class="note">
-        <div class="note-head"><span class="note-idx">6</span><h3>怎么判断它做成了</h3></div>
-        <p>北极星：<b>周活跃用户的周末成行率</b>（打开且当周产生一次打卡的用户占比）。它同时约束推荐质量和转化链路——只优化点击会推出标题党，只优化打卡会忽略推荐准度。</p>
-        <div class="kvs">
-          <div class="kv"><b>成行率</b><span>北极星</span></div>
-          <div class="kv"><b>决策时长</b><span>打开→组队 &lt;3min</span></div>
-          <div class="kv"><b>成团率</b><span>发起→满员</span></div>
-          <div class="kv"><b>攻略转化</b><span>打卡→发布</span></div>
+          <div class="kv"><b>32%</b><span>偏好</span></div>
+          <div class="kv"><b>26%</b><span>预算</span></div>
+          <div class="kv"><b>18%</b><span>人数</span></div>
+          <div class="kv"><b>14%</b><span>天气</span></div>
+          <div class="kv"><b>10%</b><span>新鲜度</span></div>
         </div>
         <details class="more">
-          <summary>会怎么验证推荐是否真的有用？</summary>
-          <p>对照组"按热度排序"，实验组"加权匹配度"，观察<b>前三位点击占比</b>与<b>成行率</b>。若前三点击上升但成行率不动，说明推得动人却推不动腿，问题在组队环节而非推荐。</p>
+          <summary>为什么天气是硬约束而不只是权重？</summary>
+          <p>雨天把露天市集排在第三位，用户会直接不信任这个频道。低权重降权仍可能让户外项排进前三，所以雨天对露天项施加封顶惩罚（−45 分）并在卡片写明原因：<b>宁可少推，不可推错</b>。</p>
         </details>
       </div>
 
       <div class="note">
-        <div class="note-head"><span class="note-idx">7</span><h3>做的顺序</h3></div>
-        <div class="rm">
-          <div class="rm-phase">V1</div>
-          <div><b>把决策做对</b><span>天气×预算×人数推荐 + 打卡。单城单校试点，供给人工维护，先验证"是否真的减少了决策时间"。</span></div>
-        </div>
-        <div class="rm">
-          <div class="rm-phase">V2</div>
-          <div><b>把人凑齐</b><span>组队与 AA 拆分、成团提醒、同校优先匹配。此阶段盯成团率，它决定推荐价值能否兑现。</span></div>
-        </div>
-        <div class="rm">
-          <div class="rm-phase">V3</div>
-          <div><b>让内容自转</b><span>一句话攻略、徽章赛季、隐藏路线。攻略回流为供给后再考虑多城复制。</span></div>
-        </div>
+        <div class="note-h"><span class="note-i">6</span><h3>指标与优先级</h3></div>
+        <p>北极星：<b>周活跃用户的周末成行率</b>（当周产生一次成团出行的用户占比）。它同时约束推荐质量与成团链路——只优化点击会推出标题党，只优化开场数会堆出永远凑不满的空场。</p>
+        <table class="tbl">
+          <tr><th style="width:34px">P</th><th>需求</th><th style="width:96px">理由</th></tr>
+          <tr><td><span class="pr p0">P0</span></td><td><b>修距离默认值</b></td><td>现状 feed 不可用</td></tr>
+          <tr><td><span class="pr p0">P0</span></td><td><b>天气条＋类目动态排序</b></td><td>平台独有数据，开发量小</td></tr>
+          <tr><td><span class="pr p1">P1</span></td><td>筛选栏加「本周末」「人均」</td><td>直接服务周末场景</td></tr>
+          <tr><td><span class="pr p1">P1</span></td><td>「探索」tab 与一键开场</td><td>补发起侧供给</td></tr>
+          <tr><td><span class="pr p2">P2</span></td><td>「我的足迹」地图与打卡</td><td>留存向，不影响主链路</td></tr>
+          <tr><td><span class="pr p2">P2</span></td><td>攻略混排进广场</td><td>依赖打卡数据积累</td></tr>
+        </table>
+        <p style="margin-top:10px">两项 P0 是"不做就不成立"，两项 P2 是锦上添花。这个排序本身比功能清单更说明判断依据。</p>
       </div>
 
-      <p class="footnote">原型中的活动、价格、路线为演示用样本数据，非真实商户信息。<br>交互与推荐逻辑均为真实可运行的前端实现。</p>
+      <p class="foot">本页为求职作品中的产品方案演示，非美团官方页面。<br>界面基于公开 App 截图绘制，活动与商户均为演示样本数据；交互与推荐逻辑为真实可运行实现。</p>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
-
 <script>
 (function(){
   "use strict";
+  var $=function(i){return document.getElementById(i);};
 
-  var ACTS = [
-    {id:'m50', name:'M50 创意园 · 春季群展', em:'🎨', bg:'#EDE4FF',
-     area:'普陀 · 莫干山路', metro:'13号线 江宁路', cost:0, hours:2.5,
-     indoor:true, mood:'art', tags:['免费','室内','可拍照'], party:[1,2,3],
-     hook:'二十多个独立艺术空间连成一条路，不花钱也能逛一下午'},
-    {id:'westbund', name:'西岸美术馆 · 蓬皮杜特展', em:'🖼️', bg:'#D8F7FF',
-     area:'徐汇 · 龙腾大道', metro:'11号线 云锦路', cost:60, hours:3,
-     indoor:true, mood:'art', tags:['学生票','室内','沿江'], party:[1,2],
-     hook:'学生证半价，看完沿江走一段，日落正对浦东'},
-    {id:'anfu', name:'安福路 · 街拍与旧书店', em:'📷', bg:'#FFE3EF',
-     area:'徐汇 · 安福路', metro:'10/11号线 上海图书馆', cost:30, hours:2,
-     indoor:false, mood:'walk', tags:['citywalk','出片','咖啡'], party:[1,2,3],
-     hook:'一条路把书店、咖啡、街拍都解决了，走走停停刚好两小时'},
-    {id:'market', name:'凡几市集 · 周末限定', em:'🧺', bg:'#EEFFCB',
-     area:'静安 · 张园', metro:'2/12/13号线 南京西路', cost:80, hours:2.5,
-     indoor:false, mood:'market', tags:['市集','手作','美食'], party:[2,3,4],
-     hook:'摊主多是独立设计师，不买东西逛着也热闹'},
-    {id:'sheshan', name:'佘山国家森林公园 · 半日徒步', em:'🥾', bg:'#EEFFCB',
-     area:'松江 · 佘山', metro:'9号线 佘山', cost:45, hours:5,
-     indoor:false, mood:'hike', tags:['徒步','自然','需早起'], party:[2,3,4],
-     hook:'市区能当天往返的唯一像样的山，东西佘山连走约5小时'},
-    {id:'livehouse', name:'育音堂 · 独立乐队拼盘', em:'🎸', bg:'#FFE3EF',
-     area:'静安 · 昌平路', metro:'7号线 昌平路', cost:120, hours:3,
-     indoor:true, mood:'show', tags:['演出','夜场','需购票'], party:[2,3,4],
-     hook:'三支乐队拼盘，预售比现场便宜，散场地铁还没停'},
-    {id:'sinan', name:'思南公馆 · 露天书集', em:'📚', bg:'#EEFFCB',
-     area:'黄浦 · 复兴中路', metro:'13号线 淮海中路', cost:20, hours:2,
-     indoor:false, mood:'market', tags:['书集','老洋房','免费入场'], party:[1,2,3],
-     hook:'老洋房前的梧桐树下摆摊，二手书能淘到绝版'},
-    {id:'powerstation', name:'当代艺术博物馆 · 常设展', em:'🏭', bg:'#EDE4FF',
-     area:'黄浦 · 花园港路', metro:'4/8号线 西藏南路', cost:0, hours:2.5,
-     indoor:true, mood:'art', tags:['免费','室内','大烟囱'], party:[1,2,3],
-     hook:'发电厂改的美术馆，常设展免费，顶楼能看江'},
-    {id:'binjiang', name:'杨浦滨江 · 工业遗迹骑行', em:'🚲', bg:'#D8F7FF',
-     area:'杨浦 · 杨树浦路', metro:'12号线 爱国路', cost:15, hours:3,
-     indoor:false, mood:'walk', tags:['骑行','江景','免费'], party:[2,3,4],
-     hook:'共享单车骑完5.5公里岸线，沿途全是老厂房改造'},
-    {id:'guyi', name:'古猗园 · 赏景与小笼', em:'🏯', bg:'#EEFFCB',
-     area:'嘉定 · 南翔', metro:'11号线 南翔', cost:35, hours:4,
-     indoor:false, mood:'walk', tags:['园林','小笼','需出城'], party:[2,3,4],
-     hook:'门票12元，出来就是南翔小笼的发源地'},
-    {id:'script', name:'剧本杀 · 硬核推理本', em:'🔍', bg:'#EDE4FF',
-     area:'黄浦 · 人民广场', metro:'1/2/8号线 人民广场', cost:98, hours:4,
-     indoor:true, mood:'show', tags:['室内','需4人','雨天友好'], party:[4],
-     hook:'四小时封闭推理，雨天最稳的选择，人满才开本'},
-    {id:'tianzifang', name:'田子坊 · 手作体验工坊', em:'🧵', bg:'#FFE3EF',
-     area:'黄浦 · 泰康路', metro:'9号线 打浦桥', cost:150, hours:2.5,
-     indoor:true, mood:'market', tags:['手作','室内','带走成品'], party:[2,3],
-     hook:'银饰、皮具、陶艺都有，做完直接戴走'},
-    {id:'cinema', name:'大光明影院 · 经典重映', em:'🎬', bg:'#D8F7FF',
-     area:'黄浦 · 南京西路', metro:'1/2/8号线 人民广场', cost:55, hours:2.5,
-     indoor:true, mood:'show', tags:['室内','学生优惠','雨天友好'], party:[1,2],
-     hook:'1933年的老影院本身就值一张票，片单每周换'},
-    {id:'chongming', name:'崇明岛 · 骑行与农场午餐', em:'🌾', bg:'#EEFFCB',
-     area:'崇明 · 陈家镇', metro:'需转长途巴士', cost:180, hours:8,
-     indoor:false, mood:'hike', tags:['一日游','需早起','人多划算'], party:[3,4],
-     hook:'四人包车分摊下来不贵，岛上骑行几乎没车'}
+  /* ---------------- 数据 ---------------- */
+  var CATS=[{k:'weekend',n:'本周末'},{k:'hot',n:'热点'},{k:'room',n:'密室'},
+    {k:'script',n:'剧本杀'},{k:'bad',n:'羽毛球'},{k:'hike',n:'徒步'},{k:'walk',n:'Citywalk'}];
+
+  // 两行 × 5，首格「本周末」承接周末决策而非品类
+  var KONG=[
+    {k:'weekend',n:'本周末',e:'🗓️',badge:'NEW'},{k:'room',n:'密室',e:'🔦'},
+    {k:'script',n:'剧本杀',e:'🎭'},{k:'bad',n:'羽毛球',e:'🏸'},{k:'hike',n:'徒步',e:'🥾'},
+    {k:'walk',n:'Citywalk',e:'🚶'},{k:'board',n:'桌游',e:'🎲'},{k:'art',n:'看展',e:'🖼️'},
+    {k:'ktv',n:'KTV',e:'🎤'},{k:'more',n:'全部',e:'⋯'}
   ];
 
-  var MOODS = [
-    {k:'art',label:'🎨 看展'}, {k:'walk',label:'🚶 瞎逛'}, {k:'market',label:'🧺 赶集'},
-    {k:'show',label:'🎫 看演出'}, {k:'hike',label:'🥾 去野外'}
+  var GROUPS=[
+    {t:'室内 · 雨天友好',ks:[['room','密室'],['script','剧本杀'],['board','桌游'],['ktv','KTV'],
+      ['homebar','homebar'],['bar','酒吧'],['pp','乒乓球'],['squash','壁球']]},
+    {t:'户外运动',ks:[['bad','羽毛球'],['tennis','网球'],['bask','篮球'],['foot','足球'],
+      ['volley','排球'],['pickle','匹克球'],['ski','滑雪'],['golf','高尔夫']]},
+    {t:'城市漫游',ks:[['hike','徒步'],['walk','Citywalk'],['art','看展'],['life','生活'],['friend','交友']]}
   ];
 
-  var WEIGHTS = [
-    {k:'mood',label:'偏好',w:32,c:''}, {k:'budget',label:'预算',w:26,c:'p'},
-    {k:'party',label:'人数',w:18,c:''}, {k:'weather',label:'天气',w:14,c:'c'},
-    {k:'fresh',label:'新鲜度',w:10,c:''}
+  // 广场：已存在的场（含未满员状态，呼应线上成团率问题）
+  var PLAZA=[
+    {id:'p1',host:'MJ魔爵密室逃脱',hc:'#333',htag:'商家',t:'宿怨',e:'👻',bg:'#2E2A3A',
+     cat:'room',tags:['密室','解谜逃脱','重恐'],when:'09-15 今天 20:45',where:'2.1km 万达广场',
+     have:4,need:8,cost:128,indoor:true,ad:true},
+    {id:'p2',host:'安福路散步小队',hc:'#7C9A3E',htag:'6人参与过',t:'周六下午安福路citywalk，边逛边拍',
+     e:'📷',bg:'#F0E6D8',cat:'walk',tags:['Citywalk','出片'],when:'09-19 周六 14:00',
+     where:'1.4km 安福路',have:2,need:5,cost:30,indoor:false},
+    {id:'p3',host:'康堰羽毛球馆',hc:'#4A7BD8',htag:'举办过68场',t:'周四康堰福利场',e:'🏸',bg:'#D8E4F2',
+     cat:'bad',tags:['羽毛球'],when:'09-17 周四 18:00-21:00',where:'3.2km 徐汇区',
+     have:10,need:25,cost:45,indoor:true},
+    {id:'p4',host:'西岸看展搭子',hc:'#B06A9E',htag:'12人参与过',t:'蓬皮杜特展，学生证半价一起去',
+     e:'🖼️',bg:'#E8DCF0',cat:'art',tags:['看展','学生票'],when:'09-20 周日 10:30',
+     where:'4.6km 龙腾大道',have:3,need:4,cost:60,indoor:true},
+    {id:'p5',host:'佘山徒步团',hc:'#5C8A4E',htag:'举办过23场',t:'佘山半日徒步，早八出发天黑前回市区',
+     e:'🥾',bg:'#DCEBD8',cat:'hike',tags:['徒步','需早起'],when:'09-20 周日 08:00',
+     where:'需转9号线 松江',have:6,need:8,cost:45,indoor:false}
   ];
 
-  var STAMPS = [
-    {em:'🎨',n:'看展人',got:true}, {em:'🧺',n:'赶集人',got:true},
-    {em:'📷',n:'街拍人',got:true}, {em:'🥾',n:'徒步人',got:false},
-    {em:'🎸',n:'现场人',got:true}, {em:'🌙',n:'夜行人',got:true},
-    {em:'🚲',n:'骑行人',got:true}, {em:'🌾',n:'出城人',got:false}
+  // 探索：地点（可能还没有场）
+  var SPOTS=[
+    {id:'m50',n:'M50 创意园 · 春季群展',e:'🎨',bg:'#EDE4FF',area:'普陀 · 莫干山路',
+     metro:'13号线 江宁路',cost:0,hours:2.5,indoor:true,mood:'art',tags:['免费','室内','可拍照'],
+     party:[1,2,3],hook:'二十多个独立艺术空间连成一条路，不花钱也能逛一下午',open:2},
+    {id:'anfu',n:'安福路 · 街拍与旧书店',e:'📷',bg:'#F7E8DC',area:'徐汇 · 安福路',
+     metro:'10/11号线 上海图书馆',cost:30,hours:2,indoor:false,mood:'walk',
+     tags:['Citywalk','出片','咖啡'],party:[1,2,3],hook:'一条路把书店、咖啡、街拍都解决了',open:1},
+    {id:'westbund',n:'西岸美术馆 · 蓬皮杜特展',e:'🖼️',bg:'#DCE8F7',area:'徐汇 · 龙腾大道',
+     metro:'11号线 云锦路',cost:60,hours:3,indoor:true,mood:'art',tags:['学生票','室内','沿江'],
+     party:[1,2],hook:'学生证半价，看完沿江走一段，日落正对浦东',open:1},
+    {id:'sinan',n:'思南公馆 · 露天书集',e:'📚',bg:'#F0EEDC',area:'黄浦 · 复兴中路',
+     metro:'13号线 淮海中路',cost:20,hours:2,indoor:false,mood:'market',
+     tags:['书集','老洋房','免费入场'],party:[1,2,3],hook:'老洋房前的梧桐树下摆摊，二手书能淘到绝版',open:0},
+    {id:'binjiang',n:'杨浦滨江 · 工业遗迹骑行',e:'🚲',bg:'#DCEEF5',area:'杨浦 · 杨树浦路',
+     metro:'12号线 爱国路',cost:15,hours:3,indoor:false,mood:'walk',tags:['骑行','江景','免费'],
+     party:[2,3,4],hook:'共享单车骑完5.5公里岸线，沿途全是老厂房改造',open:0},
+    {id:'script',n:'人民广场 · 硬核推理本',e:'🔦',bg:'#E4E0F0',area:'黄浦 · 人民广场',
+     metro:'1/2/8号线 人民广场',cost:98,hours:4,indoor:true,mood:'show',
+     tags:['室内','需4人','雨天友好'],party:[4],hook:'四小时封闭推理，雨天最稳的选择，人满才开本',open:3},
+    {id:'powerstation',n:'当代艺术博物馆 · 常设展',e:'🏭',bg:'#E8E8EE',area:'黄浦 · 花园港路',
+     metro:'4/8号线 西藏南路',cost:0,hours:2.5,indoor:true,mood:'art',tags:['免费','室内','大烟囱'],
+     party:[1,2,3],hook:'发电厂改的美术馆，常设展免费，顶楼能看江',open:0},
+    {id:'sheshan',n:'佘山国家森林公园 · 半日徒步',e:'🥾',bg:'#DCEBD8',area:'松江 · 佘山',
+     metro:'9号线 佘山',cost:45,hours:5,indoor:false,mood:'hike',tags:['徒步','自然','需早起'],
+     party:[2,3,4],hook:'市区能当天往返的唯一像样的山',open:1},
+    {id:'cinema',n:'大光明影院 · 经典重映',e:'🎬',bg:'#E0E8F0',area:'黄浦 · 南京西路',
+     metro:'1/2/8号线 人民广场',cost:55,hours:2.5,indoor:true,mood:'show',
+     tags:['室内','学生优惠','雨天友好'],party:[1,2],hook:'1933年的老影院本身就值一张票',open:0}
   ];
 
-  // each log carries the structured fields a guide draft needs — this is the
-  // point of note 4: the draft is assembled, not written
-  var LOGS = [
-    {d:'13',m:'09月',t:'M50 创意园',meta:'2人 · 0元 · 2小时',note:'三楼版画工作室可以免费看印制过程',
-     route:['13号线江宁路','M50 创意园','莫干山路涂鸦墙'],cost:'人均 0 元（含地铁 6 元）',hours:'约 2 小时',party:'2 人'},
-    {d:'06',m:'09月',t:'凡几市集 · 张园',meta:'3人 · 96元 · 2.5小时',note:'下午三点后摊主开始打折',
-     route:['南京西路站','张园西区','凡几市集'],cost:'人均 96 元',hours:'约 2.5 小时',party:'3 人'},
-    {d:'30',m:'08月',t:'杨浦滨江骑行',meta:'4人 · 12元 · 3小时',note:'从爱国路起骑顺风，返程逆风，建议反着来',
-     route:['12号线爱国路','杨树浦水厂','绿之丘','杨浦大桥'],cost:'人均 12 元（单车）',hours:'约 3 小时',party:'4 人'}
+  var WEIGHTS=[{k:'mood',l:'偏好',w:32},{k:'budget',l:'预算',w:26},{k:'party',l:'人数',w:18},
+    {k:'weather',l:'天气',w:14},{k:'fresh',l:'新鲜度',w:10}];
+
+  var DISTRICTS=[
+    {k:'baoshan',n:'宝山',v:0,x:118,y:52,d:'M74 30 L150 24 L162 62 L136 78 L96 72 L74 56 Z'},
+    {k:'jiading',n:'嘉定',v:1,x:52,y:62,d:'M18 44 L74 30 L96 72 L62 90 L22 78 Z'},
+    {k:'putuo',n:'普陀',v:2,x:104,y:98,d:'M96 72 L136 78 L132 108 L92 114 L82 96 Z'},
+    {k:'jingan',n:'静安',v:2,x:143,y:104,d:'M136 78 L162 84 L160 112 L132 108 Z'},
+    {k:'hongkou',n:'虹口',v:1,x:173,y:80,d:'M162 62 L190 68 L188 100 L160 88 Z'},
+    {k:'yangpu',n:'杨浦',v:1,x:202,y:70,d:'M190 68 L214 58 L222 88 L188 100 Z'},
+    {k:'changning',n:'长宁',v:0,x:92,y:128,d:'M82 96 L92 114 L108 138 L74 142 L64 116 Z'},
+    {k:'huangpu',n:'黄浦',v:0,x:150,y:130,d:'M132 108 L160 112 L172 134 L146 146 L128 130 Z'},
+    {k:'xuhui',n:'徐汇',v:1,x:118,y:158,d:'M108 138 L128 130 L146 146 L134 178 L104 170 Z'},
+    {k:'minhang',n:'闵行',v:0,x:74,y:188,d:'M74 142 L108 138 L104 170 L118 200 L64 208 L52 170 Z'},
+    {k:'songjiang',n:'松江',v:0,x:34,y:150,d:'M22 118 L64 116 L74 142 L52 170 L18 158 Z'},
+    {k:'pudong',n:'浦东',v:1,x:216,y:150,d:'M172 134 L188 100 L222 88 L262 120 L246 186 L182 196 L134 178 L146 146 Z'}
+  ];
+  var CHONGMING='M188 14 L268 6 L282 24 L214 40 L186 30 Z';
+
+  var LOGS=[
+    {d:'13',m:'09月',t:'M50 创意园',meta:'2人 · 0元 · 2小时',note:'三楼版画工作室可以免费看印制过程'},
+    {d:'06',m:'09月',t:'凡几市集 · 张园',meta:'3人 · 96元 · 2.5小时',note:'下午三点后摊主开始打折'},
+    {d:'30',m:'08月',t:'杨浦滨江骑行',meta:'4人 · 12元 · 3小时',note:'从爱国路起骑顺风，返程逆风，建议反着来'}
   ];
 
-  var GUIDES = [
-    {av:'林',c:'#C6FF3D',by:'林至遥 · 同济',when:'2天前',
-     t:'0元过一个完整周六：三个免费美术馆连线',
-     route:['当代艺术博物馆','M50创意园','西岸滨江'],
-     cost:'人均 0 元',hours:'约 6 小时',likes:342,saves:1280,liked:false},
-    {av:'周',c:'#FF5FA2',by:'周雨桐 · 华师大',when:'5天前',
-     t:'下雨天备选清单：四个不用打伞的去处',
-     route:['大光明影院','人民广场剧本杀','来福士'],
-     cost:'人均 120–160 元',hours:'约 5 小时',likes:891,saves:2410,liked:true},
-    {av:'陈',c:'#3DDCFF',by:'陈牧之 · 上大',when:'1周前',
-     t:'佘山一日徒步：早八出发，天黑前回市区',
-     route:['9号线佘山站','西佘山园','东佘山园','南翔小笼'],
-     cost:'人均 78 元',hours:'约 9 小时',likes:556,saves:1733,liked:false}
-  ];
+  var GUIDE={t:'0元过一个完整周六：三个免费美术馆连线',
+    route:['当代艺术博物馆','M50创意园','西岸滨江'],by:'林至遥 · 同济',cost:'人均 0 元',hours:'约 6 小时'};
 
-  var state = {weather:'sunny', mood:'art', budget:80, party:2, teams:{}, tab:'feed', open:{}};
-  state.teams['market'] = {joined:true, have:3, need:4};
+  /* ---------------- 状态 ---------------- */
+  var st={tab:'plaza',cat:'weekend',kong:'weekend',mtab:'foot',weather:'sunny',
+    budget:'all',party:2,when:'weekend',open:{},joined:{},sel:null};
 
-  var $ = function(id){ return document.getElementById(id); };
+  var WX={sunny:{t:'周六 多云转晴 22°C',s:'体感舒适，露天活动已前置',
+      v:'适合户外',cls:''},
+    rainy:{t:'周六 小雨转中雨 17°C',s:'降水概率80%，露天活动已排后',v:'优先室内',cls:'rain'}};
 
-  var WX = {
-    sunny:{title:'多云转晴 · 22°C', sub:'东北风 2 级 · 体感舒适',
-      verdict:'今天适合待在户外。市集、骑行、徒步都加了分，露天项目排在前面。', cls:''},
-    rainy:{title:'小雨转中雨 · 17°C', sub:'降水概率 80% · 建议带伞',
-      verdict:'下午雨会变大。露天项目已自动降权并标注原因，优先推室内。', cls:'rain'}
-  };
-
-  function drawWx(){
-    $('wxGlyph').innerHTML = state.weather === 'sunny'
-      ? '<circle cx="15" cy="15" r="7" fill="#FFD84D" stroke="#12101A" stroke-width="2"/>' +
-        '<g stroke="#12101A" stroke-width="2" stroke-linecap="round">' +
-        '<line x1="15" y1="2" x2="15" y2="5"/><line x1="4" y1="15" x2="7" y2="15"/>' +
-        '<line x1="6" y1="6" x2="8" y2="8"/></g>' +
-        '<path d="M14 32a6 6 0 0 1 .7-12 8 8 0 0 1 15 2.6A5 5 0 0 1 29 32z" fill="#fff" stroke="#12101A" stroke-width="2" stroke-linejoin="round"/>'
-      : '<path d="M11 24a6.5 6.5 0 0 1 .8-13 8.5 8.5 0 0 1 16 2.7A5.4 5.4 0 0 1 27 24z" fill="#fff" stroke="#12101A" stroke-width="2" stroke-linejoin="round"/>' +
-        '<g stroke="#12101A" stroke-width="2.2" stroke-linecap="round">' +
-        '<line x1="14" y1="28" x2="12.5" y2="34"/><line x1="20" y1="28" x2="18.5" y2="34"/>' +
-        '<line x1="26" y1="28" x2="24.5" y2="34"/></g>';
+  function drawWx(el){
+    if(!el)return;
+    el.innerHTML = st.weather==='sunny'
+      ? '<circle cx="14" cy="14" r="6.5" fill="#FFC53D"/>'+
+        '<g stroke="#FFC53D" stroke-width="1.6" stroke-linecap="round">'+
+        '<line x1="14" y1="3" x2="14" y2="5.5"/><line x1="4" y1="14" x2="6.5" y2="14"/>'+
+        '<line x1="6.5" y1="6.5" x2="8.2" y2="8.2"/></g>'+
+        '<path d="M13 28a5.4 5.4 0 0 1 .6-10.8 7.2 7.2 0 0 1 13.5 2.3A4.5 4.5 0 0 1 26.5 28z" fill="#CFD8E3"/>'
+      : '<path d="M10 22a5.8 5.8 0 0 1 .7-11.6 7.6 7.6 0 0 1 14.3 2.4A4.8 4.8 0 0 1 24 22z" fill="#A9BCD0"/>'+
+        '<g stroke="#5B8CB8" stroke-width="2" stroke-linecap="round">'+
+        '<line x1="12.5" y1="25" x2="11" y2="30"/><line x1="18" y1="25" x2="16.5" y2="30"/>'+
+        '<line x1="23.5" y1="25" x2="22" y2="30"/></g>';
   }
 
   function renderWx(){
-    var w = WX[state.weather];
-    $('wxTitle').textContent = w.title;
-    $('wxSub').textContent = w.sub;
-    $('verdict').textContent = w.verdict;
-    $('wx').className = 'wx ' + w.cls;
-    $('wxSunny').setAttribute('aria-pressed', String(state.weather === 'sunny'));
-    $('wxRainy').setAttribute('aria-pressed', String(state.weather === 'rainy'));
-    drawWx();
+    var w=WX[st.weather];
+    ['','2'].forEach(function(sfx){
+      var t=$('wxt'+sfx),s=$('wxs'+sfx);
+      if(t)t.textContent=w.t;
+      if(s)s.textContent=w.s;
+      drawWx($('wxg'+sfx));
+      var a=$('wxSun'+sfx),b=$('wxRain'+sfx);
+      if(a)a.setAttribute('aria-pressed',String(st.weather==='sunny'));
+      if(b)b.setAttribute('aria-pressed',String(st.weather==='rainy'));
+    });
+  }
+
+  /* ---------------- 广场 ---------------- */
+  function renderCats(){
+    $('cats').innerHTML=CATS.map(function(c){
+      return '<button data-cat="'+c.k+'" aria-selected="'+(st.cat===c.k)+'">'+c.n+'</button>';
+    }).join('')+'<button class="expand" id="catExpand" aria-label="展开全部类目">☰</button>';
+  }
+
+  function renderKong(){
+    // 雨天把室内类目提前，晴天把户外提前 —— 天气数据的第二个落点
+    var order=KONG.slice();
+    if(st.weather==='rainy'){
+      var indoorFirst=['weekend','room','script','board','ktv','art','walk','bad','hike','more'];
+      order.sort(function(a,b){return indoorFirst.indexOf(a.k)-indoorFirst.indexOf(b.k);});
+    }
+    $('kong').innerHTML=order.map(function(k){
+      return '<button class="kong-item'+(st.kong===k.k?' on':'')+'" data-kong="'+k.k+'">'+
+        '<span class="kong-ic">'+k.e+(k.badge?'<i class="kong-badge">'+k.badge+'</i>':'')+'</span>'+
+        '<span>'+k.n+'</span></button>';
+    }).join('');
+  }
+
+  function renderFilters(id){
+    var budgetLabel=st.budget==='all'?'人均':(st.budget==='low'?'50以下':st.budget==='mid'?'50-100':'100+');
+    var f=[
+      {k:'near',n:'本区内',ar:true,on:true},
+      {k:'sort',n:'智能排序',ar:true,on:false},
+      {k:'weekend',n:'本周末',on:st.when==='weekend'},
+      {k:'today',n:'今天',on:st.when==='today'},
+      {k:'tomo',n:'明天',on:st.when==='tomo'},
+      {k:'budget',n:budgetLabel,ar:true,on:st.budget!=='all'}
+    ];
+    $(id).innerHTML=f.map(function(x){
+      return '<button class="fp" data-filter="'+x.k+'" aria-pressed="'+(!!x.on)+'">'+x.n+
+        (x.ar?'<span class="ar">▾</span>':'')+'</button>';
+    }).join('');
+  }
+
+  function plazaCard(p){
+    var j=st.joined[p.id],have=p.have+(j?1:0),full=have>=p.need;
+    var avs='';
+    var cols=['#D4FF3D','#7FE3C3','#FFC53D','#A9BCD0'];
+    for(var i=0;i<Math.min(have,4);i++)
+      avs+='<span class="av" style="background:'+cols[i%4]+'"></span>';
+    return '<article class="pc">'+
+      '<div class="pc-host">'+
+        '<span class="hav" style="background:'+p.hc+'">'+p.host.slice(0,1)+'</span>'+
+        '<span class="hn">'+p.host+'</span><span class="tag">'+p.htag+'</span></div>'+
+      '<div class="pc-body">'+
+        '<div class="pc-img" style="background:'+p.bg+'">'+p.e+
+          (p.ad?'<span class="ad">广告</span>':'')+'</div>'+
+        '<div class="pc-main">'+
+          '<div class="pc-title">'+p.t+'</div>'+
+          '<div class="pc-tags">'+p.tags.map(function(t,i){
+            return '<span class="ct'+(i===0?' lime':'')+'">'+t+'</span>';}).join('')+'</div>'+
+          '<div class="pc-meta">'+
+            '<div class="mrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">'+
+              '<circle cx="8" cy="8" r="6.2"/><path d="M8 4.6V8l2.2 1.4"/></svg>'+p.when+'</div>'+
+            '<div class="mrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">'+
+              '<path d="M8 14s5-4.2 5-8A5 5 0 0 0 3 6c0 3.8 5 8 5 8z"/><circle cx="8" cy="6" r="1.8"/></svg>'+
+              p.where+'</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="pc-foot">'+
+        '<div class="joins"><span class="stack">'+avs+'</span>'+
+          '<span class="jt"><b class="num">'+have+'</b>/'+p.need+'人已加入</span></div>'+
+        '<button class="board'+(full?' done':'')+'" data-board="'+p.id+'">'+
+          (j?(full?'已满员':'已上车'):'上车')+'</button>'+
+      '</div></article>';
+  }
+
+  function guideCard(){
+    return '<article class="gc">'+
+      '<span class="gc-badge">攻略 · 可一键开场</span>'+
+      '<h4>'+GUIDE.t+'</h4>'+
+      '<div class="gc-route">'+GUIDE.route.map(function(s,i){
+        return (i?'<span class="a">›</span>':'')+'<span class="s">'+s+'</span>';}).join('')+'</div>'+
+      '<div class="gc-foot"><span>'+GUIDE.by+'</span><span>·</span><span>'+GUIDE.cost+'</span>'+
+        '<button class="open" data-guideopen="1">按这条开场</button></div></article>';
+  }
+
+  function renderPlaza(){
+    var list=PLAZA.filter(function(p){
+      if(st.kong==='weekend'||st.kong==='more')return true;
+      return p.cat===st.kong;
+    });
+    // 雨天：露天场沉底，呼应天气条的承诺
+    if(st.weather==='rainy')
+      list=list.slice().sort(function(a,b){return (a.indoor?0:1)-(b.indoor?0:1);});
+    var html=list.map(plazaCard);
+    if(html.length>1)html.splice(2,0,guideCard());
+    $('feed').innerHTML=html.join('')||'<div class="empty">该类目下暂无进行中的场<br>去「探索」看看值得开的场</div>';
+  }
+
+  /* ---------------- 探索：打分 ---------------- */
+  function budgetCap(){
+    return st.budget==='low'?50:st.budget==='mid'?100:st.budget==='high'?200:120;
   }
 
   function score(a){
-    var f = {};
-    f.mood = a.mood === state.mood ? 1 : 0.28;
-    if(state.budget === 0){
-      f.budget = a.cost === 0 ? 1 : 0.1;
-    } else if(a.cost <= state.budget){
-      f.budget = 1 - (a.cost / state.budget) * 0.25;
-    } else {
-      f.budget = Math.max(0, 1 - ((a.cost - state.budget) / state.budget) * 1.6);
-    }
-    f.party = a.party.indexOf(state.party) >= 0 ? 1 : 0.3;
-    f.weather = state.weather === 'rainy' ? (a.indoor ? 1 : 0.05) : (a.indoor ? 0.62 : 1);
-    f.fresh = 0.55 + ((a.id.charCodeAt(0) + a.id.length * 7) % 45) / 100;
-
-    var total = 0;
-    for(var i = 0; i < WEIGHTS.length; i++) total += f[WEIGHTS[i].k] * WEIGHTS[i].w;
-
-    var penalised = false;
-    if(state.weather === 'rainy' && !a.indoor){ total -= 45; penalised = true; }
-    return {total: Math.max(4, Math.round(total)), f:f, penalised:penalised};
+    var f={},cap=budgetCap();
+    f.mood=(a.mood==='art'&&st.kong==='art')||a.mood===st.kong?1:0.42;
+    if(a.cost<=cap)f.budget=1-(a.cost/cap)*0.25;
+    else f.budget=Math.max(0,1-((a.cost-cap)/cap)*1.6);
+    f.party=a.party.indexOf(st.party)>=0?1:0.3;
+    f.weather=st.weather==='rainy'?(a.indoor?1:0.05):(a.indoor?0.62:1);
+    f.fresh=0.55+((a.id.charCodeAt(0)+a.id.length*7)%45)/100;
+    var tot=0;
+    for(var i=0;i<WEIGHTS.length;i++)tot+=f[WEIGHTS[i].k]*WEIGHTS[i].w;
+    var pen=false;
+    if(st.weather==='rainy'&&!a.indoor){tot-=45;pen=true;}
+    return {tot:Math.max(4,Math.round(tot)),f:f,pen:pen};
   }
 
-  function reason(a, s){
-    if(s.penalised) return '<b>雨天不推荐</b>：露天项目已降权，想去建议收藏到晴天。';
-    var bits = [];
-    if(a.cost === 0) bits.push('<b>完全免费</b>');
-    else if(a.cost <= state.budget * 0.5) bits.push('<b>人均' + a.cost + '元</b>，预算还剩不少');
-    else if(a.cost <= state.budget) bits.push('<b>人均' + a.cost + '元</b>，刚好在预算内');
-    else bits.push('人均' + a.cost + '元，<b>超预算' + (a.cost - state.budget) + '元</b>');
-    if(a.mood === state.mood) bits.push('正好是你想做的事');
-    if(state.weather === 'sunny' && !a.indoor) bits.push('今天天气配得上');
-    if(state.weather === 'rainy' && a.indoor) bits.push('全程室内不淋雨');
-    return bits.join('，') + '。' + a.hook + '。';
+  function reason(a,s){
+    if(s.pen)return '<b>雨天不推荐</b>：露天项目已降权，建议收藏到晴天再去。';
+    var b=[];
+    if(a.cost===0)b.push('<b>完全免费</b>');
+    else b.push('<b>人均'+a.cost+'元</b>'+(a.cost<=budgetCap()?'，在预算内':'，略超预算'));
+    if(st.weather==='rainy'&&a.indoor)b.push('全程室内不淋雨');
+    if(st.weather==='sunny'&&!a.indoor)b.push('今天天气配得上');
+    return b.join('，')+'。'+a.hook+'。';
   }
 
-  function renderResults(){
-    var scored = ACTS.map(function(a){ return {a:a, s:score(a)}; })
-      .sort(function(x, y){ return y.s.total - x.s.total; });
-    var top = scored.slice(0, 6);
-    $('resultCount').textContent = top.length;
+  function renderExplore(){
+    var arr=SPOTS.map(function(a){return {a:a,s:score(a)};})
+      .sort(function(x,y){return y.s.tot-x.s.tot;}).slice(0,6);
 
-    $('results').innerHTML = top.map(function(item, i){
-      var a = item.a, s = item.s;
-      var team = state.teams[a.id];
-      var joined = team && team.joined;
-      var isOpen = !!state.open[a.id];
-
-      // show the two most discriminating factors plus weather, so bars vary card to card
-      var shown = WEIGHTS.filter(function(w){ return w.k !== 'weather'; })
-        .sort(function(p, q){ return s.f[p.k] - s.f[q.k]; }).slice(0, 2)
-        .concat(WEIGHTS.filter(function(w){ return w.k === 'weather'; }))
-        .sort(function(p, q){ return q.w - p.w; });
-
-      var bars = shown.map(function(w){
-        var pct = Math.round(s.f[w.k] * 100);
-        return '<div class="bar-row"><span>' + w.label + '</span>' +
-          '<span class="track"><i class="fill ' + w.c + '" style="width:' + pct + '%"></i></span>' +
-          '<span class="num">' + pct + '</span></div>';
+    $('xfeed').innerHTML=arr.map(function(it,i){
+      var a=it.a,s=it.s,op=!!st.open[a.id];
+      var shown=WEIGHTS.filter(function(w){return w.k!=='weather';})
+        .sort(function(p,q){return s.f[p.k]-s.f[q.k];}).slice(0,2)
+        .concat(WEIGHTS.filter(function(w){return w.k==='weather';}))
+        .sort(function(p,q){return q.w-p.w;});
+      var bars=shown.map(function(w){
+        var pct=Math.round(s.f[w.k]*100);
+        return '<div class="brow"><span>'+w.l+'</span><span class="trk"><i class="'+
+          (w.k==='weather'?'b':'')+'" style="width:'+pct+'%"></i></span>'+
+          '<span class="num">'+pct+'</span></div>';
       }).join('');
 
-      var chipCls = {'免费':'l','学生票':'l','免费入场':'l','室内':'c','雨天友好':'c'};
-      var tags = a.tags.slice(0, 3).map(function(t){
-        return '<span class="chip ' + (chipCls[t] || '') + '">' + t + '</span>';
-      }).join('');
-
-      return '<article class="act' + (i === 0 && !s.penalised ? ' top' : '') + '">' +
-        '<div class="act-main">' +
-          '<div class="thumb" style="background:' + a.bg + '">' + a.em + '</div>' +
-          '<div class="act-body">' +
-            '<div class="act-title">' + a.name + '</div>' +
-            '<div class="act-sub">' + a.area + ' · ' + a.hours + '小时 · ' +
-              (a.cost === 0 ? '免费' : '¥' + a.cost) + '</div>' +
-            '<div class="act-chips">' + tags + '</div>' +
-          '</div>' +
-          '<div class="badge' + (s.penalised ? ' warn' : '') + '">' +
-            '<b class="num">' + s.total + '</b><span>匹配</span></div>' +
-        '</div>' +
-        '<div class="bars" id="bars-' + a.id + '"' + (isOpen ? '' : ' hidden') + '>' +
-          '<div class="act-why" style="margin:0 0 7px">' + reason(a, s) + '</div>' +
-          bars +
-        '</div>' +
-        '<div class="act-foot">' +
-          '<button class="why-toggle" data-why="' + a.id + '" aria-expanded="' + isOpen + '" ' +
-            'aria-controls="bars-' + a.id + '">' + (isOpen ? '收起' : '为什么') + '</button>' +
-          '<button class="btn" data-detail="' + a.id + '">' + a.metro.split(' ')[0] + '</button>' +
-          '<button class="btn ' + (joined ? 'joined' : 'primary') + '" data-join="' + a.id + '">' +
-            (joined ? '已加入 ' + team.have + '/' + team.need : '组队出发') + '</button>' +
-        '</div>' +
-      '</article>';
-    }).join('') || '<div class="empty">没有符合条件的活动，试试放宽预算。</div>';
-  }
-
-  function renderFilters(){
-    $('segMood').innerHTML = MOODS.map(function(m){
-      return '<button class="fpill" data-mood="' + m.k + '" aria-pressed="' +
-        (state.mood === m.k) + '">' + m.label + '</button>';
-    }).join('');
-    $('segParty').innerHTML = [1, 2, 3, 4].map(function(p){
-      return '<button class="fpill" data-party="' + p + '" aria-pressed="' + (state.party === p) + '">' +
-        (p === 1 ? '自己' : p === 4 ? '4人+' : p + '人') + '</button>';
-    }).join('');
-    $('budgetRead').textContent = state.budget === 0 ? '免费' : '≤' + state.budget;
-  }
-
-  function renderTeams(){
-    var ids = Object.keys(state.teams).filter(function(id){ return state.teams[id].joined; });
-    $('myTeamCount').textContent = '已加入 ' + ids.length + ' 个';
-    if(!ids.length){
-      $('teamList').innerHTML = '<div class="empty">还没有加入任何队伍。<br>回推荐页点"组队出发"试试。</div>';
-      return;
-    }
-    var names = ['苏','何','郑','吴'];
-    var colors = ['#C6FF3D','#FF5FA2','#3DDCFF','#8B5CF6'];
-
-    $('teamList').innerHTML = ids.map(function(id){
-      var a = null;
-      for(var i = 0; i < ACTS.length; i++) if(ACTS[i].id === id){ a = ACTS[i]; break; }
-      if(!a) return '';
-      var t = state.teams[id];
-      var pct = Math.round(t.have / t.need * 100);
-      var avatars = '';
-      for(var j = 0; j < t.need; j++){
-        avatars += j < t.have
-          ? '<span class="av" style="background:' + colors[j % 4] + '">' + names[j % 4] + '</span>'
-          : '<span class="av slot">+</span>';
-      }
-      return '<article class="card team">' +
-        '<div class="team-top">' +
-          '<div class="thumb" style="background:' + a.bg + '; width:42px; height:42px; font-size:19px">' + a.em + '</div>' +
-          '<div style="flex:1; min-width:0">' +
-            '<div class="act-title" style="font-size:13.5px">' + a.name + '</div>' +
-            '<div class="act-sub">' + a.metro + '</div>' +
-          '</div>' +
-          '<div style="text-align:right; flex:none">' +
-            '<div class="num" style="font-size:17px; font-weight:900; color:var(--ink); font-family:\'Baloo 2\',sans-serif">' +
-              (a.cost === 0 ? '免费' : '¥' + a.cost) + '</div>' +
-            '<div style="font-size:9.5px; color:var(--muted); font-weight:700">' + t.need + '人AA</div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="progress"><i style="width:' + pct + '%"></i></div>' +
-        '<div class="between" style="margin-top:8px">' +
-          '<div class="avatars">' + avatars + '</div>' +
-          '<span class="chip ' + (t.have >= t.need ? 'l' : 'p') + '">' +
-            (t.have >= t.need ? '已满员 · 可出发' : '还差 ' + (t.need - t.have) + ' 人') + '</span>' +
-        '</div>' +
-        '<div class="act-foot" style="padding:9px 0 0">' +
-          '<button class="btn" data-leave="' + id + '">退出</button>' +
-          '<button class="btn primary" data-ping="' + id + '">召集群里的人</button>' +
-        '</div>' +
-      '</article>';
-    }).join('');
-  }
-
-  // Schematic Shanghai: districts as adjacent polygons, shaped for recognition
-  // at phone width (Huangpu bend, Pudong bulging east, Chongming offshore)
-  // rather than cartographic accuracy. visits = activities checked in there.
-  var DISTRICTS = [
-    {k:'baoshan',  n:'宝山', v:0, x:118, y:52,
-     d:'M74 30 L150 24 L162 62 L136 78 L96 72 L74 56 Z'},
-    {k:'jiading',  n:'嘉定', v:1, x:52,  y:62,
-     d:'M18 44 L74 30 L96 72 L62 90 L22 78 Z'},
-    {k:'putuo',    n:'普陀', v:2, x:104, y:98,
-     d:'M96 72 L136 78 L132 108 L92 114 L82 96 Z'},
-    {k:'jingan',   n:'静安', v:2, x:143, y:104,
-     d:'M136 78 L162 84 L160 112 L132 108 Z'},
-    {k:'hongkou',  n:'虹口', v:1, x:173, y:80,
-     d:'M162 62 L190 68 L188 100 L160 88 Z'},
-    {k:'yangpu',   n:'杨浦', v:1, x:200, y:70,
-     d:'M186 70 L214 58 L222 88 L184 98 Z'},
-    {k:'changning',n:'长宁', v:0, x:92,  y:128,
-     d:'M82 96 L92 114 L108 138 L74 142 L64 116 Z'},
-    {k:'huangpu',  n:'黄浦', v:0, x:150, y:130,
-     d:'M132 108 L160 112 L172 134 L146 146 L128 130 Z'},
-    {k:'xuhui',    n:'徐汇', v:1, x:118, y:158,
-     d:'M108 138 L128 130 L146 146 L134 178 L104 170 Z'},
-    {k:'minhang',  n:'闵行', v:0, x:74,  y:188,
-     d:'M74 142 L108 138 L104 170 L118 200 L64 208 L52 170 Z'},
-    {k:'songjiang',n:'松江', v:0, x:34,  y:150,
-     d:'M22 118 L64 116 L74 142 L52 170 L18 158 Z'},
-    {k:'pudong',   n:'浦东', v:1, x:216, y:150,
-     d:'M172 134 L184 98 L222 88 L262 120 L246 186 L182 196 L134 178 L146 146 Z'}
-  ];
-
-  var CHONGMING = 'M188 14 L268 6 L282 24 L214 40 L186 30 Z';
-  var selected = null;
-
-  function renderMap(){
-    var svg = $('cityMap');
-    var shapes = DISTRICTS.map(function(d){
-      var cls = 'district' + (d.v > 0 ? ' lit' : '') + (selected === d.k ? ' sel' : '');
-      return '<path class="' + cls + '" d="' + d.d + '" data-dist="' + d.k + '">' +
-        '<title>' + d.n + '</title></path>';
-    }).join('');
-
-    var labels = DISTRICTS.map(function(d){
-      return '<text class="dlabel' + (d.v > 0 ? ' on' : '') + '" x="' + d.x + '" y="' + d.y +
-        '" text-anchor="middle">' + d.n + '</text>';
-    }).join('');
-
-    svg.innerHTML =
-      '<path class="water" d="' + CHONGMING + '"/>' +
-      '<text class="dlabel" x="234" y="26" text-anchor="middle">崇明</text>' +
-      shapes + labels;
-
-    var lit = DISTRICTS.filter(function(d){ return d.v > 0; }).length;
-    $('mapLit').textContent = lit;
-    $('mapPct').textContent = Math.round(lit / DISTRICTS.length * 100);
-
-    if(selected){
-      var s = null;
-      for(var i = 0; i < DISTRICTS.length; i++) if(DISTRICTS[i].k === selected){ s = DISTRICTS[i]; break; }
-      $('mapRead').innerHTML = s.v > 0
-        ? '<b>' + s.n + '</b> · 已打卡 <b>' + s.v + '</b> 个活动' +
-          '<span class="hint"> —— 这个区已点亮</span>'
-        : '<b>' + s.n + '</b> · 还没去过<span class="hint"> —— 推荐页筛选该区可以点亮它</span>';
-    } else {
-      $('mapRead').innerHTML = '<span class="hint">点任意区域看打卡详情。' +
-        '灰色是还没去过的地方 —— 这比空徽章更能说明"还差哪儿"。</span>';
-    }
-  }
-
-  function renderCheck(){
-    renderMap();
-    $('stampGrid').innerHTML = STAMPS.map(function(s){
-      return '<div class="stamp' + (s.got ? ' got' : '') + '">' +
-        '<span class="em">' + (s.got ? s.em : '🔒') + '</span><span>' + s.n + '</span></div>';
-    }).join('');
-    $('logList').innerHTML = LOGS.map(function(l, i){
-      return '<div class="log-item">' +
-        '<div class="log-date"><b class="num">' + l.d + '</b>' + l.m + '</div>' +
-        '<div style="flex:1; min-width:0">' +
-          '<div class="between" style="align-items:flex-start">' +
-            '<div style="font-size:12.5px; font-weight:800; color:var(--ink)">' + l.t + '</div>' +
-            '<button class="mini" data-draft="' + i + '">✍️ 生成攻略</button>' +
-          '</div>' +
-          '<div class="num" style="font-size:10.5px; color:var(--muted); margin:1px 0 4px; font-weight:700">' + l.meta + '</div>' +
-          '<div style="font-size:11px; color:var(--body); background:var(--sunk); border:1.5px solid var(--line); padding:5px 8px; border-radius:8px">' +
-            '"' + l.note + '"</div>' +
-        '</div></div>';
-    }).join('');
-  }
-
-  function openDraft(i){
-    var l = LOGS[i];
-    var route = l.route.map(function(s, j){
-      return (j ? '<span class="arrow">▸</span>' : '') + '<span class="stop">' + s + '</span>';
-    }).join('');
-    $('draftBody').innerHTML =
-      '<p class="draft-hint">以下字段已从你的打卡记录自动带出，<b>只有最后一行需要你写</b>。</p>' +
-      '<div class="draft-field"><span class="draft-label">路线</span>' +
-        '<div class="guide-route" style="margin:4px 0 0">' + route + '</div></div>' +
-      '<div class="draft-field"><span class="draft-label">花费</span><b>' + l.cost + '</b></div>' +
-      '<div class="draft-field"><span class="draft-label">耗时</span><b>' + l.hours + '</b></div>' +
-      '<div class="draft-field"><span class="draft-label">同行</span><b>' + l.party + '</b></div>' +
-      '<div class="draft-field auto"><span class="draft-label">标题</span>' +
-        '<b>' + l.t + '：' + l.hours + '，' + l.cost + '</b></div>' +
-      '<label class="draft-write" for="draftNote">一句话感受 · 唯一需要手写的部分' +
-        '<textarea id="draftNote" rows="2">' + l.note + '</textarea></label>';
-    $('draftModal').hidden = false;
-  }
-
-  function renderGuides(){
-    $('guideList').innerHTML = GUIDES.map(function(g, i){
-      var route = g.route.map(function(s, j){
-        return (j ? '<span class="arrow">▸</span>' : '') + '<span class="stop">' + s + '</span>';
-      }).join('');
-      return '<article class="card guide">' +
-        '<div class="guide-by">' +
-          '<span class="av" style="background:' + g.c + '; margin:0">' + g.av + '</span>' +
-          '<span>' + g.by + '</span><span>·</span><span>' + g.when + '</span></div>' +
-        '<h4>' + g.t + '</h4>' +
-        '<div class="guide-route">' + route + '</div>' +
-        '<div class="row" style="flex-wrap:wrap">' +
-          '<span class="chip l">' + g.cost + '</span><span class="chip">' + g.hours + '</span></div>' +
-        '<div class="guide-foot">' +
-          '<button data-like="' + i + '" aria-pressed="' + g.liked + '">' +
-            (g.liked ? '♥' : '♡') + ' <span class="num">' + g.likes + '</span></button>' +
-          '<button data-save="' + i + '">☆ <span class="num">' + g.saves + '</span></button>' +
-          '<button data-copy="' + i + '" style="margin-left:auto; color:var(--grape); font-weight:800">按这条走 →</button>' +
+      return '<article class="xc'+(i===0&&!s.pen?' first':'')+'">'+
+        '<div class="xc-top">'+
+          '<div class="xc-img" style="background:'+a.bg+'">'+a.e+'</div>'+
+          '<div class="xc-main">'+
+            '<div class="xc-title">'+a.n+'</div>'+
+            '<div class="xc-sub">'+a.area+' · '+a.hours+'小时 · '+
+              (a.cost===0?'免费':'¥'+a.cost)+'</div>'+
+            '<div class="pc-tags" style="margin-top:5px">'+a.tags.slice(0,3).map(function(t,j){
+              return '<span class="ct'+(j===0?' lime':'')+'">'+t+'</span>';}).join('')+'</div>'+
+          '</div>'+
+          '<div class="xc-score'+(s.pen?' warn':'')+'"><b class="num">'+s.tot+'</b><span>匹配</span></div>'+
+        '</div>'+
+        '<div class="bars" id="b-'+a.id+'"'+(op?'':' hidden')+'>'+
+          '<div class="xc-why" style="margin:0 0 8px">'+reason(a,s)+'</div>'+bars+'</div>'+
+        '<div class="xc-foot">'+
+          '<button class="whyb" data-why="'+a.id+'" aria-expanded="'+op+'" aria-controls="b-'+a.id+'">'+
+            (op?'收起':'为什么')+'</button>'+
+          (a.open>0
+            ? '<button class="xbtn ghost" data-goplaza="'+a.id+'">'+a.open+'个场进行中</button>'+
+              '<button class="xbtn solid" data-start="'+a.id+'">我来开场</button>'
+            : '<button class="xbtn solid" data-start="'+a.id+'" style="flex:2">还没人开场 · 我来发起</button>')+
         '</div></article>';
     }).join('');
   }
 
-  function renderWeights(){
-    $('weightList').innerHTML = WEIGHTS.map(function(w){
-      return '<div class="wrow"><span>' + w.label + '</span>' +
-        '<span class="track"><i class="fill ' + w.c + '" style="width:' + (w.w / 32 * 100) + '%"></i></span>' +
-        '<span class="num">' + w.w + '%</span></div>';
+  /* ---------------- 我的 ---------------- */
+  var MTABS=[{k:'mine',n:'我发起的'},{k:'joined',n:'我加入的'},{k:'foot',n:'我的足迹'},{k:'fav',n:'我收藏的'}];
+
+  function renderMap(){
+    var lit=DISTRICTS.filter(function(d){return d.v>0;}).length;
+    var shapes=DISTRICTS.map(function(d){
+      return '<path class="district'+(d.v>0?' lit':'')+(st.sel===d.k?' sel':'')+
+        '" d="'+d.d+'" data-dist="'+d.k+'"><title>'+d.n+'</title></path>';
+    }).join('');
+    var labels=DISTRICTS.map(function(d){
+      return '<text class="dlabel'+(d.v>0?' on':'')+(st.sel===d.k?' selt':'')+
+        '" x="'+d.x+'" y="'+d.y+'" text-anchor="middle">'+d.n+'</text>';
+    }).join('');
+    var read;
+    if(st.sel){
+      var s=null;
+      for(var i=0;i<DISTRICTS.length;i++)if(DISTRICTS[i].k===st.sel){s=DISTRICTS[i];break;}
+      read=s.v>0?'<b>'+s.n+'</b> · 已打卡 <b>'+s.v+'</b> 个活动<span class="h"> —— 这个区已点亮</span>'
+        :'<b>'+s.n+'</b> · 还没去过<span class="h"> —— 去「探索」筛这个区，点亮它</span>';
+    } else {
+      read='<span class="h">点任意区域看打卡详情。灰色是还没去过的地方——这比空徽章更能说明"还差哪儿"。</span>';
+    }
+    return '<div class="mapbox">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">'+
+        '<span style="font-size:12px;font-weight:900;color:var(--ink)">城市点亮</span>'+
+        '<span style="font-size:11px;color:var(--meta)" class="num">'+lit+'/12 个区 · '+
+          Math.round(lit/12*100)+'%</span></div>'+
+      '<svg viewBox="0 0 300 250" role="img" aria-label="上海行政区打卡地图">'+
+        '<path class="water" d="'+CHONGMING+'"/>'+
+        '<text class="dlabel" x="234" y="26" text-anchor="middle">崇明</text>'+
+        shapes+labels+'</svg>'+
+      '<div class="mapread">'+read+'</div></div>';
+  }
+
+  function renderMine(){
+    $('mtabs').innerHTML=MTABS.map(function(m){
+      return '<button data-mtab="'+m.k+'" aria-selected="'+(st.mtab===m.k)+'">'+m.n+
+        (m.k==='fav'?' (1)':'')+'</button>';
+    }).join('');
+
+    var joinedIds=Object.keys(st.joined);
+    if(st.mtab==='foot'){
+      $('mbody').innerHTML=renderMap()+
+        '<div style="font-size:12px;font-weight:900;color:var(--ink);margin:15px 0 2px">最近的足迹</div>'+
+        LOGS.map(function(l,i){
+          return '<div class="logi"><div class="logd"><b class="num">'+l.d+'</b>'+l.m+'</div>'+
+            '<div style="flex:1;min-width:0">'+
+              '<div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">'+
+                '<span style="font-size:13px;font-weight:900;color:var(--ink)">'+l.t+'</span>'+
+                '<button class="mini" data-draft="'+i+'">生成攻略</button></div>'+
+              '<div class="num" style="font-size:11px;color:var(--meta);margin:2px 0 5px">'+l.meta+'</div>'+
+              '<div style="font-size:11.5px;background:var(--sunk);padding:6px 9px;border-radius:7px">"'+
+                l.note+'"</div></div></div>';
+        }).join('');
+    } else if(st.mtab==='joined'){
+      $('mbody').innerHTML=joinedIds.length
+        ? joinedIds.map(function(id){
+            for(var i=0;i<PLAZA.length;i++)if(PLAZA[i].id===id)return plazaCard(PLAZA[i]);
+            return '';}).join('')
+        : '<div class="empty">还没有上车任何场<br>去「广场」看看进行中的场</div>';
+    } else if(st.mtab==='mine'){
+      $('mbody').innerHTML='<div class="empty">还没有发布过拼场<br>'+
+        '<span style="font-size:11.5px">去「探索」找到想去的地方，一键发起</span></div>';
+    } else {
+      $('mbody').innerHTML='<div class="empty">收藏了 1 个场</div>';
+    }
+    $('pgArea').textContent=DISTRICTS.filter(function(d){return d.v>0;}).length;
+  }
+
+  /* ---------------- 类目面板 ---------------- */
+  function renderSheet(){
+    var order=GROUPS.slice();
+    if(st.weather==='sunny')order=[GROUPS[2],GROUPS[1],GROUPS[0]];
+    $('sheetGroups').innerHTML=order.map(function(g){
+      return '<div class="ktitle">'+g.t+'</div><div class="kgrid">'+
+        g.ks.map(function(p){
+          return '<button data-kong="'+p[0]+'" aria-pressed="'+(st.kong===p[0])+'">'+p[1]+'</button>';
+        }).join('')+'</div>';
     }).join('');
   }
 
-  var TABS = [
-    {k:'feed',n:'推荐',d:'M3 10.5 12 3l9 7.5V21H3z'},
-    {k:'team',n:'组队',d:'M16 20v-2a4 4 0 0 0-8 0v2M12 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7'},
-    {k:'check',n:'打卡',d:'M12 21s7-5.2 7-10.5A7 7 0 0 0 5 10.5C5 15.8 12 21 12 21m0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5'},
-    {k:'guide',n:'攻略',d:'M4 5.5A2 2 0 0 1 6 4h13v14H6a2 2 0 0 0-2 2z'}
-  ];
+  /* ---------------- tabs ---------------- */
+  var TABS=[{k:'plaza',n:'广场',e:'🪐'},{k:'explore',n:'探索',e:'🧭'},{k:'mine',n:'我的',e:'🙂'}];
 
   function renderTabs(){
-    $('tabbar').innerHTML = TABS.map(function(t){
-      return '<button role="tab" data-tab="' + t.k + '" aria-selected="' + (state.tab === t.k) + '">' +
-        '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
-        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + t.d + '"/></svg>' +
-        '<span>' + t.n + '</span></button>';
+    $('tabbar').innerHTML=TABS.map(function(t){
+      return '<button role="tab" data-tab="'+t.k+'" aria-selected="'+(st.tab===t.k)+'">'+
+        '<span class="ic">'+t.e+'</span><span>'+t.n+'</span></button>';
     }).join('');
   }
 
-  function go(tab){
-    state.tab = tab;
-    ['feed','team','check','guide'].forEach(function(k){ $('view-' + k).hidden = (k !== tab); });
+  function go(t){
+    st.tab=t;
+    ['plaza','explore','mine'].forEach(function(k){
+      $('v-'+k).className='view'+(k===t?' on':'');
+    });
     renderTabs();
-    $('screen').scrollTop = 0;
+    $('screen').scrollTop=0;
   }
 
-  var toastTimer = null;
-  function toast(msg){
-    var t = $('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2000);
+  var tm=null;
+  function toast(m){
+    var el=$('toast');
+    el.textContent=m; el.classList.add('show');
+    clearTimeout(tm); tm=setTimeout(function(){el.classList.remove('show');},2000);
   }
 
-  $('wxSunny').addEventListener('click', function(){ state.weather = 'sunny'; renderWx(); renderResults(); });
-  $('wxRainy').addEventListener('click', function(){ state.weather = 'rainy'; renderWx(); renderResults(); });
-  $('budget').addEventListener('input', function(e){
-    state.budget = +e.target.value;
-    $('budgetRead').textContent = state.budget === 0 ? '免费' : '≤' + state.budget;
-    renderResults();
-  });
-
-  document.addEventListener('click', function(e){
-    // districts are <path>, not <button>, so they must be handled before the
-    // button guard below short-circuits
-    var dist = e.target.closest ? e.target.closest('[data-dist]') : null;
+  /* ---------------- 事件 ---------------- */
+  document.addEventListener('click',function(e){
+    var dist=e.target.closest?e.target.closest('[data-dist]'):null;
     if(dist){
-      var k = dist.getAttribute('data-dist');
-      selected = (selected === k) ? null : k;
-      renderMap();
+      var dk=dist.getAttribute('data-dist');
+      st.sel=(st.sel===dk)?null:dk;
+      renderMine();
+      return;
+    }
+    var el=e.target.closest?e.target.closest('button'):null;
+    if(!el)return;
+
+    if(el.dataset.tab){go(el.dataset.tab); if(el.dataset.tab==='mine')renderMine(); return;}
+
+    if(el.id==='catExpand'){renderSheet(); $('catSheet').hidden=false; return;}
+    if(el.id==='sheetClose'){$('catSheet').hidden=true; return;}
+
+    if(el.dataset.cat){st.cat=el.dataset.cat; st.kong=el.dataset.cat;
+      renderCats(); renderKong(); renderPlaza(); return;}
+
+    if(el.dataset.kong){
+      var k=el.dataset.kong;
+      if(k==='more'){renderSheet(); $('catSheet').hidden=false; return;}
+      st.kong=k; st.cat=k;
+      $('catSheet').hidden=true;
+      renderCats(); renderKong(); renderPlaza(); renderExplore();
       return;
     }
 
-    var el = e.target.closest ? e.target.closest('button') : null;
-    if(!el) return;
+    if(el.dataset.filter){
+      var f=el.dataset.filter;
+      if(f==='weekend'||f==='today'||f==='tomo'){
+        st.when=f; renderFilters('filters'); renderFilters('xfilters');
+      } else if(f==='budget'){
+        st.budget=st.budget==='all'?'low':st.budget==='low'?'mid':st.budget==='mid'?'high':'all';
+        renderFilters('filters'); renderFilters('xfilters'); renderExplore();
+        toast(st.budget==='all'?'人均：不限':'人均：'+
+          (st.budget==='low'?'50元以下':st.budget==='mid'?'50-100元':'100元以上'));
+      } else if(f==='near'){
+        toast('距离：本区内（线上默认值失效是 P0 问题）');
+      } else {
+        toast('排序方式在完整版展开');
+      }
+      return;
+    }
 
-    if(el.dataset.mood){ state.mood = el.dataset.mood; renderFilters(); renderResults(); return; }
-    if(el.dataset.party){ state.party = +el.dataset.party; renderFilters(); renderResults(); return; }
-    if(el.dataset.tab){ go(el.dataset.tab); return; }
+    if(el.dataset.board){
+      var pid=el.dataset.board;
+      if(st.joined[pid]){toast('已经上车了，在「我的-我加入的」里'); return;}
+      st.joined[pid]=true;
+      renderPlaza();
+      toast('上车成功，已进入「我的-我加入的」');
+      return;
+    }
 
     if(el.dataset.why){
-      var wid = el.dataset.why;
-      state.open[wid] = !state.open[wid];
-      var bars = $('bars-' + wid);
+      var wid=el.dataset.why;
+      st.open[wid]=!st.open[wid];
+      var bars=$('b-'+wid);
       if(bars){
-        bars.hidden = !state.open[wid];
-        el.setAttribute('aria-expanded', String(state.open[wid]));
-        el.textContent = state.open[wid] ? '收起' : '为什么';
+        bars.hidden=!st.open[wid];
+        el.setAttribute('aria-expanded',String(st.open[wid]));
+        el.textContent=st.open[wid]?'收起':'为什么';
       }
       return;
     }
 
-    if(el.dataset.join){
-      var id = el.dataset.join;
-      if(state.teams[id] && state.teams[id].joined){ go('team'); }
-      else {
-        var need = Math.max(2, state.party);
-        state.teams[id] = {joined:true, have:1, need:need};
-        renderResults(); renderTeams();
-        toast('队伍已创建，还差 ' + (need - 1) + ' 人');
-      }
+    if(el.dataset.goplaza){go('plaza'); toast('已跳到广场对应的场'); return;}
+    if(el.dataset.start){
+      toast('已带着这个地点进入发起流程 · 时间地点已预填');
       return;
     }
-    if(el.dataset.leave){ delete state.teams[el.dataset.leave]; renderTeams(); renderResults(); toast('已退出队伍'); return; }
-    if(el.dataset.ping){
-      var t = state.teams[el.dataset.ping];
-      if(t && t.have < t.need){
-        t.have++;
-        renderTeams(); renderResults();
-        toast(t.have >= t.need ? '满员了，出发吧' : '室友加入了，还差 ' + (t.need - t.have) + ' 人');
-      } else toast('队伍已满员');
-      return;
-    }
-    if(el.dataset.detail){ toast('详情页在完整版展开：交通、票务、周边餐饮'); return; }
-
-    if(el.dataset.draft){ openDraft(+el.dataset.draft); return; }
-    if(el.id === 'draftClose' || el.id === 'draftCancel'){ $('draftModal').hidden = true; return; }
-    if(el.id === 'draftPublish'){
-      $('draftModal').hidden = true;
-      go('guide');
-      toast('已发布到攻略广场');
-      return;
-    }
-
-    if(el.dataset.like){
-      var g = GUIDES[+el.dataset.like];
-      g.liked = !g.liked; g.likes += g.liked ? 1 : -1; renderGuides(); return;
-    }
-    if(el.dataset.save){ GUIDES[+el.dataset.save].saves++; renderGuides(); toast('已收藏到我的攻略'); return; }
-    if(el.dataset.copy){ toast('已按这条攻略创建行程草稿'); return; }
+    if(el.dataset.guideopen){toast('已按这条攻略预填开场信息'); return;}
+    if(el.dataset.draft){toast('路线/花费/耗时已自动带出，只需补一句感受'); return;}
   });
 
-  renderWx(); renderFilters(); renderResults(); renderTeams();
-  renderCheck(); renderGuides(); renderWeights(); renderTabs();
+  ['','2'].forEach(function(sfx){
+    var a=$('wxSun'+sfx),b=$('wxRain'+sfx);
+    if(a)a.addEventListener('click',function(){
+      st.weather='sunny'; renderWx(); renderKong(); renderPlaza(); renderExplore();});
+    if(b)b.addEventListener('click',function(){
+      st.weather='rainy'; renderWx(); renderKong(); renderPlaza(); renderExplore();
+      toast('已按雨天重排：室内类目前置，露天场沉底');});
+  });
+
+  /* ---------------- boot ---------------- */
+  renderWx(); renderCats(); renderKong();
+  renderFilters('filters'); renderFilters('xfilters');
+  renderPlaza(); renderExplore(); renderMine(); renderTabs();
 })();
 </script>
+</body>
+</html>
