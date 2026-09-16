@@ -1159,7 +1159,7 @@
         '<div class="plan-why" id="pw-'+p.id+'"'+(open?'':' hidden')+'>'+p.why+bars+'</div>'+
         '<div class="plan-f">'+
           '<button class="why" data-planwhy="'+p.id+'" aria-expanded="'+open+'">'+
-            (open?'收起':'为什么')+'</button>'+
+            (open?'收起':'详情')+'</button>'+
           '<button class="go" data-planstart="'+p.id+'">就这个周末 · 一键发起</button>'+
         '</div></div>';
     }).join('');
@@ -1437,7 +1437,7 @@
       var pw=$('pw-'+pid2);
       if(pw){pw.hidden=!st.planWhy[pid2];
         el.setAttribute('aria-expanded',String(st.planWhy[pid2]));
-        el.textContent=st.planWhy[pid2]?'收起':'为什么';}
+        el.textContent=st.planWhy[pid2]?'收起':'详情';}
       return;
     }
     if(el.dataset.planstart){
